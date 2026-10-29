@@ -1,0 +1,11 @@
+.console-control-well {
+  position: absolute;
+  inset: var(--console-control-well-inset, 0.15rem);
+  border: 1px solid #303338;
+  border-radius: 50%;
+  background: radial-gradient(circle at 52% 52%, #41454a 0%, #3b3f44 42%, #33373b 68%, #292c30 100%);
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.34),
+    inset -2px -2px 4px rgba(205, 212, 218, 0.07),
+    0 1px rgba(255, 255, 255, 0.06);
+}

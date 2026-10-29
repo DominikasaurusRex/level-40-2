@@ -1,0 +1,150 @@
+import type { Monster } from '@/types/monster.ts'
+
+export const dungeonMonsters: Monster[] = [
+  {
+    image: '/enemies/dungeon/warrior.webp',
+    spriteScale: 0.8,
+    spriteWallOffset: 15,
+    spriteGroundOffset: 15,
+    xpOrbRadius: 80,
+    xpOrbOffset: 130,
+    xp: 4374,
+    combatant: {
+      name: 'Warrior',
+      maxHp: 460,
+      weapon: { name: 'Basic Attack', damage: 15, cooldown: 2800 },
+      skills: [
+        {
+          id: 'shield-wall',
+          name: 'Shield Wall',
+          category: 'guard',
+          cooldown: 7000,
+          startsReady: true,
+          effects: [{ type: 'def', amount: 20 }],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/dungeon/mage.webp',
+    spriteScale: 0.75,
+    spriteGroundOffset: 25,
+    xpOrbRadius: 80,
+    xpOrbOffset: 100,
+    xp: 4617,
+    combatant: {
+      name: 'Mage',
+      maxHp: 420,
+      weapon: { name: 'Basic Attack', damage: 16, cooldown: 3500 },
+      skills: [
+        {
+          id: 'arcane-veil',
+          name: 'Arcane Veil',
+          category: 'guard',
+          cooldown: 8000,
+          effects: [{ type: 'invincible', duration: 3500 }],
+        },
+        {
+          id: 'arcane-blast',
+          name: 'Arcane Blast',
+          category: 'attack',
+          cooldown: 9000,
+          effects: [{ type: 'dmg', amount: 55 }],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/dungeon/barbarian.webp',
+    spriteScale: 0.9,
+    spriteWallOffset: 15,
+    spriteGroundOffset: 20,
+    xpOrbRadius: 80,
+    xpOrbOffset: 130,
+    xp: 4860,
+    combatant: {
+      name: 'Barbarian',
+      maxHp: 640,
+      weapon: { name: 'Basic Attack', damage: 22, cooldown: 4000 },
+      skills: [
+        {
+          id: 'skull-crusher',
+          name: 'Skull Crusher',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [
+            { type: 'dmg', amount: 70 },
+            { type: 'stun', duration: 2000 },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/dungeon/rogue.webp',
+    spriteScale: 0.85,
+    spriteWallOffset: 15,
+    spriteGroundOffset: 20,
+    xpOrbRadius: 80,
+    xpOrbOffset: 140,
+    xp: 5103,
+    combatant: {
+      name: 'Rogue',
+      maxHp: 480,
+      weapon: { name: 'Basic Attack', damage: 5, hits: 3, cooldown: 2400 },
+      skills: [
+        {
+          id: 'vanish',
+          name: 'Vanish',
+          category: 'guard',
+          cooldown: 7000,
+          startsReady: true,
+          effects: [{ type: 'agi', charges: 2 }],
+        },
+        {
+          id: 'eviscerate',
+          name: 'Eviscerate',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [
+            { type: 'dmg', amount: 5 },
+            { type: 'dmg', amount: 5 },
+            { type: 'dmg', amount: 5 },
+            { type: 'dmg', amount: 5 },
+            { type: 'bleed', amountPerTick: 5, tickInterval: 1000, duration: 4000 },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/dungeon/dragon.webp',
+    spriteScale: 1.6,
+    spriteGroundOffset: 20,
+    spriteWallOffset: 65,
+    xpOrbRadius: 150,
+    xpOrbOffset: 90,
+    xp: 6075,
+    combatant: {
+      name: 'Dragon',
+      maxHp: 1200,
+      weapon: { name: 'Basic Attack', damage: 45, cooldown: 3500 },
+      skills: [
+        {
+          id: 'tail-swipe',
+          name: 'Tail Swipe',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [{ type: 'dmg', amount: 100 }],
+        },
+        {
+          id: 'fire-breath',
+          name: 'Fire Breath',
+          category: 'attack',
+          cooldown: 12000,
+          effects: [{ type: 'bleed', amountPerTick: 13, tickInterval: 1000, duration: 4000 }],
+        },
+      ],
+    },
+  },
+]

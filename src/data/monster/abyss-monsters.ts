@@ -1,0 +1,218 @@
+import type { Monster } from '@/types/monster.ts'
+
+export const abyssMonsters: Monster[] = [
+  {
+    image: '/enemies/abyss/last-guardian.webp',
+    spriteOverflow: true,
+    spriteScale: 1.2,
+    spriteGroundOffset: 10,
+    xpOrbRadius: 200,
+    xpOrbOffset: 150,
+    xp: 39366,
+    combatant: {
+      name: 'Last Guardian',
+      maxHp: 1200,
+      weapon: { name: 'Basic Attack', damage: 31, cooldown: 2800 },
+      skills: [
+        {
+          id: 'bastion-of-the-end',
+          name: 'Bastion of the End',
+          category: 'guard',
+          cooldown: 15000,
+          startsReady: true,
+          effects: [{ type: 'def', amount: 40 }],
+        },
+        {
+          id: 'final-sentence',
+          name: 'Final Sentence',
+          category: 'attack',
+          cooldown: 15000,
+          initialDelay: 4500,
+          effects: [{ type: 'dmg', amount: 250 }],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/abyss/tentacle.webp',
+    spriteScale: 0.7,
+    spriteGroundOffset: 10,
+    xpOrbRadius: 80,
+    xpOrbOffset: 100,
+    xp: 41553,
+    combatant: {
+      name: 'Tentacle',
+      maxHp: 1248,
+      weapon: { name: 'Basic Attack', damage: 30, cooldown: 3800 },
+      skills: [
+        {
+          id: 'constricting-grasp',
+          name: 'Constricting Grasp',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [
+            { type: 'dmg', amount: 80 },
+            { type: 'stun', duration: 2000 },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/abyss/abyssall-maw.webp',
+    spriteOverflow: true,
+    spriteScale: 2.2,
+    spriteGroundOffset: -85,
+    xpOrbRadius: 200,
+    xpOrbOffset: 300,
+    xp: 43740,
+    combatant: {
+      name: 'Abyssal Maw',
+      maxHp: 1344,
+      weapon: { name: 'Basic Attack', damage: 14, hits: 3, cooldown: 2600 },
+      skills: [
+        {
+          id: 'constricting-grasp',
+          name: 'Constricting Grasp',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [
+            { type: 'dmg', amount: 95 },
+            { type: 'stun', duration: 2000 },
+          ],
+        },
+        {
+          id: 'gnashing-teeth',
+          name: 'Gnashing Teeth',
+          category: 'attack',
+          cooldown: 8000,
+          effects: Array.from({ length: 5 }, () => ({ type: 'dmg' as const, amount: 11 })),
+        },
+        {
+          id: 'ravenous-bite',
+          name: 'Ravenous Bite',
+          category: 'attack',
+          cooldown: 11000,
+          effects: [
+            { type: 'dmg', amount: 70 },
+            { type: 'bleed', amountPerTick: 10, tickInterval: 1000, duration: 4000 },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/abyss/abyssall-eye.webp',
+    spriteOverflow: true,
+    spriteScale: 2.2,
+    spriteGroundOffset: -285,
+    xpOrbRadius: 200,
+    xpOrbOffset: 450,
+    xp: 45927,
+    combatant: {
+      name: 'Abyssal Eye',
+      maxHp: 1488,
+      weapon: { name: 'Basic Attack', damage: 26, cooldown: 3200 },
+      skills: [
+        {
+          id: 'constricting-grasp',
+          name: 'Constricting Grasp',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [
+            { type: 'dmg', amount: 95 },
+            { type: 'stun', duration: 2000 },
+          ],
+        },
+        {
+          id: 'gnashing-teeth',
+          name: 'Gnashing Teeth',
+          category: 'attack',
+          cooldown: 8000,
+          effects: Array.from({ length: 5 }, () => ({ type: 'dmg' as const, amount: 11 })),
+        },
+        {
+          id: 'ravenous-bite',
+          name: 'Ravenous Bite',
+          category: 'attack',
+          cooldown: 11000,
+          effects: [
+            { type: 'dmg', amount: 70 },
+            { type: 'bleed', amountPerTick: 10, tickInterval: 1000, duration: 4000 },
+          ],
+        },
+        {
+          id: 'ruinous-gaze',
+          name: 'Ruinous Gaze',
+          category: 'attack',
+          cooldown: 14000,
+          effects: [{ type: 'dmg', amount: 70 }],
+        },
+        {
+          id: 'phase-beyond',
+          name: 'Phase Beyond',
+          category: 'guard',
+          cooldown: 15000,
+          effects: [{ type: 'invincible', duration: 3500 }],
+        },
+      ],
+    },
+  },
+  {
+    image: '/enemies/abyss/abyssall-god.webp',
+    spriteOverflow: true,
+    spriteScale: 2.2,
+    spriteGroundOffset: -245,
+    xpOrbRadius: 200,
+    xpOrbOffset: 400,
+    xp: 54675,
+    combatant: {
+      name: 'Abyssal God',
+      maxHp: 2000,
+      weapon: { name: 'Basic Attack', damage: 10, cooldown: 3200 },
+      skills: [
+        {
+          id: 'grasp-of-the-abyss',
+          name: 'Grasp of the Abyss',
+          category: 'attack',
+          cooldown: 10000,
+          effects: [
+            { type: 'dmg', amount: 95 },
+            { type: 'stun', duration: 2000 },
+          ],
+        },
+        {
+          id: 'gnashing-eternity',
+          name: 'Gnashing Eternity',
+          category: 'attack',
+          cooldown: 8000,
+          effects: Array.from({ length: 5 }, () => ({ type: 'dmg' as const, amount: 11 })),
+        },
+        {
+          id: 'endless-hunger',
+          name: 'Endless Hunger',
+          category: 'attack',
+          cooldown: 11000,
+          effects: [
+            { type: 'dmg', amount: 70 },
+            { type: 'bleed', amountPerTick: 10, tickInterval: 1000, duration: 4000 },
+          ],
+        },
+        {
+          id: 'gaze-of-extinction',
+          name: 'Gaze of Extinction',
+          category: 'attack',
+          cooldown: 14000,
+          effects: [{ type: 'dmg', amount: 70 }],
+        },
+        {
+          id: 'outside-reality',
+          name: 'Outside Reality',
+          category: 'guard',
+          cooldown: 15000,
+          effects: [{ type: 'invincible', duration: 3500 }],
+        },
+      ],
+    },
+  },
+]
