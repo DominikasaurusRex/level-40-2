@@ -129,16 +129,20 @@ Town is the between-run preparation hub. Its facilities **gate access to gamepla
 
 | Facility | Options provided |
 | --- | --- |
-| Inn | Mostly flavor; present from the start. |
+| Inn | Mostly flavor; select skills and equipment; present from the start. |
 | Barracks | Spend XP to buy skill points and access the skill board; upgrades unlock further board sections. |
 | Shop / Smithy | Buy weapons and weapon upgrades; expanded selections unlock additional weapons. |
 | Library | View the monster manual, including information useful for elemental matchups. |
 | Quest board | Unlock monster-achievement options and begin tracking them; no retroactive credit. |
 | Bar | Exchange Gold for XP and XP for Gold. |
+| Gate | Start a new run. |
 
 - Select the three-weapon loadout and four or five active skills in Town before a run.
 - **Consumables are excluded.** Support effects belong in the expanded active-skill selection.
 - Facility costs, upgrade tiers, selections, and exchange rates will be worked out during implementation.
+
+- Every facility has an npc to talk to
+- These npcs are mostly there for gameplay tips and some light banter
 
 ## Scope and follow-up documents
 
