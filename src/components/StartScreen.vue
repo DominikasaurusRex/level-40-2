@@ -51,7 +51,7 @@ function confirmNewGame() {
       </div>
       <div class="start-control-hint hint-menu">
         <span>Open menu in game</span>
-        <span class="hint-menu-arrows" aria-hidden="true"><i /><i /></span>
+        <span class="hint-menu-arrows" aria-hidden="true"><i /></span>
       </div>
     </div>
 
@@ -167,11 +167,11 @@ function confirmNewGame() {
 }
 
 .hint-home {
-  left: 1rem;
+  left: 1.55rem;
 }
 
 .hint-volume {
-  left: 5rem;
+  left: 6.25rem;
 }
 
 .hint-menu {
@@ -193,23 +193,17 @@ function confirmNewGame() {
     drop-shadow(0 2px 1px #000);
 }
 
+/* Spans the label so the arrow can sit over START, which is narrower than the label. */
 .hint-menu-arrows {
   position: relative;
-  width: 7.25rem;
+  align-self: stretch;
   height: 0.42rem;
 }
 
 .hint-menu-arrows i {
   position: absolute;
   top: 0;
-}
-
-.hint-menu-arrows i:first-child {
-  left: 1.2rem;
-}
-
-.hint-menu-arrows i:last-child {
-  right: 1.35rem;
+  right: 2rem;
 }
 
 @keyframes control-hint-bob {
