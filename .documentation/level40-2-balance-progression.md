@@ -49,7 +49,7 @@ These are **categories and illustrative ideas**, not a fixed node list, node pla
 - Include both **general passive nodes** (such as **Power +1**, HP increases) and **weapon-specific passive nodes** (such as **+2 Physical damage to Axes**). Neither category is inherently better; their relative value depends on the build and later balancing.
 - **Power** retains its established meaning as the player's damage stat from the original Level 40. Do not redefine it as a new per-hit weapon modifier.
 - Potential early options: general Power/HP increases; weapon-specific damage; active healing, Regeneration, or DEF skills.
-- Potential middle options: elemental bonuses, further weapon specialization; active AGI, Stun, Poison, and elemental resistance via Shielded.
+- Potential middle options: elemental bonuses, further weapon specialization; active AGI, Stun, Poison, and elemental resistance via Barrier.
 - Potential late options: stronger specialized bonuses; elemental immunity, Curse, and Absorb skills. **Absorb belongs far out on the skill board**, not among the initial active skills.
 - **Extra weapon hits** are a rare, high-end upgrade concept applying to **weapons generally**, not a Dagger-specific hit-count bonus. Exact effect and placement are undecided.
 - Whether active skills have dedicated upgrade nodes (e.g., improved effect or cooldown) is **not yet decided**.
@@ -70,25 +70,28 @@ These examples should remain mixed across board regions rather than segregated i
 
 ## Temporary combat statuses
 
-- **Poison:** damage over time; replaces Bleed.
+- **Poison:** damage over time; replaces Bleed. Bypasses DEF and Shield.
 - **Stun:** freezes cooldown recovery temporarily.
 - **Regeneration:** restores HP over time, capped at maximum HP.
-- **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Daggers). It is not an accumulating shield.
+- **Shield:** a pool of temporary HP, carried over from the original Level 40 (where DEF was displayed as "Shield"). It absorbs damage point-for-point before HP is lost and is used up as it does. It stacks and does not expire, so it can be built up against weak enemies and carried into later fights. Not to be confused with Barrier.
+- **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Daggers). It is not an accumulating pool; that role belongs to Shield.
 - **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Axes).
-- **Shielded:** temporary resistance (×0.5) or immunity (×0) to a specified damage type (Physical, Fire, Ice, or Thunder). **Replaces Invincible.**
+- **Barrier:** temporary resistance (×0.5) or immunity (×0) to a specified damage type (Physical, Fire, Ice, or Thunder). **Replaces Invincible.**
 - **Absorb:** temporarily converts a specified damage type into healing.
-- **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with DEF, AGI, Shielded, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. A powerful late-game healing/cleansing skill that removes Curse without triggering reflection is a **possibility**, not an initial mechanic or confirmed unlock.
+- **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. A powerful late-game healing/cleansing skill that removes Curse without triggering reflection is a **possibility**, not an initial mechanic or confirmed unlock.
 
-Monsters' **innate damage-type responses are permanently active**. Temporary Shielded and Absorb effects **override**, rather than multiply with, the innate response for that damage type while active. After expiry, the innate response applies again. Reapplying a status **refreshes its duration**, without stacking separate copies. A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). For simultaneous temporary elemental effects targeting the same damage type, **the strongest effect wins**; effects do not combine or multiply.
+Monsters' **innate damage-type responses are permanently active**. Temporary Barrier and Absorb effects **override**, rather than multiply with, the innate response for that damage type while active. After expiry, the innate response applies again. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). For simultaneous temporary elemental effects targeting the same damage type, **the strongest effect wins**; effects do not combine or multiply.
 
 ## Damage resolution, DEF, and absorption
 
 - Each hit can contain Physical damage and at most one elemental component. Apply the target's effective damage-type response to each component **before DEF**.
 - If an element is **absorbed**, remove that component from damaging damage entirely and treat its full value as a **separate healing event**. DEF never reduces this healing, even if DEF fully blocks the physical component.
 - For a hit with both damaging components, divide the available flat DEF equally between Physical and Elemental. Any unused reduction on either side **overflows** to the other side. With only one damaging component, all DEF applies to it. DEF is applied once per hit, not once per component.
+- **Shield comes after DEF.** Whatever damage remains after DEF is absorbed by Shield first; only the rest reduces HP. Shield does not affect absorption healing.
+- **Poison bypasses DEF and Shield.** Curse reflection is a normal hit and goes through DEF and Shield like any other damage.
 - Display damage and healing **separately** in combat; never collapse them into a single net number. Resolve damage first, then healing from the same hit, **before checking for death**. Healing cannot exceed maximum HP.
 
-For Curse reflection, keep the recorded damage types separate so a player can deliberately deal Fire damage while cursed and activate Fire Shielded or Fire Absorb before expiry. Reflected damage and any resulting absorption healing are shown as separate combat events, using the same damage-first, healing-second resolution described above.
+For Curse reflection, keep the recorded damage types separate so a player can deliberately deal Fire damage while cursed and activate a Fire Barrier or Fire Absorb before expiry. Reflected damage and any resulting absorption healing are shown as separate combat events, using the same damage-first, healing-second resolution described above.
 
 **Examples:** 100 Physical + 20 Fire against 80 DEF deals 40 damage at normal Fire response, 30 against Fire resistance, and 20 against Fire immunity. Against Fire Absorb, it displays **20 damage** and **20 healing** separately (subject to maximum HP). For the normal response, DEF initially allocates 40 to each component; Fire uses only 20, so the unused 20 reduces Physical damage further.
 
@@ -99,7 +102,7 @@ The actual skill nodes should be designed in coordination with:
 
 - The weapon roster and the distinct roles of weapon types.
 - Weapon-specific empowerment/burst effects.
-- The established status-effect roster and its interactions (documented below).
+- The established status-effect roster and its interactions (documented above).
 - Active skills, passive bonuses, defensive options, and elemental resistance.
 
 Do not lock down a complete node roster before these connected systems are defined. The board structure can be established now without inventing individual skills.

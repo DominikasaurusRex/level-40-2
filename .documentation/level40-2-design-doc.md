@@ -14,15 +14,16 @@ Working design notes, 2026-11-01. This describes the **sequel**, not the origina
 ## Stages and ending
 
 - **40 main stages**, followed by **two additional superboss stages**.
-- Stage **41** is a superboss whose identity is undecided.
-- Stage **42** is **the developer**.
-- After stage 40, an ending cutscene shows **“Fin?”**.
-- Only after beating the superbosses does the game show **“Fin!”**.
+- Stage **41** is the superboss **Moon’s Shadow**.
+- Stage **42** is the superboss **the Moon itself**.
+- After the stage-25 boss, an ending cutscene shows **“Fin?”**.
+- Only after beating the final superboss does the game show **“Fin!”**.
+- Areas, bosses, and the story are described in `level40-2-story-progression.md`, which takes precedence over this overview.
 
 ## Combat continuity
 
-- **All player combat state carries between fights**: current HP, shields/DEF, evasion charges/AGI, statuses, cooldowns, weapon charge, and ongoing empowerment.
-- Winning does not reset or fully heal the player. A weak enemy can provide an opportunity to accumulate shields; damage from one encounter can cause defeat in the next.
+- **All player combat state carries between fights**: current HP, Shield, DEF, evasion charges/AGI, statuses, cooldowns, weapon charge, and ongoing empowerment.
+- Winning does not reset or fully heal the player. A weak enemy can provide an opportunity to accumulate Shield; damage from one encounter can cause defeat in the next.
 - Statuses persist for their remaining duration. For example, poison continues ticking into the next fight until it expires.
 - Additional or revised statuses may be needed; the final status roster remains open.
 
@@ -72,7 +73,7 @@ Active play has two parts: building weapon empowerment through clicks, and timin
 
 - Active skills are **bought through the skill board**.
 - The player selects **four active skills per run, possibly five depending on the interface layout**. Together with three weapon slots, pre-run preparation fills **seven or eight loadout slots**.
-- Skills should offer a broader range of distinct effects to cover support roles without consumables. Examples include **shielding, healing, damage element altering, elemental resistances and stunning**; the final skill roster remains open.
+- Skills should offer a broader range of distinct effects to cover support roles without consumables. Examples include **Shield, Barrier, healing, damage element altering, elemental resistances and stunning**; the final skill roster remains open.
 - Well-timed skills should be capable of **swinging a fight**.
 - Exact effects, costs, and cooldowns will be worked out during implementation.
 
@@ -148,7 +149,7 @@ Town is the between-run preparation hub. Its facilities **gate access to gamepla
 
 The core structural decisions are settled. **Four or five active-skill slots** remains an interface-layout choice.
 
-Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the final cutoff, achievements, and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the stage-41 superboss belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
+Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the final cutoff, achievements, and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the superbosses belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
 
 Existing working proposals above are retained as context until their dedicated documents define the details. Facility introduction details, upgrade selections, and material identities can be resolved alongside that work.
 
