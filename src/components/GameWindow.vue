@@ -635,7 +635,7 @@ watch(() => game.pendingHotHeals.length, () => {
   --ui-enemy-hp: #d95b63;
   --ui-player-hp: #56d39a;
   position: relative;
-  width: 50rem;
+  width: 60rem;
   height: 36rem;
   box-sizing: border-box;
   border: 4px solid #222;
