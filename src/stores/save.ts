@@ -55,6 +55,17 @@ function decodeBase64(value: string): string {
   return new TextDecoder().decode(bytes)
 }
 
+/** Reads an original Level 40 `.sav` file (any file with a player level); undefined if it isn't one. */
+export function parseOriginalSave(fileText: string): OriginalSaveInfo | undefined {
+  try {
+    const save = JSON.parse(decodeBase64(fileText)) as { level?: unknown; badges?: unknown }
+    if (typeof save?.level !== 'number') return undefined
+    return { beatFinalBoss: Array.isArray(save.badges) && save.badges.includes('Abyss') }
+  } catch {
+    return undefined
+  }
+}
+
 export const useSaveStore = defineStore('save', () => {
   const game = useGameStore()
   const lastSavedAt = ref<Date>()
