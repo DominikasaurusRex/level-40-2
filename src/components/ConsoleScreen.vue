@@ -72,7 +72,6 @@ onBeforeUnmount(() => clearTimeout(volumeDisplayTimeout))
       </div>
       <img class="console-mark" src="/DSR-logo.svg" alt="DSR" />
       <div class="console-menu-group console-menu-right">
-        <button class="console-menu-button console-option" type="button" @click="openMenu">SELECT</button>
         <button class="console-menu-button console-option" type="button" @click="openMenu">START</button>
       </div>
     </nav>
@@ -272,31 +271,31 @@ a.console-menu-button {
 }
 
 .console-volume {
-  width: 0.9rem;
-  min-width: 0.9rem;
-  height: 0.9rem;
+  width: 1.1rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
   padding: 0;
   border-radius: 50%;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
 }
 
 .console-volume-label {
   margin: 0 -0.3rem;
   color: #9999a2;
-  font: 700 0.55rem/1 Arial, sans-serif;
+  font: 700 0.65rem/1 Arial, sans-serif;
   letter-spacing: 0.06em;
 }
 
 .console-home,
 .console-option {
-  min-width: 3.15rem;
-  height: 1.7rem;
+  min-width: 4.1rem;
+  height: 1.95rem;
   border-radius: 0.08rem 0.08rem 50% 50%;
-  font-size: 0.52rem;
+  font-size: 0.55rem;
 }
 
 .console-option {
-  min-width: 3.45rem;
+  min-width: 4.75rem;
 }
 
 .console-mark {
