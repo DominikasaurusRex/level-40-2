@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { useGameStore, type GameSnapshot } from '@/stores/game'
+import { useGameStore, type GameSnapshot, type OriginalSaveInfo } from '@/stores/game'
 
 const AUTOSAVE_MS = 60_000
 const COUNTER_TICK_MS = 1_000

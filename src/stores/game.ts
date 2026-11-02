@@ -58,6 +58,15 @@ export interface GameSnapshot {
   tutorialComplete?: boolean
   /** Missing in older saves, which predate this tutorial and are treated as complete. */
   levelUpTutorialComplete?: boolean
+  /** Whether a valid original Level 40 save was imported at New Game (for the starting gift). */
+  originalSaveImported?: boolean
+  /** Whether that imported save had beaten the final boss (Abyss badge). */
+  originalFinalBossBeaten?: boolean
+}
+
+/** The only facts kept from an imported original Level 40 save. */
+export interface OriginalSaveInfo {
+  beatFinalBoss: boolean
 }
 
 interface QueuedLevelUp {
@@ -107,6 +116,8 @@ export const useGameStore = defineStore('game', () => {
   const isTutorialActive = computed(() => !tutorialComplete.value && activeLevel.value === 0)
   const levelUpTutorialComplete = ref(false)
   const earnedBadgeIds = ref<AreaName[]>([])
+  const originalSaveImported = ref(false)
+  const originalFinalBossBeaten = ref(false)
   const focusedSkillId = ref('basic-attack')
   const focusChargeMs = ref(0)
   const focusedSkill = computed(() => playerState.value.skills.find(skill => skill.id === focusedSkillId.value))
@@ -389,6 +400,8 @@ export const useGameStore = defineStore('game', () => {
       badges: [...earnedBadgeIds.value],
       tutorialComplete: tutorialComplete.value,
       levelUpTutorialComplete: levelUpTutorialComplete.value,
+      originalSaveImported: originalSaveImported.value,
+      originalFinalBossBeaten: originalFinalBossBeaten.value,
     }
   }
 
@@ -407,8 +420,10 @@ export const useGameStore = defineStore('game', () => {
     pendingHotHeals.value = []
   }
 
-  function reset() {
+  function reset(originalSave?: OriginalSaveInfo) {
     Object.assign(player, createNewPlayer())
+    originalSaveImported.value = Boolean(originalSave)
+    originalFinalBossBeaten.value = originalSave?.beatFinalBoss ?? false
     activeArea.value = 'Field'
     activeLevel.value = 0
     highestUnlockedLevel.value = 1
@@ -493,6 +508,8 @@ export const useGameStore = defineStore('game', () => {
     // Only a fresh new game can see the level-up tutorial: any save already past level 1
     // may have missed it, and its level-up UI isn't guaranteed to be in the state it expects.
     levelUpTutorialComplete.value = save.levelUpTutorialComplete === true || level > 1
+    originalSaveImported.value = save.originalSaveImported === true
+    originalFinalBossBeaten.value = save.originalFinalBossBeaten === true
 
     if (!tutorialComplete.value) {
       activeArea.value = 'Field'
@@ -658,6 +675,8 @@ export const useGameStore = defineStore('game', () => {
     activeLevel,
     highestUnlockedLevel,
     earnedBadgeIds,
+    originalSaveImported,
+    originalFinalBossBeaten,
     tutorialComplete,
     isTutorialActive,
     levelUpTutorialComplete,

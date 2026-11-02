@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch } from 'vue'
-import { useGameStore } from '@/stores/game'
+import { useGameStore, type OriginalSaveInfo } from '@/stores/game'
 import { useSaveStore } from '@/stores/save'
 import { BUFF_STAGGER_MS, HIT_STAGGER_MS } from '@/combat/engine'
 import { areaBackgrounds } from '@/data/area-backgrounds'
@@ -290,10 +290,10 @@ function continueGame() {
   fadeThroughBlack(() => { sessionStarted.value = true }, revealGame)
 }
 
-function startNewGame() {
+function startNewGame(originalSave?: OriginalSaveInfo) {
   game.stop()
   saves.stop()
-  saves.reset()
+  saves.reset(originalSave)
   tutorialStepIndex.value = 0
   fadeThroughBlack(() => {
     menuOpen.value = false
@@ -302,9 +302,9 @@ function startNewGame() {
   })
 }
 
-function newGame() {
+function newGame(originalSave?: OriginalSaveInfo) {
   if (screenFade.value !== 'idle') return
-  startNewGame()
+  startNewGame(originalSave)
 }
 
 const cardStyle = computed(() => cardHeight.value
