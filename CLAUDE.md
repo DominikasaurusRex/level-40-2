@@ -20,13 +20,36 @@ and how; ask when the intended new design is unclear.
 
 ## Current state
 
-- The repository has documentation only. The original source code has **not been imported yet**,
-  so the `src/...` paths the docs mention do not exist here yet.
-- No systems have been redesigned yet.
+- The original Level 40 source code is imported **unchanged** in `src/` and `public/`. It still
+  plays as Level 40: 8 areas (Field → Abyss), level-ups, Shield-style DEF, Bleed, and so on.
+- The Level 40 2 redesign is **documented but not implemented** (see the Level 40 2 design docs
+  below). No code has been changed for it yet.
+- Until a system is implemented, the code follows the original docs, and the Level 40 2 docs
+  describe the target.
 
-Update this section as code arrives and systems get replaced.
+Update this section as systems get replaced in code.
 
 ## Documentation
+
+### Level 40 2 design (the target)
+
+Working design docs in `.documentation/`. They describe the sequel, not the original:
+
+| File | Covers |
+| ---- | ------ |
+| `level40-2-design-doc.md` | Overview: run loop, combat continuity, weapons, damage types, active play, skill board, stage skipping, resources, Town |
+| `level40-2-story-progression.md` | Premise, areas and bosses for stages 1–42, monster reuse, elemental planning, endings |
+| `level40-2-balance-progression.md` | Skill board structure, weapon damage structure, the status roster, damage resolution order |
+
+Rules for these docs:
+
+- Where they overlap, the **story doc wins** on areas, bosses, and the story. The design doc is the
+  overview; the other two hold the details.
+- They separate settled decisions from open ones. Do not fill open questions with invented content.
+- Numerical balancing is deliberately deferred to implementation. The original game's numbers are a
+  reference, not values to keep.
+
+### Original Level 40 (the baseline)
 
 `.documentation/level40-system-documentation/` describes the **original** Level 40. Start at its
 `README.md`:
@@ -52,7 +75,9 @@ Rules for these docs:
 
 ## Original architecture principles
 
-These hold until a redesign explicitly replaces them (details in `01-architecture.md`):
+These hold until a redesign explicitly replaces them (details in `01-architecture.md`). The Level 40 2
+design keeps the engine-level principles but replaces much of the gameplay they serve (for example,
+no level-ups, combat state carries between fights):
 
 1. Player and monsters share one combatant model. The basic attack is a normal skill.
 2. Static definitions are separate from runtime state. Never mutate objects imported from `src/data/`.
@@ -63,15 +88,17 @@ These hold until a redesign explicitly replaces them (details in `01-architectur
 6. The UI is a CSS-scaled console. Position math uses `offsetLeft`/`offsetTop`, never
    `getBoundingClientRect()`. No popovers or teleports; choices expand inline.
 
-## Commands (once the code is in)
+## Commands
 
 ```sh
 npm install
 npm run dev            # Vite dev server
 npm run build          # vue-tsc type-check + vite build
+npm run preview        # serve the built app
 npm run type-check
 npm test               # Vitest (rule tests + balance smoke tests)
-npm run balance:<area> # balance report: field, forest, cave, wasteland, ruins, dungeon, hell, abyss
+npm run test:watch
+npm run balance:<area> # balance report for an original area: field, forest, cave, wasteland, ruins, dungeon, hell, abyss
 ```
 
 There is intentionally no lint/format tooling.
@@ -81,3 +108,9 @@ There is intentionally no lint/format tooling.
 - Keep rule tests strict and balance tests broad (relationships, not exact numbers).
 - Visuals are checked by hand. There is no browser automation.
 - The `.idea/` directory is committed on purpose.
+
+## Git
+
+The author handles git. Never commit, push, create or switch branches, use worktrees, or stash, and
+never offer to commit. Other writing git commands (such as `git add`) only when asked. Read-only
+git is fine but keep it to a minimum.
