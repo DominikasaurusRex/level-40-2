@@ -3,6 +3,10 @@ import { ref } from 'vue'
 import MenuButton from './MenuButton.vue'
 import NewGameConfirmation from './NewGameConfirmation.vue'
 
+defineProps<{
+  canContinue: boolean
+}>()
+
 const emit = defineEmits<{
   continue: []
   newGame: []
@@ -28,7 +32,7 @@ function confirmNewGame() {
       </header>
 
       <nav class="start-menu" aria-label="Main menu">
-        <MenuButton @click="emit('continue')">
+        <MenuButton :disabled="!canContinue" @click="emit('continue')">
           Continue
         </MenuButton>
         <MenuButton @click="resetConfirmationOpen = true">

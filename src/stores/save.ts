@@ -85,6 +85,13 @@ export const useSaveStore = defineStore('save', () => {
     return true
   }
 
+  /** Whether storage holds a save in the current format, so Continue has something to load. */
+  function hasStoredGame(): boolean {
+    const candidate = readStoredGame()
+    return Boolean(candidate && typeof candidate === 'object'
+      && (candidate as Partial<StoredGame>).version === SAVE_FORMAT_VERSION)
+  }
+
   function saveNow(): boolean {
     const savedAt = new Date()
     const save: StoredGame = {
@@ -190,6 +197,7 @@ export const useSaveStore = defineStore('save', () => {
     secondsSinceSave,
     saveError,
     load,
+    hasStoredGame,
     saveNow,
     download,
     importFile,

@@ -506,6 +506,7 @@ watch(() => game.pendingHotHeals.length, () => {
     <div class="game-frame">
       <StartScreen
         v-if="!sessionStarted"
+        :can-continue="saves.hasStoredGame()"
         @continue="continueGame"
         @new-game="newGame"
         @credits="openCredits"
