@@ -173,8 +173,8 @@ export const useSaveStore = defineStore('save', () => {
     return saveNow()
   }
 
-  function reset(): boolean {
-    game.reset()
+  function reset(originalSave?: OriginalSaveInfo): boolean {
+    game.reset(originalSave)
     return saveNow()
   }
 
