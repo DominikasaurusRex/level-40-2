@@ -4,7 +4,7 @@ import { useGameStore, type GameSnapshot } from '@/stores/game'
 
 const AUTOSAVE_MS = 60_000
 const COUNTER_TICK_MS = 1_000
-export const SAVE_STORAGE_KEY = 'level-40.save'
+export const SAVE_STORAGE_KEY = 'level-40-2.save'
 export const SAVE_FORMAT_VERSION = 1
 
 export interface StoredGame extends GameSnapshot {
@@ -120,7 +120,7 @@ export const useSaveStore = defineStore('save', () => {
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = `level-40-${new Date().toISOString().slice(0, 10)}.sav`
+      link.download = `level-40-2-${new Date().toISOString().slice(0, 10)}.sav`
       document.body.appendChild(link)
       link.click()
       link.remove()

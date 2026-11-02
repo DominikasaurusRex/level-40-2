@@ -12,7 +12,7 @@ export type SoundEffect =
   | 'badge-drop'
   | 'reclaimed'
 
-const SOUND_VOLUME_KEY = 'level-40.sound-volume'
+const SOUND_VOLUME_KEY = 'level-40-2.sound-volume'
 const DEFAULT_VOLUME = 60
 
 const soundFiles: Record<SoundEffect, string> = {
