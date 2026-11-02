@@ -21,8 +21,6 @@ const emit = defineEmits<{
 
       <div class="new-game-actions">
         <MenuButton compact danger @click="emit('confirm')">New Game</MenuButton>
-      </div>
-      <div class="new-game-actions">
         <MenuButton compact sound="close" @click="emit('cancel')">Cancel</MenuButton>
       </div>
     </div>
@@ -64,10 +62,12 @@ const emit = defineEmits<{
   text-shadow: none;
 }
 
+/* One column as wide as the widest button, so both buttons share that width. */
 .new-game-actions {
-  display: flex;
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: max-content;
   justify-content: center;
+  gap: 0.65rem;
   padding: 0 0.75rem;
 }
 </style>
