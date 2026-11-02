@@ -29,6 +29,8 @@ Working design document. This file covers the player's permanent power progressi
 - Nodes and icons beyond the wall remain visible, but are greyed out, signaling future possibilities without allowing purchases.
 - Upgrading the Barracks removes the corresponding wall and opens the next portion of the board.
 - Further walls may divide later outward expansions; their number and placement remain open.
+- **Each wall also requires a minimum number of skill points currently invested within the section enclosed by that wall** before it can open, even after respeccing. Points spent in the past but subsequently refunded do not count toward the requirement. This is intended to discourage rushing straight down one narrow path and encourage some breadth of investment.
+- Both the Barracks upgrade and the section-specific skill-point spending requirement must be met to open a wall. Exact thresholds remain undecided.
 - The distinction is intentional: **rings describe outward character progression; walls describe facility-gated access.**
 
 ### Regions without rigid specialization
@@ -39,6 +41,20 @@ Working design document. This file covers the player's permanent power progressi
 - Mixed builds should be practical: players can follow a general direction while encountering useful nodes from several categories.
 - Connections and region contents should allow meaningful flexibility rather than all-or-nothing specialization.
 - Exact region themes and how much crossover is available are still open.
+
+## Skill-board node and skill ideas — preliminary
+
+These are **categories and illustrative ideas**, not a fixed node list, node placement, or balanced values.
+
+- Include both **general passive nodes** (such as **Power +1**, HP increases) and **weapon-specific passive nodes** (such as **+2 Physical damage to Axes**). Neither category is inherently better; their relative value depends on the build and later balancing.
+- **Power** retains its established meaning as the player's damage stat from the original Level 40. Do not redefine it as a new per-hit weapon modifier.
+- Potential early options: general Power/HP increases; weapon-specific damage; active healing, Regeneration, or DEF skills.
+- Potential middle options: elemental bonuses, further weapon specialization; active AGI, Stun, Poison, and elemental resistance via Shielded.
+- Potential late options: stronger specialized bonuses; elemental immunity, Curse, and Absorb skills. **Absorb belongs far out on the skill board**, not among the initial active skills.
+- **Extra weapon hits** are a rare, high-end upgrade concept applying to **weapons generally**, not a Dagger-specific hit-count bonus. Exact effect and placement are undecided.
+- Whether active skills have dedicated upgrade nodes (e.g., improved effect or cooldown) is **not yet decided**.
+
+These examples should remain mixed across board regions rather than segregated into exclusive weapon or elemental branches.
 
 ## Weapon damage and attack structure
 
@@ -88,6 +104,12 @@ The actual skill nodes should be designed in coordination with:
 
 Do not lock down a complete node roster before these connected systems are defined. The board structure can be established now without inventing individual skills.
 
+## Endgame board-completion target
+
+- **Stage 42 (final superboss)** should be balanced around a **nearly complete skill board**, with **more than 90% of nodes active** as the current rough target. The exact percentage is deferred to balancing.
+- Stage 40 main-game completion should not require an almost-complete board; Stage 41 serves as further superboss progression toward the final challenge.
+- Consequently, the board should allow players to eventually obtain almost everything rather than enforcing permanently exclusive specializations. Build choices still matter through weapon loadouts, equipped active skills, and encounter strategy.
+
 ## Balance and progression — later work
 
 This document will also hold decisions about progression pacing and balance goals once the underlying content exists. Topics to revisit include:
@@ -107,6 +129,7 @@ Exact values, formulas, costs, timings, and combat balance are **implementation/
 - What are the broad thematic regions, and how should they overlap?
 - How are nodes connected across neighboring regions and rings?
 - How do weapon and status designs translate into specific nodes?
+- What minimum invested-point threshold should each wall require?
 - Which nodes, if any, have multiple ranks or special purchase conditions?
 
 These are deliberately left open rather than filled with speculative content.
