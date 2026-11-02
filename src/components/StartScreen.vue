@@ -2,22 +2,41 @@
 import { ref } from 'vue'
 import MenuButton from './MenuButton.vue'
 import NewGameConfirmation from './NewGameConfirmation.vue'
+import StartingGiftPrompt from './StartingGiftPrompt.vue'
+import type { OriginalSaveInfo } from '@/stores/game'
 
-defineProps<{
+const props = defineProps<{
   canContinue: boolean
 }>()
 
 const emit = defineEmits<{
   continue: []
-  newGame: []
+  newGame: [originalSave?: OriginalSaveInfo]
   credits: []
 }>()
 
 const resetConfirmationOpen = ref(false)
+const startingGiftPromptOpen = ref(false)
 
-function confirmNewGame() {
+/** With a save, New Game first warns about losing it; either way it then offers the original-game gift. */
+function openNewGame() {
+  if (props.canContinue) resetConfirmationOpen.value = true
+  else startingGiftPromptOpen.value = true
+}
+
+function confirmReset() {
   resetConfirmationOpen.value = false
+  startingGiftPromptOpen.value = true
+}
+
+function startFresh() {
+  startingGiftPromptOpen.value = false
   emit('newGame')
+}
+
+function importOriginalSave(originalSave: OriginalSaveInfo) {
+  startingGiftPromptOpen.value = false
+  emit('newGame', originalSave)
 }
 </script>
 
@@ -35,7 +54,7 @@ function confirmNewGame() {
         <MenuButton :disabled="!canContinue" @click="emit('continue')">
           Continue
         </MenuButton>
-        <MenuButton @click="resetConfirmationOpen = true">
+        <MenuButton @click="openNewGame">
           New Game
         </MenuButton>
         <MenuButton @click="emit('credits')">
@@ -63,7 +82,15 @@ function confirmNewGame() {
       <NewGameConfirmation
         v-if="resetConfirmationOpen"
         @cancel="resetConfirmationOpen = false"
-        @confirm="confirmNewGame"
+        @confirm="confirmReset"
+      />
+    </Transition>
+
+    <Transition name="confirmation-fade">
+      <StartingGiftPrompt
+        v-if="startingGiftPromptOpen"
+        @import-original-save="importOriginalSave"
+        @start-fresh="startFresh"
       />
     </Transition>
   </section>
