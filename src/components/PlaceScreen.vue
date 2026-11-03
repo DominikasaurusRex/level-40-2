@@ -6,6 +6,7 @@ import { chatFor } from '@/data/chats'
 import { playSound } from '@/audio/sounds'
 import MenuButton from './MenuButton.vue'
 import EmbarkConfirmation from './EmbarkConfirmation.vue'
+import ResourceBar from './ResourceBar.vue'
 
 const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: [] }>()
@@ -51,6 +52,7 @@ function advanceChat() {
 <template>
   <section class="place-screen" :style="sceneStyle" :aria-label="place.name">
     <div class="scene-shade" aria-hidden="true" />
+    <ResourceBar />
     <h1 class="place-name">{{ place.name }}</h1>
     <img v-if="place.npc.portrait" class="portrait" :src="place.npc.portrait" :alt="place.npc.name" />
 
@@ -106,7 +108,7 @@ function advanceChat() {
 
 .place-name {
   position: absolute;
-  top: 1rem;
+  top: 3rem;
   left: 1.25rem;
   margin: 0;
   font-size: 1.6rem;

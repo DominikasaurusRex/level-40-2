@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { townPlaces, type PlaceId } from '@/data/town'
 import PlaceScreen from './PlaceScreen.vue'
+import ResourceBar from './ResourceBar.vue'
 
 const openPlaceId = ref<PlaceId>()
 
@@ -24,6 +25,7 @@ const buildings = townPlaces.map((place, index, all) => {
 
 <template>
   <section class="town-screen" aria-labelledby="town-title">
+    <ResourceBar />
     <h1 id="town-title" class="town-title">Town</h1>
     <button
       v-for="building in buildings"
