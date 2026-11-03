@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useGameStore } from '@/stores/game'
-import { placeById, type PlaceId } from '@/data/town'
+import { backgroundFor, placeById, type PlaceId } from '@/data/town'
 import { chatFor } from '@/data/chats'
 import { playSound } from '@/audio/sounds'
 import MenuButton from './MenuButton.vue'
@@ -12,10 +12,11 @@ const emit = defineEmits<{ leave: [] }>()
 
 const game = useGameStore()
 const place = computed(() => placeById(props.placeId))
+// There is no rebuild/upgrade state yet: places count as rebuilt only if they start built.
+const rebuilt = computed(() => place.value.startsBuilt === true)
 const chat = computed(() => chatFor(props.placeId, {
   furthestStage: game.highestUnlockedLevel,
-  // There is no rebuild/upgrade state yet: places count as rebuilt only if they start built.
-  rebuilt: place.value.startsBuilt === true,
+  rebuilt: rebuilt.value,
   fullyUpgraded: false,
   originalSaveImported: game.originalSaveImported,
   originalFinalBossBeaten: game.originalFinalBossBeaten,
@@ -28,10 +29,15 @@ const chatting = ref(false)
 const lineIndex = ref(0)
 const isLastLine = computed(() => lineIndex.value >= chat.value.lines.length - 1)
 
-const sceneStyle = computed(() => place.value.background
-  ? { backgroundImage: `url('${place.value.background}')` }
-  : { background: `linear-gradient(160deg, ${place.value.color}, #120f0d 85%)` },
-)
+const sceneStyle = computed(() => {
+  const image = backgroundFor(place.value, {
+    furthestStage: game.highestUnlockedLevel,
+    rebuilt: rebuilt.value,
+  })
+  return image
+    ? { backgroundImage: `url('${image}')` }
+    : { background: `linear-gradient(160deg, ${place.value.color}, #120f0d 85%)` }
+})
 
 function startChat() {
   lineIndex.value = 0

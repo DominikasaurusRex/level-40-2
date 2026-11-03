@@ -1,4 +1,4 @@
-/**
+﻿/**
  * The Town's places. Every place works the same way: its own background, an NPC to chat with
  * (chats live in `chats.ts`), and one action.
  *
@@ -6,12 +6,40 @@
  */
 export type PlaceId = 'inn' | 'barracks' | 'smithy' | 'library' | 'quest-board' | 'bar' | 'gate'
 
+/** The stage whose boss ends in the first "Fin?". Reaching the stage after it means "after Fin?". */
+export const FIRST_ENDING_STAGE = 25
+
+/** The facts a background can depend on. */
+export interface BackgroundContext {
+  /** Furthest stage the player has reached. */
+  furthestStage: number
+  /** Whether this place has been rebuilt. */
+  rebuilt: boolean
+}
+
+/** Every condition is optional; a background matches when all of the ones it sets hold. */
+export interface BackgroundConditions {
+  /** Matches once the furthest stage reached is at least this. */
+  fromStage?: number
+  rebuilt?: boolean
+}
+
+export interface PlaceBackground {
+  when?: BackgroundConditions
+  image: string
+}
+
 export interface TownPlace {
   id: PlaceId
   name: string
-  /** Building colour on the Town map; also the scene backdrop while there is no background art. */
+  /** Building colour on the Town map; also the scene backdrop when no background matches. */
   color: string
-  background?: string
+  /**
+   * Checked in order; the **last** matching background is shown, so list them from general to
+   * specific. For example: broken (`rebuilt: false`), repaired (`rebuilt: true`), then repaired
+   * after "Fin?" (`rebuilt: true, fromStage: FIRST_ENDING_STAGE + 1`).
+   */
+  backgrounds: PlaceBackground[]
   /** Standing from the start, so it never needs rebuilding (the Inn, and the walls' Gate). */
   startsBuilt?: boolean
   npc: {
@@ -26,6 +54,7 @@ export const townPlaces: TownPlace[] = [
     id: 'inn',
     name: 'Inn',
     color: '#c9803c',
+    backgrounds: [],
     startsBuilt: true,
     npc: { name: 'Innkeeper' },
     actionLabel: 'Equipment',
@@ -34,6 +63,7 @@ export const townPlaces: TownPlace[] = [
     id: 'barracks',
     name: 'Barracks',
     color: '#b8453f',
+    backgrounds: [],
     npc: { name: 'Trainer' },
     actionLabel: 'Skill Board',
   },
@@ -41,6 +71,7 @@ export const townPlaces: TownPlace[] = [
     id: 'smithy',
     name: 'Smithy',
     color: '#7d8590',
+    backgrounds: [],
     npc: { name: 'Smith' },
     actionLabel: 'Weapons',
   },
@@ -48,6 +79,7 @@ export const townPlaces: TownPlace[] = [
     id: 'library',
     name: 'Library',
     color: '#6a4fb0',
+    backgrounds: [],
     npc: { name: 'Librarian' },
     actionLabel: 'Monster Manual',
   },
@@ -55,6 +87,7 @@ export const townPlaces: TownPlace[] = [
     id: 'quest-board',
     name: 'Quest Board',
     color: '#3f9a5a',
+    backgrounds: [],
     npc: { name: 'Clerk' },
     actionLabel: 'Quests',
   },
@@ -62,6 +95,7 @@ export const townPlaces: TownPlace[] = [
     id: 'bar',
     name: 'Bar',
     color: '#d4b13f',
+    backgrounds: [],
     npc: { name: 'Barkeep' },
     actionLabel: 'Exchange',
   },
@@ -69,7 +103,9 @@ export const townPlaces: TownPlace[] = [
     id: 'gate',
     name: 'Gate',
     color: '#3a8fb5',
-    background: '/cutscene/gate_bg.webp',
+    backgrounds: [
+      { image: '/cutscene/gate_bg.webp' },
+    ],
     startsBuilt: true,
     npc: { name: 'Gatekeeper', portrait: '/cutscene/guard.png' },
     actionLabel: 'Embark',
@@ -78,4 +114,21 @@ export const townPlaces: TownPlace[] = [
 
 export function placeById(id: PlaceId): TownPlace {
   return townPlaces.find(place => place.id === id)!
+}
+
+export function backgroundMatches(background: PlaceBackground, context: BackgroundContext): boolean {
+  const when = background.when
+  if (!when) return true
+  if (when.fromStage !== undefined && context.furthestStage < when.fromStage) return false
+  if (when.rebuilt !== undefined && context.rebuilt !== when.rebuilt) return false
+  return true
+}
+
+/** The image to show, or undefined when none matches (the scene then uses the place's colour). */
+export function backgroundFor(place: TownPlace, context: BackgroundContext): string | undefined {
+  let image: string | undefined
+  for (const background of place.backgrounds) {
+    if (backgroundMatches(background, context)) image = background.image
+  }
+  return image
 }
