@@ -68,8 +68,8 @@ function advanceChat() {
     <div v-else class="place-options">
       <MenuButton @click="startChat">Chat</MenuButton>
       <MenuButton
-        :disabled="!actionAvailable"
-        :title="actionAvailable ? undefined : 'Not available yet'"
+        :disabled="!rebuilt"
+        :title="rebuilt ? undefined : 'Needs rebuilding'"
         @click="actionOpen = true"
       >
         {{ place.actionLabel }}
