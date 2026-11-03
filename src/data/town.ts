@@ -12,6 +12,8 @@ export interface TownPlace {
   /** Building colour on the Town map; also the scene backdrop while there is no background art. */
   color: string
   background?: string
+  /** Standing from the start, so it never needs rebuilding (the Inn, and the walls' Gate). */
+  startsBuilt?: boolean
   npc: {
     name: string
     portrait?: string
@@ -24,6 +26,7 @@ export const townPlaces: TownPlace[] = [
     id: 'inn',
     name: 'Inn',
     color: '#c9803c',
+    startsBuilt: true,
     npc: { name: 'Innkeeper' },
     actionLabel: 'Equipment',
   },
@@ -67,6 +70,7 @@ export const townPlaces: TownPlace[] = [
     name: 'Gate',
     color: '#3a8fb5',
     background: '/cutscene/gate_bg.webp',
+    startsBuilt: true,
     npc: { name: 'Gatekeeper', portrait: '/cutscene/guard.png' },
     actionLabel: 'Embark',
   },

@@ -12,7 +12,14 @@ const emit = defineEmits<{ leave: [] }>()
 
 const game = useGameStore()
 const place = computed(() => placeById(props.placeId))
-const chat = computed(() => chatFor(props.placeId, game.highestUnlockedLevel))
+const chat = computed(() => chatFor(props.placeId, {
+  furthestStage: game.highestUnlockedLevel,
+  // There is no rebuild/upgrade state yet: places count as rebuilt only if they start built.
+  rebuilt: place.value.startsBuilt === true,
+  fullyUpgraded: false,
+  originalSaveImported: game.originalSaveImported,
+  originalFinalBossBeaten: game.originalFinalBossBeaten,
+}))
 const actionOpen = ref(false)
 
 /** Places whose action already opens something. The rest show a disabled action button. */
