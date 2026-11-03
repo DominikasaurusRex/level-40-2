@@ -22,8 +22,6 @@ const chat = computed(() => chatFor(props.placeId, {
 }))
 const actionOpen = ref(false)
 
-/** Places whose action already opens something. The rest show a disabled action button. */
-const actionAvailable = computed(() => props.placeId === PlaceId.Gate)
 const chatting = ref(false)
 const lineIndex = ref(0)
 const isLastLine = computed(() => lineIndex.value >= chat.value.lines.length - 1)
