@@ -38,6 +38,9 @@ export interface Chat {
 }
 
 export const chats: Record<PlaceId, Chat[]> = {
+  [PlaceId.Monument]: [
+    { lines: ['Every coin and scrap you bring back goes into rebuilding. Tell me what to start on.'] },
+  ],
   [PlaceId.Inn]: [
     { lines: ['Welcome. Pick what you take with you before you head out.'] },
   ],
