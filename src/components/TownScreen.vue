@@ -1,30 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useGameStore } from '@/stores/game'
-import GateScreen from './GateScreen.vue'
+import { townPlaces, type PlaceId } from '@/data/town'
+import PlaceScreen from './PlaceScreen.vue'
 
-const game = useGameStore()
-const gateOpen = ref(false)
+const openPlaceId = ref<PlaceId>()
 
 const RADIUS_X_REM = 19
 const RADIUS_Y_REM = 11
 
-const buildings = [
-  { id: 'inn', name: 'Inn', color: '#c9803c' },
-  { id: 'barracks', name: 'Barracks', color: '#b8453f' },
-  { id: 'smithy', name: 'Smithy', color: '#7d8590' },
-  { id: 'library', name: 'Library', color: '#6a4fb0' },
-  { id: 'quest-board', name: 'Quest Board', color: '#3f9a5a' },
-  { id: 'bar', name: 'Bar', color: '#d4b13f' },
-  { id: 'gate', name: 'Gate', color: '#3a8fb5' },
-].map((building, index, all) => {
+const buildings = townPlaces.map((place, index, all) => {
   const angle = (index / all.length) * 2 * Math.PI - Math.PI / 2
   return {
-    ...building,
+    id: place.id,
+    name: place.name,
     style: {
       left: `calc(50% + ${Math.cos(angle) * RADIUS_X_REM}rem)`,
       top: `calc(50% + ${Math.sin(angle) * RADIUS_Y_REM}rem)`,
-      background: building.color,
+      background: place.color,
     },
   }
 })
@@ -39,16 +31,17 @@ const buildings = [
       type="button"
       class="building"
       :style="building.style"
-      @click="building.id === 'gate' && (gateOpen = true)"
+      @click="openPlaceId = building.id"
     >
       {{ building.name }}
     </button>
 
     <Transition name="confirmation-fade">
-      <GateScreen
-        v-if="gateOpen"
-        :furthest-stage="game.highestUnlockedLevel"
-        @leave="gateOpen = false"
+      <PlaceScreen
+        v-if="openPlaceId"
+        :key="openPlaceId"
+        :place-id="openPlaceId"
+        @leave="openPlaceId = undefined"
       />
     </Transition>
   </section>

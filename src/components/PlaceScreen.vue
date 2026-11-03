@@ -1,18 +1,30 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { gateChatFor, gateScene } from '@/data/gate-chat'
+import { useGameStore } from '@/stores/game'
+import { placeById, type PlaceId } from '@/data/town'
+import { chatFor } from '@/data/chats'
 import { playSound } from '@/audio/sounds'
 import MenuButton from './MenuButton.vue'
 import EmbarkConfirmation from './EmbarkConfirmation.vue'
 
-const props = defineProps<{ furthestStage: number }>()
+const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: [] }>()
 
-const chat = computed(() => gateChatFor(props.furthestStage))
+const game = useGameStore()
+const place = computed(() => placeById(props.placeId))
+const chat = computed(() => chatFor(props.placeId, game.highestUnlockedLevel))
+const actionOpen = ref(false)
+
+/** Places whose action already opens something. The rest show a disabled action button. */
+const actionAvailable = computed(() => props.placeId === 'gate')
 const chatting = ref(false)
 const lineIndex = ref(0)
-const embarkOpen = ref(false)
 const isLastLine = computed(() => lineIndex.value >= chat.value.lines.length - 1)
+
+const sceneStyle = computed(() => place.value.background
+  ? { backgroundImage: `url('${place.value.background}')` }
+  : { background: `linear-gradient(160deg, ${place.value.color}, #120f0d 85%)` },
+)
 
 function startChat() {
   lineIndex.value = 0
@@ -27,16 +39,13 @@ function advanceChat() {
 </script>
 
 <template>
-  <section
-    class="gate-screen"
-    :style="{ backgroundImage: `url('${gateScene.background}')` }"
-    aria-label="Gate"
-  >
+  <section class="place-screen" :style="sceneStyle" :aria-label="place.name">
     <div class="scene-shade" aria-hidden="true" />
-    <img class="portrait" :src="gateScene.portrait" :alt="gateScene.speaker" />
+    <h1 class="place-name">{{ place.name }}</h1>
+    <img v-if="place.npc.portrait" class="portrait" :src="place.npc.portrait" :alt="place.npc.name" />
 
-    <div v-if="chatting" class="dialogue" role="group" :aria-label="`${gateScene.speaker} dialogue`">
-      <div class="speaker">{{ gateScene.speaker }}</div>
+    <div v-if="chatting" class="dialogue" role="group" :aria-label="`${place.npc.name} dialogue`">
+      <div class="speaker">{{ place.npc.name }}</div>
       <p class="line" aria-live="polite">{{ chat.lines[lineIndex] }}</p>
       <button class="advance" type="button" @click="advanceChat">
         {{ isLastLine ? 'Finish' : 'Continue' }}
@@ -44,24 +53,30 @@ function advanceChat() {
       </button>
     </div>
 
-    <div v-else class="gate-options">
+    <div v-else class="place-options">
       <MenuButton @click="startChat">Chat</MenuButton>
-      <MenuButton @click="embarkOpen = true">Embark</MenuButton>
+      <MenuButton
+        :disabled="!actionAvailable"
+        :title="actionAvailable ? undefined : 'Not available yet'"
+        @click="actionOpen = true"
+      >
+        {{ place.actionLabel }}
+      </MenuButton>
       <MenuButton sound="close" @click="emit('leave')">Back to Town</MenuButton>
     </div>
 
     <Transition name="confirmation-fade">
       <EmbarkConfirmation
-        v-if="embarkOpen"
-        @cancel="embarkOpen = false"
-        @embark="embarkOpen = false"
+        v-if="actionOpen && placeId === 'gate'"
+        @cancel="actionOpen = false"
+        @embark="actionOpen = false"
       />
     </Transition>
   </section>
 </template>
 
 <style scoped>
-.gate-screen {
+.place-screen {
   position: absolute;
   inset: 0;
   z-index: 100;
@@ -79,6 +94,15 @@ function advanceChat() {
   background: linear-gradient(180deg, rgba(12, 11, 11, 0.1) 12%, rgba(12, 11, 11, 0.35) 55%, rgba(12, 11, 11, 0.9) 100%);
 }
 
+.place-name {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  margin: 0;
+  font-size: 1.6rem;
+  text-shadow: 0 2px 0 #000, 0 0 0.5rem rgba(0, 0, 0, 0.7);
+}
+
 .portrait {
   position: absolute;
   bottom: 5.8rem;
@@ -91,7 +115,7 @@ function advanceChat() {
 }
 
 /* One column as wide as the widest button, so all buttons share that width. */
-.gate-options {
+.place-options {
   position: absolute;
   top: 50%;
   right: 5rem;
