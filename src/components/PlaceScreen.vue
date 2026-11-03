@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useGameStore } from '@/stores/game'
-import { backgroundFor, placeById, type PlaceId } from '@/data/town'
+import { backgroundFor, placeById, PlaceId } from '@/data/town'
 import { chatFor } from '@/data/chats'
 import { playSound } from '@/audio/sounds'
 import MenuButton from './MenuButton.vue'
@@ -12,8 +12,7 @@ const emit = defineEmits<{ leave: [] }>()
 
 const game = useGameStore()
 const place = computed(() => placeById(props.placeId))
-// There is no rebuild/upgrade state yet: places count as rebuilt only if they start built.
-const rebuilt = computed(() => place.value.startsBuilt === true)
+const rebuilt = computed(() => game.rebuiltPlaceIds.includes(props.placeId))
 const chat = computed(() => chatFor(props.placeId, {
   furthestStage: game.highestUnlockedLevel,
   rebuilt: rebuilt.value,
@@ -24,7 +23,7 @@ const chat = computed(() => chatFor(props.placeId, {
 const actionOpen = ref(false)
 
 /** Places whose action already opens something. The rest show a disabled action button. */
-const actionAvailable = computed(() => props.placeId === 'gate')
+const actionAvailable = computed(() => props.placeId === PlaceId.Gate)
 const chatting = ref(false)
 const lineIndex = ref(0)
 const isLastLine = computed(() => lineIndex.value >= chat.value.lines.length - 1)
@@ -80,7 +79,7 @@ function advanceChat() {
 
     <Transition name="confirmation-fade">
       <EmbarkConfirmation
-        v-if="actionOpen && placeId === 'gate'"
+        v-if="actionOpen && placeId === PlaceId.Gate"
         @cancel="actionOpen = false"
         @embark="actionOpen = false"
       />

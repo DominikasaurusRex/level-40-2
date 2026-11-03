@@ -1,4 +1,4 @@
-import type { PlaceId } from './town'
+import { PlaceId } from './town'
 
 /**
  * What each place's NPC says when chatting. A place's chats are checked in order and the
@@ -38,25 +38,25 @@ export interface Chat {
 }
 
 export const chats: Record<PlaceId, Chat[]> = {
-  'inn': [
+  [PlaceId.Inn]: [
     { lines: ['Welcome. Pick what you take with you before you head out.'] },
   ],
-  'barracks': [
+  [PlaceId.Barracks]: [
     { lines: ['Bring me experience and I’ll turn it into something useful.'] },
   ],
-  'smithy': [
+  [PlaceId.Smithy]: [
     { lines: ['Gold and materials. That’s all I need to make you something better.'] },
   ],
-  'library': [
+  [PlaceId.Library]: [
     { lines: ['Know what you’re fighting. Read up before you go.'] },
   ],
-  'quest-board': [
+  [PlaceId.QuestBoard]: [
     { lines: ['Only what you do after signing up counts. No exceptions.'] },
   ],
-  'bar': [
+  [PlaceId.Bar]: [
     { lines: ['Gold for experience, experience for gold. I don’t ask questions.'] },
   ],
-  'gate': [
+  [PlaceId.Gate]: [
     {
       lines: [
         'So you’re the one who answered the call. Not much of a town left to welcome you, I’m afraid.',

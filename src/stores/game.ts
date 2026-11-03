@@ -32,6 +32,7 @@ import {
 import {advanceFight} from '@/combat/engine'
 import {trainingDummy} from '@/data/monster/tutorial-monster'
 import {fieldMonsters} from '@/data/monster/field-monsters'
+import {PlaceId, startingRebuiltPlaceIds} from '@/data/town'
 
 const TICK_MS = 100
 const MAX_PLAYER_LEVEL = 30
@@ -62,6 +63,8 @@ export interface GameSnapshot {
   originalSaveImported?: boolean
   /** Whether that imported save had beaten the final boss (Abyss badge). */
   originalFinalBossBeaten?: boolean
+  /** Town places that have been rebuilt. Missing means only the places that start built. */
+  rebuiltPlaces?: PlaceId[]
 }
 
 /** The only facts kept from an imported original Level 40 save. */
@@ -118,6 +121,7 @@ export const useGameStore = defineStore('game', () => {
   const earnedBadgeIds = ref<AreaName[]>([])
   const originalSaveImported = ref(false)
   const originalFinalBossBeaten = ref(false)
+  const rebuiltPlaceIds = ref<PlaceId[]>(startingRebuiltPlaceIds())
   const focusedSkillId = ref('basic-attack')
   const focusChargeMs = ref(0)
   const focusedSkill = computed(() => playerState.value.skills.find(skill => skill.id === focusedSkillId.value))
@@ -402,6 +406,7 @@ export const useGameStore = defineStore('game', () => {
       levelUpTutorialComplete: levelUpTutorialComplete.value,
       originalSaveImported: originalSaveImported.value,
       originalFinalBossBeaten: originalFinalBossBeaten.value,
+      rebuiltPlaces: [...rebuiltPlaceIds.value],
     }
   }
 
@@ -430,6 +435,7 @@ export const useGameStore = defineStore('game', () => {
     tutorialComplete.value = false
     levelUpTutorialComplete.value = false
     earnedBadgeIds.value = []
+    rebuiltPlaceIds.value = startingRebuiltPlaceIds()
     resetFocus()
     clearTransientState()
 
@@ -510,6 +516,13 @@ export const useGameStore = defineStore('game', () => {
     levelUpTutorialComplete.value = save.levelUpTutorialComplete === true || level > 1
     originalSaveImported.value = save.originalSaveImported === true
     originalFinalBossBeaten.value = save.originalFinalBossBeaten === true
+
+    // Places that start built are always rebuilt; unknown ids and duplicates are dropped.
+    const savedRebuiltPlaces = Array.isArray(save.rebuiltPlaces) ? save.rebuiltPlaces : []
+    rebuiltPlaceIds.value = [...new Set([
+      ...startingRebuiltPlaceIds(),
+      ...savedRebuiltPlaces.filter(id => Object.values(PlaceId).includes(id)),
+    ])]
 
     if (!tutorialComplete.value) {
       activeArea.value = 'Field'
@@ -677,6 +690,7 @@ export const useGameStore = defineStore('game', () => {
     earnedBadgeIds,
     originalSaveImported,
     originalFinalBossBeaten,
+    rebuiltPlaceIds,
     tutorialComplete,
     isTutorialActive,
     levelUpTutorialComplete,

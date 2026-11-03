@@ -4,7 +4,15 @@
  *
  * NPC names and art are placeholders until they are decided.
  */
-export type PlaceId = 'inn' | 'barracks' | 'smithy' | 'library' | 'quest-board' | 'bar' | 'gate'
+export enum PlaceId {
+  Inn = 'inn',
+  Barracks = 'barracks',
+  Smithy = 'smithy',
+  Library = 'library',
+  QuestBoard = 'quest-board',
+  Bar = 'bar',
+  Gate = 'gate',
+}
 
 /** The stage whose boss ends in the first "Fin?". Reaching the stage after it means "after Fin?". */
 export const FIRST_ENDING_STAGE = 25
@@ -51,7 +59,7 @@ export interface TownPlace {
 
 export const townPlaces: TownPlace[] = [
   {
-    id: 'inn',
+    id: PlaceId.Inn,
     name: 'Inn',
     color: '#c9803c',
     backgrounds: [],
@@ -60,7 +68,7 @@ export const townPlaces: TownPlace[] = [
     actionLabel: 'Equipment',
   },
   {
-    id: 'barracks',
+    id: PlaceId.Barracks,
     name: 'Barracks',
     color: '#b8453f',
     backgrounds: [],
@@ -68,7 +76,7 @@ export const townPlaces: TownPlace[] = [
     actionLabel: 'Skill Board',
   },
   {
-    id: 'smithy',
+    id: PlaceId.Smithy,
     name: 'Smithy',
     color: '#7d8590',
     backgrounds: [],
@@ -76,7 +84,7 @@ export const townPlaces: TownPlace[] = [
     actionLabel: 'Weapons',
   },
   {
-    id: 'library',
+    id: PlaceId.Library,
     name: 'Library',
     color: '#6a4fb0',
     backgrounds: [],
@@ -84,7 +92,7 @@ export const townPlaces: TownPlace[] = [
     actionLabel: 'Monster Manual',
   },
   {
-    id: 'quest-board',
+    id: PlaceId.QuestBoard,
     name: 'Quest Board',
     color: '#3f9a5a',
     backgrounds: [],
@@ -92,7 +100,7 @@ export const townPlaces: TownPlace[] = [
     actionLabel: 'Quests',
   },
   {
-    id: 'bar',
+    id: PlaceId.Bar,
     name: 'Bar',
     color: '#d4b13f',
     backgrounds: [],
@@ -100,7 +108,7 @@ export const townPlaces: TownPlace[] = [
     actionLabel: 'Exchange',
   },
   {
-    id: 'gate',
+    id: PlaceId.Gate,
     name: 'Gate',
     color: '#3a8fb5',
     backgrounds: [
@@ -114,6 +122,11 @@ export const townPlaces: TownPlace[] = [
 
 export function placeById(id: PlaceId): TownPlace {
   return townPlaces.find(place => place.id === id)!
+}
+
+/** The places already standing on a new game. */
+export function startingRebuiltPlaceIds(): PlaceId[] {
+  return townPlaces.filter(place => place.startsBuilt).map(place => place.id)
 }
 
 export function backgroundMatches(background: PlaceBackground, context: BackgroundContext): boolean {
