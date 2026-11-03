@@ -33,6 +33,7 @@ import {advanceFight} from '@/combat/engine'
 import {trainingDummy} from '@/data/monster/tutorial-monster'
 import {fieldMonsters} from '@/data/monster/field-monsters'
 import {PlaceId, startingRebuiltPlaceIds} from '@/data/town'
+import {initialResourceAmounts, ResourceId, type ResourceAmounts} from '@/data/resources'
 
 const TICK_MS = 100
 const MAX_PLAYER_LEVEL = 30
@@ -55,16 +56,17 @@ export interface GameSnapshot {
   focusedSkill: string
   highestUnlockedLevel: number
   badges: AreaName[]
-  /** Missing in older saves, which predate the tutorial and are treated as complete. */
   tutorialComplete?: boolean
-  /** Missing in older saves, which predate this tutorial and are treated as complete. */
   levelUpTutorialComplete?: boolean
+/** LEVEL 40-2 save**/
   /** Whether a valid original Level 40 save was imported at New Game (for the starting gift). */
   originalSaveImported?: boolean
   /** Whether that imported save had beaten the final boss (Abyss badge). */
   originalFinalBossBeaten?: boolean
   /** Town places that have been rebuilt. Missing means only the places that start built. */
   rebuiltPlaces?: PlaceId[]
+  /** Resource amounts. Missing or invalid entries count as 0. */
+  resources?: Partial<ResourceAmounts>
 }
 
 /** The only facts kept from an imported original Level 40 save. */
@@ -122,6 +124,7 @@ export const useGameStore = defineStore('game', () => {
   const originalSaveImported = ref(false)
   const originalFinalBossBeaten = ref(false)
   const rebuiltPlaceIds = ref<PlaceId[]>(startingRebuiltPlaceIds())
+  const resources = ref<ResourceAmounts>(initialResourceAmounts())
   const focusedSkillId = ref('basic-attack')
   const focusChargeMs = ref(0)
   const focusedSkill = computed(() => playerState.value.skills.find(skill => skill.id === focusedSkillId.value))
@@ -407,6 +410,7 @@ export const useGameStore = defineStore('game', () => {
       originalSaveImported: originalSaveImported.value,
       originalFinalBossBeaten: originalFinalBossBeaten.value,
       rebuiltPlaces: [...rebuiltPlaceIds.value],
+      resources: { ...resources.value },
     }
   }
 
@@ -436,6 +440,7 @@ export const useGameStore = defineStore('game', () => {
     levelUpTutorialComplete.value = false
     earnedBadgeIds.value = []
     rebuiltPlaceIds.value = startingRebuiltPlaceIds()
+    resources.value = initialResourceAmounts()
     resetFocus()
     clearTransientState()
 
@@ -523,6 +528,13 @@ export const useGameStore = defineStore('game', () => {
       ...startingRebuiltPlaceIds(),
       ...savedRebuiltPlaces.filter(id => Object.values(PlaceId).includes(id)),
     ])]
+
+    // Each amount must be a non-negative integer; anything else counts as 0.
+    resources.value = initialResourceAmounts()
+    for (const id of Object.values(ResourceId)) {
+      const amount = save.resources?.[id]
+      if (Number.isInteger(amount) && amount! >= 0) resources.value[id] = amount!
+    }
 
     if (!tutorialComplete.value) {
       activeArea.value = 'Field'
@@ -691,6 +703,7 @@ export const useGameStore = defineStore('game', () => {
     originalSaveImported,
     originalFinalBossBeaten,
     rebuiltPlaceIds,
+    resources,
     tutorialComplete,
     isTutorialActive,
     levelUpTutorialComplete,
