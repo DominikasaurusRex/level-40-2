@@ -17,6 +17,7 @@ import MenuModal from './MenuModal.vue'
 import CreditsModal from './CreditsModal.vue'
 import ConsoleShell from './ConsoleShell.vue'
 import StartScreen from './StartScreen.vue'
+import TownScreen from './TownScreen.vue'
 import SkillTreeModal from './SkillTreeModal.vue'
 import CutsceneScreen from './CutsceneScreen.vue'
 import EndingScreen from './EndingScreen.vue'
@@ -37,6 +38,7 @@ const menuOpen = ref(false)
 const playerStatusOpen = ref(false)
 const creditsOpen = ref(false)
 const sessionStarted = ref(false)
+const inTown = ref(false)
 const activeCutscene = ref<Cutscene>()
 const pendingBossCutscene = ref<Cutscene>()
 const resetFightAfterCutscene = ref(false)
@@ -287,7 +289,10 @@ function continueGame() {
     return
   }
 
-  fadeThroughBlack(() => { sessionStarted.value = true }, revealGame)
+  fadeThroughBlack(() => {
+    sessionStarted.value = true
+    inTown.value = true
+  }, () => saves.start())
 }
 
 function startNewGame(originalSave?: OriginalSaveInfo) {
@@ -298,8 +303,8 @@ function startNewGame(originalSave?: OriginalSaveInfo) {
   fadeThroughBlack(() => {
     menuOpen.value = false
     sessionStarted.value = true
-    activeCutscene.value = introCutscene
-  })
+    inTown.value = true
+  }, () => saves.start())
 }
 
 function newGame(originalSave?: OriginalSaveInfo) {
@@ -511,6 +516,7 @@ watch(() => game.pendingHotHeals.length, () => {
         @new-game="newGame"
         @credits="openCredits"
       />
+      <TownScreen v-else-if="inTown" />
       <template v-else>
         <div
           class="game-window"
@@ -572,16 +578,15 @@ watch(() => game.pendingHotHeals.length, () => {
           :owned-skill-choice-ids="game.player.ownedSkillChoiceIds"
           @close="playerStatusOpen = false"
         />
-        <Transition name="menu-fade">
-          <MenuModal
-            v-if="menuOpen"
-            @close="menuOpen = false"
-            @open-player-status="openPlayerStatus"
-            @new-game="newGame"
-            @open-credits="openCredits"
-          />
-        </Transition>
       </template>
+      <Transition name="menu-fade">
+        <MenuModal
+          v-if="menuOpen"
+          @close="menuOpen = false"
+          @new-game="newGame"
+          @open-credits="openCredits"
+        />
+      </Transition>
       <CreditsModal v-if="creditsOpen" @close="creditsOpen = false" />
       <CutsceneScreen
         v-if="activeCutscene"
@@ -590,7 +595,7 @@ watch(() => game.pendingHotHeals.length, () => {
         @close="finishCutscene"
       />
       <TutorialOverlay
-        v-if="sessionStarted && game.isTutorialActive && !activeCutscene"
+        v-if="sessionStarted && !inTown && game.isTutorialActive && !activeCutscene"
         :key="tutorialStep.id"
         :message="tutorialStep.message"
         :target="tutorialTarget"
