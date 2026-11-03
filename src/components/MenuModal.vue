@@ -6,7 +6,6 @@ import NewGameConfirmation from './NewGameConfirmation.vue'
 
 const emit = defineEmits<{
   close: []
-  openPlayerStatus: []
   newGame: []
   openCredits: []
 }>()
@@ -50,7 +49,6 @@ function resetGame() {
       <p class="save-age">{{ saveAge }}</p>
 
       <div class="menu-actions">
-        <MenuButton class="menu-action" @click="emit('openPlayerStatus')">Player Status</MenuButton>
         <div class="load-action">
           <MenuButton class="menu-action" @click="fileInput?.click()">Load</MenuButton>
           <p v-if="loadError" class="action-feedback load-error" role="alert">{{ loadError }}</p>
