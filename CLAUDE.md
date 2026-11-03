@@ -108,6 +108,22 @@ There is intentionally no lint/format tooling.
 - Keep rule tests strict and balance tests broad (relationships, not exact numbers).
 - Visuals are checked by hand. There is no browser automation.
 - The `.idea/` directory is committed on purpose.
+- **Do not fix original Level 40 specs** that break because of Level 40 2 changes. They will be
+  thrown away (see `.documentation/cleaning.md`). Report which ones break in one line and move on,
+  even when the failure is a type error in a spec file.
+- **Save fields are required.** New state in the save snapshot (`GameSnapshot` in
+  `src/stores/game.ts`) is a required field. `restoreSnapshot` rejects saves that lack it or hold
+  invalid values. No optional fields with fallbacks for older saves.
+- **Use enums for fixed sets of ids** (places, resources, ...), validated with
+  `Object.values(Enum).includes(x)`. No string-literal unions with hand-written `value is X` type
+  guards, even though the original code uses that pattern.
+- **Never disable or hide UI because a feature is not built yet.** The game is under active
+  development. Leave the control usable (doing nothing for now) and gate only on real game rules,
+  such as a place still being broken.
+- **Edit files only with the editor tools**, never through shell commands (regex replace with
+  `Set-Content`, .NET file writes, sed, and similar). The shell is for npm scripts and read-only
+  checks.
+- Never `cd` in shell commands, and never search outside the repository.
 
 ## Git
 

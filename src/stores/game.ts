@@ -60,13 +60,12 @@ export interface GameSnapshot {
   levelUpTutorialComplete?: boolean
 /** LEVEL 40-2 save**/
   /** Whether a valid original Level 40 save was imported at New Game (for the starting gift). */
-  originalSaveImported?: boolean
+  originalSaveImported: boolean
   /** Whether that imported save had beaten the final boss (Abyss badge). */
-  originalFinalBossBeaten?: boolean
-  /** Town places that have been rebuilt. Missing means only the places that start built. */
-  rebuiltPlaces?: PlaceId[]
-  /** Resource amounts. Missing or invalid entries count as 0. */
-  resources?: Partial<ResourceAmounts>
+  originalFinalBossBeaten: boolean
+  /** Town places that have been rebuilt. */
+  rebuiltPlaces: PlaceId[]
+  resources: ResourceAmounts
 }
 
 /** The only facts kept from an imported original Level 40 save. */
@@ -463,6 +462,15 @@ export const useGameStore = defineStore('game', () => {
     const save = candidate as Partial<GameSnapshot>
     if (!Number.isInteger(save.level) || save.level! < 1 || save.level! > MAX_PLAYER_LEVEL) return false
     if (!Number.isInteger(save.xp) || save.xp! < 0) return false
+    if (typeof save.originalSaveImported !== 'boolean') return false
+    if (typeof save.originalFinalBossBeaten !== 'boolean') return false
+    if (!Array.isArray(save.rebuiltPlaces)) return false
+    if (!save.rebuiltPlaces.every(id => Object.values(PlaceId).includes(id))) return false
+    if (!save.resources || typeof save.resources !== 'object') return false
+    for (const id of Object.values(ResourceId)) {
+      const amount = save.resources[id]
+      if (!Number.isInteger(amount) || amount < 0) return false
+    }
 
     clearTransientState()
 
@@ -519,22 +527,13 @@ export const useGameStore = defineStore('game', () => {
     // Only a fresh new game can see the level-up tutorial: any save already past level 1
     // may have missed it, and its level-up UI isn't guaranteed to be in the state it expects.
     levelUpTutorialComplete.value = save.levelUpTutorialComplete === true || level > 1
-    originalSaveImported.value = save.originalSaveImported === true
-    originalFinalBossBeaten.value = save.originalFinalBossBeaten === true
+    originalSaveImported.value = save.originalSaveImported!
+    originalFinalBossBeaten.value = save.originalFinalBossBeaten!
 
-    // Places that start built are always rebuilt; unknown ids and duplicates are dropped.
-    const savedRebuiltPlaces = Array.isArray(save.rebuiltPlaces) ? save.rebuiltPlaces : []
-    rebuiltPlaceIds.value = [...new Set([
-      ...startingRebuiltPlaceIds(),
-      ...savedRebuiltPlaces.filter(id => Object.values(PlaceId).includes(id)),
-    ])]
+    // Places that start built are always rebuilt; duplicates are dropped.
+    rebuiltPlaceIds.value = [...new Set([...startingRebuiltPlaceIds(), ...save.rebuiltPlaces!])]
 
-    // Each amount must be a non-negative integer; anything else counts as 0.
-    resources.value = initialResourceAmounts()
-    for (const id of Object.values(ResourceId)) {
-      const amount = save.resources?.[id]
-      if (Number.isInteger(amount) && amount! >= 0) resources.value[id] = amount!
-    }
+    resources.value = { ...save.resources! }
 
     if (!tutorialComplete.value) {
       activeArea.value = 'Field'
