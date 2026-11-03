@@ -101,23 +101,25 @@ Active play has two parts: building weapon empowerment through clicks, and timin
 
 ## Resources and rewards
 
-The working economy has **two general currencies and three material types** (four materials at most):
+The economy has **two general currencies and four materials**:
 
-| Resource | Intended role | Status |
+| Resource | Kind | Intended role |
 | --- | --- | --- |
-| XP | Spent at the Barracks for permanent skill points | Planned |
-| Gold | Equipment purchases/upgrades and Town facilities/upgrades | Planned |
-| Metal | Additional currency for purchases/upgrades | Candidate material |
-| Leather | Additional currency for purchases/upgrades | Candidate material |
-| Wood | Additional currency for purchases/upgrades | Candidate material |
-| Silk | Possible fourth material, or replacement for another | Undecided |
+| XP | Currency | Spent at the Barracks for permanent skill points |
+| Gold | Currency | Equipment purchases/upgrades and Town facilities/upgrades |
+| Wood | Material | Mostly construction and building materials |
+| Metal | Material | Mostly construction and building materials |
+| Silk | Material | Anything soft (cloth, padding, furnishings, and similar) |
+| Crystal | Material | Mostly magical things |
+
+Crystal replaced the earlier Leather candidate as the more thematic choice. The resource bar at the top of the Town and battle screens shows all six, in the order above.
 
 - Different monsters drop different materials.
 - **Stronger monsters should provide better farming rewards**; older monsters do not need to remain competitive farming targets.
 - Runs provide useful resources as they progress, without manually targeting monsters.
 - Equipment purchases, equipment upgrades, and Town facilities/upgrades cost **Gold and materials**. These are purchases paid with multiple currencies; **there is no separate crafting system**.
 - The Bar unlocks **Gold ↔ XP exchange**, allowing resources to be redirected toward current needs.
-- Material identities remain open. Drop rates, purchase costs, and exchange rates are implementation tuning.
+- Drop rates, purchase costs, and exchange rates are implementation tuning.
 
 ## Town
 
@@ -151,7 +153,7 @@ The core structural decisions are settled. **Four or five active-skill slots** r
 
 Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the final cutoff, achievements, and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the superbosses belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
 
-Existing working proposals above are retained as context until their dedicated documents define the details. Facility introduction details, upgrade selections, and material identities can be resolved alongside that work.
+Existing working proposals above are retained as context until their dedicated documents define the details. Facility introduction details and upgrade selections can be resolved alongside that work.
 
 Numerical balance is deliberately deferred to implementation, rather than treated as an outstanding prerequisite for starting work.
 
