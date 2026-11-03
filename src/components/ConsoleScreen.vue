@@ -144,7 +144,8 @@ onBeforeUnmount(() => clearTimeout(volumeDisplayTimeout))
   right: 2.2rem;
   bottom: 2.2rem;
   left: 2.2rem;
-  z-index: 20;
+  /* Above everything the game screen draws, including overlays and the screen fade. */
+  z-index: 1000;
   display: grid;
   grid-template-columns: auto 1fr 2.5rem;
   align-items: center;
