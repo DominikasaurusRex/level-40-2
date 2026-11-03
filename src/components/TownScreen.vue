@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import EmbarkConfirmation from './EmbarkConfirmation.vue'
+import { useGameStore } from '@/stores/game'
+import GateScreen from './GateScreen.vue'
 
-const embarkOpen = ref(false)
+const game = useGameStore()
+const gateOpen = ref(false)
 
 const RADIUS_X_REM = 19
 const RADIUS_Y_REM = 11
@@ -37,16 +39,16 @@ const buildings = [
       type="button"
       class="building"
       :style="building.style"
-      @click="building.id === 'gate' && (embarkOpen = true)"
+      @click="building.id === 'gate' && (gateOpen = true)"
     >
       {{ building.name }}
     </button>
 
     <Transition name="confirmation-fade">
-      <EmbarkConfirmation
-        v-if="embarkOpen"
-        @cancel="embarkOpen = false"
-        @embark="embarkOpen = false"
+      <GateScreen
+        v-if="gateOpen"
+        :furthest-stage="game.highestUnlockedLevel"
+        @leave="gateOpen = false"
       />
     </Transition>
   </section>
