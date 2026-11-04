@@ -40,6 +40,7 @@ Working design docs in `.documentation/`. They describe the sequel, not the orig
 | `level40-2-design-doc.md` | Overview: run loop, combat continuity, weapons, damage types, active play, skill board, stage skipping, resources, Town |
 | `level40-2-story-progression.md` | Premise, areas and bosses for stages 1–42, monster reuse, elemental planning, endings |
 | `level40-2-balance-progression.md` | Skill board structure, weapon damage structure, the status roster, damage resolution order |
+| `town.md` | Town facility repairs, upgrades, Gate resource protection, and facility progression |
 
 Rules for these docs:
 

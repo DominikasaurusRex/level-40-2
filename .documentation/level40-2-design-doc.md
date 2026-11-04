@@ -125,7 +125,10 @@ Crystal replaced the earlier Leather candidate as the more thematic choice. The 
 
 Town is the between-run preparation hub. Its facilities **gate access to gameplay options**; upgrading them unlocks better or additional options.
 
-- The player starts with **only the Inn**.
+The detailed repair and upgrade structure is defined in `town.md`. That document takes precedence
+over this overview for facility progression.
+
+- The player starts with the **Inn and Gate already repaired**.
 - Other facilities are **bought with Gold and materials**, and upgrades also cost Gold and materials.
 - Intended introduction order: **Inn → Barracks/Smithy → Library → Quest board → Bar**. Whether Barracks or Smithy comes first is undecided.
 - This is not necessarily a rigid purchase order: players can potentially buy facilities in another order. At least the Barracks and Smithy receive a tutorial introduction; the exact sequence remains open.
@@ -153,7 +156,7 @@ The core structural decisions are settled. **Four or five active-skill slots** r
 
 Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the final cutoff, achievements, and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the superbosses belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
 
-Existing working proposals above are retained as context until their dedicated documents define the details. Facility introduction details and upgrade selections can be resolved alongside that work.
+Existing working proposals above are retained as context until their dedicated documents define the details. Facility repair and upgrade structure is defined in `town.md`; exact costs and unlock timing remain implementation-balancing work.
 
 Numerical balance is deliberately deferred to implementation, rather than treated as an outstanding prerequisite for starting work.
 
