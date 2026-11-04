@@ -29,10 +29,12 @@ Working design notes, 2026-11-01. This describes the **sequel**, not the origina
 
 ## Combat and weapons
 
-- The player starts with **only the Sword**. Other weapons unlock during play.
+- The player starts with **Sword & Shield**. Other weapon families unlock during play.
 - Unlocking a weapon adds it to the available arsenal. Only weapons equipped in the run loadout attack automatically.
 - **Equipped weapons cannot be deactivated during a run.** They continue attacking even when an enemy absorbs their element and is healed by them. Players must account for this when preparing their loadout.
-- Weapon types have multiple individual weapons with different damage values and elements; for example, several Daggers can offer different elemental and damage options.
+- There are four weapon families: **Dual Blades, Sword & Shield, Hammer, and Staff**. Their cadence,
+  roles, and empowerment mechanics are defined in **weapons-and-empowerment.md**.
+- Weapon families can have multiple individual weapons with different damage values and elements.
 - Buying a stronger version of a weapon **replaces its older version**. Unique weapons count by their name.
 - Weapons should have distinct roles and matchups. A matchup may temporarily block progression while the player farms toward another weapon, such as the Dagger. Such progression gates are fair and intended.
 - The player selects **three weapon slots per run** in Town, allowing different elements and attack options to be combined.
@@ -67,7 +69,9 @@ Active play has two parts: building weapon empowerment through clicks, and timin
 - Clicking another weapon switches Focus and resets the charge. Switching during a burst ends the previous weapon's empowerment; two weapons cannot be empowered together.
 - **Charging is blocked during the burst**. Once it ends, the player can build the bar again.
 - This creates periods of clicking followed by time to watch combat and use skills without constantly maintaining the bonus.
-- Weapon-specific burst effects still need defining. Click counts, strengths, and durations will be tuned during implementation.
+- Empowerment can be a temporary state or an automatically triggered special technique. The four
+  family mechanics are defined in **weapons-and-empowerment.md**. Click counts, strengths, and
+  durations will be tuned during implementation.
 
 ### Timed active skills
 

@@ -56,15 +56,15 @@ status immunities and notable defensive behavior.
 
 This row can communicate:
 
-- Whether the monster cannot be **Poisoned**.
-- Whether the monster cannot be **Stunned**.
+- Whether the monster is resistant or immune to **Poison**.
+- Whether the monster is resistant or immune to **Stun**.
 - Whether the monster makes significant use of **Shield**.
 - Whether the monster makes significant use of **DEF**.
 - Whether the monster makes significant use of **AGI**.
 
 Status immunity and defensive behavior are different facts:
 
-- Poison and Stun indicators describe effects that cannot be applied to the monster.
+- Poison and Stun indicators distinguish reduced effectiveness from complete immunity.
 - Shield, DEF, and AGI indicators warn that the monster uses those mechanics heavily enough to
   matter when choosing a loadout.
 

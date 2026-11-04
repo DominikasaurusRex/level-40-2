@@ -51,7 +51,8 @@ These are **categories and illustrative ideas**, not a fixed node list, node pla
 - Potential early options: general Power/HP increases; weapon-specific damage; active healing, Regeneration, or DEF skills.
 - Potential middle options: elemental bonuses, further weapon specialization; active AGI, Stun, Poison, and elemental resistance via Barrier.
 - Potential late options: stronger specialized bonuses; elemental immunity, Curse, and Absorb skills. **Absorb belongs far out on the skill board**, not among the initial active skills.
-- **Extra weapon hits** are a rare, high-end upgrade concept applying to **weapons generally**, not a Dagger-specific hit-count bonus. Exact effect and placement are undecided.
+- General extra-hit upgrades remain a possible rare, high-end concept. Dual Blades may also receive
+  family-specific Demon Dance upgrades that add hits.
 - Whether active skills have dedicated upgrade nodes (e.g., improved effect or cooldown) is **not yet decided**.
 
 These examples should remain mixed across board regions rather than segregated into exclusive weapon or elemental branches.
@@ -63,7 +64,8 @@ These examples should remain mixed across board regions rather than segregated i
 - A weapon may additionally have **one** elemental damage component: **Fire, Ice, or Thunder**. The elemental component may be absent.
 - A weapon can deal Physical-only damage, Physical plus one element, or purely elemental damage (0 Physical plus one element).
 - **A single weapon cannot combine two different elements** (for example, Fire and Thunder).
-- **Weapons do not apply status effects.** Their attacks deal damage only; statuses come from other mechanics, such as skills or enemy abilities.
+- **Normal weapon attacks do not apply status effects.** Empowered weapon techniques may apply
+  statuses as defined in **weapons-and-empowerment.md**.
 - Physical and elemental components belong to the **same hit**, not separate hits. Each component receives its own damage-type response, but flat DEF applies **once to the combined hit**, split evenly across damaging components with unused reduction overflowing to the other component (see below).
 
 **Illustrative examples (not balance values):** A sword may hit once for 5 Physical + 10 Fire; a dagger may hit three times for 2 Physical + 4 Thunder **per hit**; a weapon may hit once for 0 Physical + 20 Ice. A weapon dealing 10 Fire + 5 Thunder is not permitted.
