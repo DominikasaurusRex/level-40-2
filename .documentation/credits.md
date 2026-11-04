@@ -47,3 +47,18 @@ Freepik:
 ## Built With
 
 - Vue.js and Pinia
+
+
+
+
+
+
+
+https://www.flaticon.com/free-icon/coin_794758 - coin
+https://www.flaticon.com/free-icon/money_13535364 coin
+https://www.flaticon.com/free-icon/gold-ingots_18362184 metal
+https://www.flaticon.com/free-icon/gold_6475950?related_id=6475950&origin=search metal
+https://www.flaticon.com/free-icon/wood_5172546 wood
+https://www.flaticon.com/free-icon/sewing_14765838 silk
+https://www.flaticon.com/free-icon/gem_9268791 crystal
+https://cdn-icons-png.flaticon.com/512/5542/5542205.png xp

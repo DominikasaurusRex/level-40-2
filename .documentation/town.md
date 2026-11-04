@@ -114,10 +114,14 @@ The Library can then be upgraded once to add detailed combat information for kno
 including their attacks, skills, elements, and applied statuses. Exact rules for when a monster or
 ability becomes "known" remain content and implementation work.
 
+The monster-manual interface and its discovery rules are defined in **library-modal.md**.
+
 ## Quest board
 
 The Quest board is repaired once and has no later upgrades. It is a binary unlock: monster quests
 and achievement tracking are either available or unavailable.
+
+The Quest Board interface and quest-state presentation are defined in **quest-board-modal.md**.
 
 Tracking begins only after the repair. Earlier kills and feats do not count retroactively, as
 defined in `level40-2-design-doc.md`.
