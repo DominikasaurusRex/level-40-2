@@ -34,10 +34,9 @@ const buildings = townPlaces.map(place => ({
   <section
     class="town-screen"
     :class="{ 'fake-ending-finished': fakeEndingFinished }"
-    aria-labelledby="town-title"
+    aria-label="Town"
   >
     <ResourceBar />
-    <h1 id="town-title" class="town-title">Town</h1>
     <button
       v-for="building in buildings"
       :key="building.id"
@@ -74,17 +73,6 @@ const buildings = townPlaces.map(place => ({
 
 .town-screen.fake-ending-finished {
   background-image: url('/town/night.png');
-}
-
-.town-title {
-  position: absolute;
-  top: 2.75rem;
-  left: 50%;
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-  text-shadow: 0 3px 0 var(--ui-ink);
-  transform: translateX(-50%);
 }
 
 .building {
