@@ -56,7 +56,7 @@ const buildings = townPlaces.map((place, index, all) => {
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 0.45rem;
-  background: #061d2c;
+  background: #061d2c url('/town/day.png') center / cover no-repeat;
   color: var(--ui-text);
   font-family: Georgia, 'Times New Roman', serif;
 }
