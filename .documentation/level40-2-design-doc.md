@@ -135,9 +135,9 @@ over this overview for facility progression.
 
 | Facility | Options provided |
 | --- | --- |
-| Inn | Mostly flavor; select skills and equipment; present from the start. |
-| Barracks | Spend XP to buy skill points and access the skill board; upgrades unlock further board sections. |
-| Shop / Smithy | Buy weapons and weapon upgrades; expanded selections unlock additional weapons. |
+| Inn | Optionally import an original Level 40 save for its one-time early-game bonus; present from the start and has no upgrades. |
+| Barracks | Spend XP to buy skill points, access the skill board, and select active skills; upgrades unlock further board sections. |
+| Shop / Smithy | Buy weapons and weapon upgrades, and select the weapon loadout; expanded selections unlock additional weapons. |
 | Library | View the monster manual, including information useful for elemental matchups. |
 | Quest board | Unlock monster-achievement options and begin tracking them; no retroactive credit. |
 | Bar | Exchange Gold for XP and XP for Gold. |

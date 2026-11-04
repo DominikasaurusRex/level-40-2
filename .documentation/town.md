@@ -20,7 +20,7 @@ unless explicitly stated here.
 
 | Facility | Starting state | Progression |
 | --- | --- | --- |
-| Inn | Repaired | Two upgrades that grant increasingly large starting Shield bonuses. |
+| Inn | Repaired | Optional original Level 40 save import for the early bonus; no upgrades. |
 | Gate | Repaired | Six wall upgrades that progressively protect unspent XP and Gold. |
 | Barracks | Broken | Repair, then roughly five upgrades tied to skill-board walls. |
 | Smithy | Broken | Repair, then roughly five upgrades unlocking higher-level weapons. |
@@ -34,14 +34,17 @@ Their final counts should match the weapon tiers, skill-board walls, and journey
 
 ## Inn
 
-The Inn starts repaired and remains the place for preparing the run loadout.
+The Inn starts repaired and has one purpose: optionally importing an original **Level 40** save for
+the established early-game bonus.
 
-It can be upgraded twice. Each upgrade grants a larger amount of temporary **Shield** when a run
-starts, representing the adventurer being well rested. This is starting protection, not permanent
-maximum HP. It is granted fresh for each run and cannot be accumulated by repeatedly entering and
-leaving Town.
+- Importing a save is optional.
+- A valid original save grants its early-game bonus only once.
+- Importing another save cannot repeatedly grant the bonus.
+- The Inn has no repairs or upgrades beyond being available from the start.
+- The Inn does not grant a starting Shield or other rested bonus.
 
-The two Shield amounts are balancing values to determine during implementation.
+Weapon purchasing and weapon-loadout selection belong to the Smithy. Skill-board progression and
+active-skill selection belong to the Barracks, so the Inn does not duplicate either function.
 
 ## Gate and town raids
 
@@ -70,13 +73,21 @@ the seven progression states and final 90% retention are the settled structure.
 | Wall upgrade 5 | 75% |
 | Wall upgrade 6 | 90% |
 
-The embark confirmation should clearly show how much XP and Gold will be retained and lost before
-the player commits to the run.
+The Gate's embark confirmation must warn the player about the raid before the run begins. It must
+show the **exact XP amount lost** and the **exact Gold amount lost** based on the current Gate level
+and the player's current resources. A percentage alone is not sufficient.
+
+The warning is shown before the player commits to the run, with separate **Embark** and **Cancel**
+actions. Resource loss is applied only after the player confirms Embark.
 
 ## Barracks
 
 Repairing the Barracks unlocks spending XP on skill points and access to the initial skill-board
 section.
+
+The Barracks action opens the skill board directly. It does not use a separate Barracks modal.
+The skill board's layout, walls, purchase rules, and progression are defined in
+**level40-2-balance-progression.md**.
 
 The Barracks is upgraded roughly five times across the journey. Its upgrades remove the visible
 walls that block outer skill-board sections. As defined in `level40-2-balance-progression.md`, a
@@ -139,7 +150,7 @@ loses value, preventing conversion loops from creating resources.
 | Upgrade 3 | 80% |
 
 At 20% efficiency, exchanging 100 of either currency gives 20 of the other. The exact interface
-and allowed transaction sizes remain implementation details.
+is defined in **bar-modal.md**. Allowed transaction sizes remain an implementation detail.
 
 ## Monument
 
