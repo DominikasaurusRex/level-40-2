@@ -1,30 +1,41 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { townPlaces, type PlaceId } from '@/data/town'
+import { computed, ref } from 'vue'
+import { useGameStore } from '@/stores/game'
+import { FIRST_ENDING_STAGE, PlaceId, townPlaces } from '@/data/town'
 import PlaceScreen from './PlaceScreen.vue'
 import ResourceBar from './ResourceBar.vue'
 
 const openPlaceId = ref<PlaceId>()
+const game = useGameStore()
+const fakeEndingFinished = computed(() => game.highestUnlockedLevel > FIRST_ENDING_STAGE)
 
-const RADIUS_X_REM = 19
-const RADIUS_Y_REM = 11
+const buildingPositions: Record<PlaceId, { left: string; top: string }> = {
+  [PlaceId.Monument]: { left: '52%', top: '50%' },
+  [PlaceId.Inn]: { left: '21%', top: '68%' },
+  [PlaceId.Barracks]: { left: '48%', top: '34%' },
+  [PlaceId.Smithy]: { left: '70%', top: '43%' },
+  [PlaceId.Library]: { left: '89%', top: '45%' },
+  [PlaceId.QuestBoard]: { left: '78%', top: '66%' },
+  [PlaceId.Bar]: { left: '21%', top: '44%' },
+  [PlaceId.Gate]: { left: '50%', top: '82%' },
+}
 
-const buildings = townPlaces.map((place, index, all) => {
-  const angle = (index / all.length) * 2 * Math.PI - Math.PI / 2
-  return {
-    id: place.id,
-    name: place.name,
-    style: {
-      left: `calc(50% + ${Math.cos(angle) * RADIUS_X_REM}rem)`,
-      top: `calc(50% + ${Math.sin(angle) * RADIUS_Y_REM}rem)`,
-      background: place.color,
-    },
-  }
-})
+const buildings = townPlaces.map(place => ({
+  id: place.id,
+  name: place.name,
+  style: {
+    ...buildingPositions[place.id],
+    background: place.color,
+  },
+}))
 </script>
 
 <template>
-  <section class="town-screen" aria-labelledby="town-title">
+  <section
+    class="town-screen"
+    :class="{ 'fake-ending-finished': fakeEndingFinished }"
+    aria-labelledby="town-title"
+  >
     <ResourceBar />
     <h1 id="town-title" class="town-title">Town</h1>
     <button
@@ -61,15 +72,19 @@ const buildings = townPlaces.map((place, index, all) => {
   font-family: Georgia, 'Times New Roman', serif;
 }
 
+.town-screen.fake-ending-finished {
+  background-image: url('/town/night.png');
+}
+
 .town-title {
   position: absolute;
-  top: 50%;
+  top: 2.75rem;
   left: 50%;
   margin: 0;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   text-shadow: 0 3px 0 var(--ui-ink);
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
 
 .building {
