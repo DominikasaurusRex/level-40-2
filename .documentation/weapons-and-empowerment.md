@@ -150,9 +150,13 @@ immune: a sufficiently valuable empowered technique still produces a reduced eff
 
 Smithy and Barracks progression have different jobs:
 
-- **Smithy upgrades** improve individual weapons and their normal damage.
-- **Skill-board nodes** improve a weapon family's empowerment mechanic.
+- **Smithy upgrades** improve individual weapons and their base damage.
+- **Skill-board nodes** improve a weapon family's empowerment mechanic, and also provide damage
+  through general nodes (such as **Power +1**) and weapon-specific passive nodes (such as **+2
+  Physical damage to Hammers**).
 
-This keeps both facilities useful without giving them duplicate progression systems. Unique weapons
-may make rare exceptions, but the family mechanic should remain recognizable.
+All weapon damage scales with the player's **Power**, so general Power nodes strengthen every
+equipped weapon. The exact scaling formula is implementation balancing.
+
+Unique weapons may make rare exceptions to the family mechanic, but it should remain recognizable.
 

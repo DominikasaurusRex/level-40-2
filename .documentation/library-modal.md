@@ -34,7 +34,7 @@ Show the following from top to bottom:
 The left column contains:
 
 - **HP:** maximum HP, for example **HP: 100**.
-- **ATK:** attack value, for example **ATK: 12**.
+- **ATK:** the damage of the monster's weapon (its basic attack), for example **ATK: 12**.
 - **Drops:** icons for the materials the monster can drop.
   - Gold and XP are default rewards and are not listed.
   - Only material-drop icons are shown.

@@ -7,7 +7,7 @@ unless explicitly stated here.
 
 ## Shared rules
 
-- The **Inn** and **Gate** begin repaired. Every other facility begins broken.
+- The **Inn**, **Gate**, and **Monument** begin repaired. Every other facility begins broken.
 - Repairing and upgrading facilities costs **Gold and materials**.
 - A repair unlocks a facility's main function. Later upgrades improve that function; they are not
   separate crafting systems.
@@ -27,7 +27,7 @@ unless explicitly stated here.
 | Library | Broken | Repair unlocks useful monster records; one upgrade reveals combat abilities. |
 | Quest board | Broken | Repaired once; no further upgrades. |
 | Bar | Broken | Repair at 20% exchange efficiency, then three upgrades: 40%, 60%, and 80%. |
-| Monument | Broken | The final repair and an endgame resource sink; possible bonus remains open. |
+| Monument | Repaired | Opens the Town repair modal; one upgrade that replaces its image. |
 
 The Smithy and Barracks counts are structural targets, not a commitment to exactly five upgrades.
 Their final counts should match the weapon tiers, skill-board walls, and journey pacing.
@@ -154,9 +154,9 @@ is defined in **bar-modal.md**. Allowed transaction sizes remain an implementati
 
 ## Monument
 
-The Monument is the final Town repair. It is primarily an endgame sink for Gold and materials after
-the functional facilities have been restored.
+The Monument starts repaired. It opens the Town repair modal, where every Town place is repaired and
+upgraded (see **town-repair-modal.md**).
 
-It may grant a small bonus so the repair feels rewarding, but that bonus is not yet decided. It
-should not gate a required core system or undermine the Monument's role as the final restoration
-goal.
+The Monument has one upgrade. It only replaces the Monument's image with a restored version. It is
+the final restoration goal and an endgame sink for Gold and materials after the functional
+facilities have been restored.

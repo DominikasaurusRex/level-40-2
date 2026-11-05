@@ -36,7 +36,7 @@ Working design notes, 2026-11-01. This describes the **sequel**, not the origina
   roles, and empowerment mechanics are defined in **weapons-and-empowerment.md**.
 - Weapon families can have multiple individual weapons with different damage values and elements.
 - Buying a stronger version of a weapon **replaces its older version**. Unique weapons count by their name.
-- Weapons should have distinct roles and matchups. A matchup may temporarily block progression while the player farms toward another weapon, such as the Dagger. Such progression gates are fair and intended.
+- Weapons should have distinct roles and matchups. A matchup may temporarily block progression while the player farms toward another weapon, such as Dual Blades. Such progression gates are fair and intended.
 - The player selects **three weapon slots per run** in Town, allowing different elements and attack options to be combined.
 - **Equipment consists only of weapons**; there is no armor or accessory equipment system.
 - The old game's combat numbers are a reference baseline, **not** values to preserve.
@@ -95,7 +95,7 @@ Active play has two parts: building weapon empowerment through clicks, and timin
 
 ## Monster achievements and stage skipping
 
-- The working proposal gives **stages 1–20** multiple achievements per monster. Main stages **21–40** remain unskippable, preserving an endgame to fight through. The cutoff is not final.
+- **Stages 1–20** have four achievements (quests) per monster. Stages **21–42** have no quests and remain unskippable, preserving an endgame to fight through.
 - Achievements grant specific permanent rewards, such as skill points, equipment/skill unlocks, or other permanent improvements.
 - Illustrative Slime challenges: repeated kills, a very fast kill, or a kill without active input. Specific challenges and rewards are not final.
 - **Tracking begins only after the Quest board and relevant achievement options unlock.** Previous kills and feats do not count retroactively. A locked facility tracks nothing.
@@ -112,8 +112,8 @@ The economy has **two general currencies and four materials**:
 | XP | Currency | Spent at the Barracks for permanent skill points |
 | Gold | Currency | Equipment purchases/upgrades and Town facilities/upgrades |
 | Wood | Material | Mostly construction and building materials |
-| Metal | Material | Mostly construction and building materials |
 | Silk | Material | Anything soft (cloth, padding, furnishings, and similar) |
+| Metal | Material | Mostly construction and building materials |
 | Crystal | Material | Mostly magical things |
 
 Crystal replaced the earlier Leather candidate as the more thematic choice. The resource bar at the top of the Town and battle screens shows all six, in the order above.
@@ -132,9 +132,9 @@ Town is the between-run preparation hub. Its facilities **gate access to gamepla
 The detailed repair and upgrade structure is defined in `town.md`. That document takes precedence
 over this overview for facility progression.
 
-- The player starts with the **Inn and Gate already repaired**.
+- The player starts with the **Inn, Gate, and Monument already repaired**.
 - Other facilities are **bought with Gold and materials**, and upgrades also cost Gold and materials.
-- Intended introduction order: **Inn → Barracks/Smithy → Library → Quest board → Bar**. Whether Barracks or Smithy comes first is undecided.
+- Intended introduction order: **Inn → Barracks/Smithy → Library → Quest board → Bar**, with the Monument's upgrade as the final restoration goal. Whether Barracks or Smithy comes first is undecided.
 - This is not necessarily a rigid purchase order: players can potentially buy facilities in another order. At least the Barracks and Smithy receive a tutorial introduction; the exact sequence remains open.
 
 | Facility | Options provided |
@@ -145,7 +145,8 @@ over this overview for facility progression.
 | Library | View the monster manual, including information useful for elemental matchups. |
 | Quest board | Unlock monster-achievement options and begin tracking them; no retroactive credit. |
 | Bar | Exchange Gold for XP and XP for Gold. |
-| Gate | Start a new run. |
+| Gate | Start a new run; wall upgrades protect unspent XP and Gold from the raid at run start. |
+| Monument | Open the Town repair modal to repair and upgrade every Town place; present from the start, and its one upgrade only replaces its image. |
 
 - Select the three-weapon loadout and four or five active skills in Town before a run.
 - **Consumables are excluded.** Support effects belong in the expanded active-skill selection.
@@ -158,7 +159,7 @@ over this overview for facility progression.
 
 The core structural decisions are settled. **Four or five active-skill slots** remains an interface-layout choice.
 
-Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the final cutoff, achievements, and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the superbosses belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
+Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the individual achievements and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the superbosses belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
 
 Existing working proposals above are retained as context until their dedicated documents define the details. Facility repair and upgrade structure is defined in `town.md`; exact costs and unlock timing remain implementation-balancing work.
 

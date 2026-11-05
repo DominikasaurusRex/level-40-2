@@ -8,10 +8,11 @@ does not count retroactively.
 ## Left side: level selection
 
 - Show a selectable list of monster levels.
+- Only levels 1–20 have quests. Levels 21–42 never appear in the list.
 - Only levels the player has reached are listed.
 - Unreached levels are completely hidden. Do not show question marks, silhouettes, empty slots, or
   other placeholders.
-- The game has 42 levels, so the list must be vertically scrollable.
+- Up to 20 levels can be listed, so the list must be vertically scrollable.
 - Selecting a level displays that level's monster quests on the right.
 
 ## Right side: monster quests

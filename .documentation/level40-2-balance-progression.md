@@ -46,7 +46,7 @@ Working design document. This file covers the player's permanent power progressi
 
 These are **categories and illustrative ideas**, not a fixed node list, node placement, or balanced values.
 
-- Include both **general passive nodes** (such as **Power +1**, HP increases) and **weapon-specific passive nodes** (such as **+2 Physical damage to Axes**). Neither category is inherently better; their relative value depends on the build and later balancing.
+- Include both **general passive nodes** (such as **Power +1**, HP increases) and **weapon-specific passive nodes** (such as **+2 Physical damage to Hammers**). Neither category is inherently better; their relative value depends on the build and later balancing.
 - **Power** retains its established meaning as the player's damage stat from the original Level 40. Do not redefine it as a new per-hit weapon modifier.
 - Potential early options: general Power/HP increases; weapon-specific damage; active healing, Regeneration, or DEF skills.
 - Potential middle options: elemental bonuses, further weapon specialization; active AGI, Stun, Poison, and elemental resistance via Barrier.
@@ -60,6 +60,7 @@ These examples should remain mixed across board regions rather than segregated i
 ## Weapon damage and attack structure
 
 - Weapons have a defined **number of attacks/hits** and **damage per hit**.
+- Weapon damage **scales with the player's Power**. The exact formula is implementation balancing.
 - Every hit has a **Physical damage component**, which may be **0**.
 - A weapon may additionally have **one** elemental damage component: **Fire, Ice, or Thunder**. The elemental component may be absent.
 - A weapon can deal Physical-only damage, Physical plus one element, or purely elemental damage (0 Physical plus one element).
@@ -76,8 +77,8 @@ These examples should remain mixed across board regions rather than segregated i
 - **Stun:** freezes cooldown recovery temporarily.
 - **Regeneration:** restores HP over time, capped at maximum HP.
 - **Shield:** a pool of temporary HP, carried over from the original Level 40 (where DEF was displayed as "Shield"). It absorbs damage point-for-point before HP is lost and is used up as it does. It stacks and does not expire, so it can be built up against weak enemies and carried into later fights. Not to be confused with Barrier.
-- **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Daggers). It is not an accumulating pool; that role belongs to Shield.
-- **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Axes).
+- **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Dual Blades). It is not an accumulating pool; that role belongs to Shield.
+- **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Hammers).
 - **Barrier:** temporary resistance (×0.5) or immunity (×0) to a specified damage type (Physical, Fire, Ice, or Thunder). **Replaces Invincible.**
 - **Absorb:** temporarily converts a specified damage type into healing.
 - **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. A powerful late-game healing/cleansing skill that removes Curse without triggering reflection is a **possibility**, not an initial mechanic or confirmed unlock.
