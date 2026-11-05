@@ -49,24 +49,25 @@ The right column contains the monster's response to each damage type:
 The damage-type and response symbols will later be replaced with provided image assets.
 
 
-### Status resistances and defensive traits
+### Status resistances and defensive weaknesses
 
 Between the statistics grid and the resistance legend, show a single row of icons for relevant
-status immunities and notable defensive behavior.
+status immunities and the player defenses the monster is weak against.
 
 This row can communicate:
 
 - Whether the monster is resistant or immune to **Poison**.
 - Whether the monster is resistant or immune to **Stun**.
-- Whether the monster makes significant use of **Shield**.
-- Whether the monster makes significant use of **DEF**.
-- Whether the monster makes significant use of **AGI**.
+- Whether the monster is **weak to DEF**: it attacks with many small hits, so flat DEF per hit
+  blocks a large share of its damage.
+- Whether the monster is **weak to AGI**: it attacks with big, slow hits, so each evasion charge
+  avoids a large amount of damage.
 
-Status immunity and defensive behavior are different facts:
+Status immunity and defensive weaknesses are different facts:
 
 - Poison and Stun indicators distinguish reduced effectiveness from complete immunity.
-- Shield, DEF, and AGI indicators warn that the monster uses those mechanics heavily enough to
-  matter when choosing a loadout.
+- DEF and AGI indicators are weaknesses. They tell the player which defensive options pay off
+  when choosing active skills.
 
 Show all indicators that apply to the selected monster. The exact icon assets and presentation
 will be provided later.
