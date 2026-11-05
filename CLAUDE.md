@@ -20,12 +20,18 @@ and how; ask when the intended new design is unclear.
 
 ## Current state
 
-- The original Level 40 source code is imported **unchanged** in `src/` and `public/`. It still
-  plays as Level 40: 8 areas (Field → Abyss), level-ups, Shield-style DEF, Bleed, and so on.
-- The Level 40 2 redesign is **documented but not implemented** (see the Level 40 2 design docs
-  below). No code has been changed for it yet.
-- Until a system is implemented, the code follows the original docs, and the Level 40 2 docs
-  describe the target.
+- Most of `src/` is still the original Level 40 code: 8 areas (Field → Abyss), level-ups,
+  Shield-style DEF, Bleed, and so on. Its monster data still points at the old sprite paths.
+- **Implemented for Level 40 2 so far:**
+  - Console shell adjusted (wider screen, no SELECT, mobile mode; see `cleaning.md`).
+  - Town: places as `PlaceId` (`src/data/town.ts`) with conditional backgrounds, `TownScreen.vue`,
+    `PlaceScreen.vue`, NPC chats (`src/data/chats.ts`), and the Gate's `EmbarkConfirmation.vue`.
+  - Resources: the six resources as `ResourceId` (`src/data/resources.ts`) and `ResourceBar.vue`.
+  - Save snapshot holds `rebuiltPlaces` and `resources`.
+  - Enemy sprites for stages 1–10 in `public/enemies/forest/` and `public/enemies/cave/` (see
+    `enemies.md`).
+- Everything else follows the original docs until it is replaced; the Level 40 2 docs describe the
+  target.
 
 Update this section as systems get replaced in code.
 
@@ -42,6 +48,17 @@ Working design docs in `.documentation/`. They describe the sequel, not the orig
 | `level40-2-balance-progression.md` | Skill board structure, weapon damage structure, the status roster, damage resolution order |
 | `weapons-and-empowerment.md` | Four weapon families, attack cadence, empowered states and techniques, status responses |
 | `town.md` | Town facility repairs, upgrades, Gate resource protection, and facility progression |
+| `town-repair-modal.md` | Monument's repair/upgrade modal: layout, cost display, Upgrade button |
+| `library-modal.md` | Library monster manual: discovery rules, stats, responses, seen skills |
+| `quest-board-modal.md` | Quest Board: stage list, four quests per monster, quest states |
+| `bar-modal.md` | Bar Gold ↔ XP exchange interface |
+| `enemies.md` | Monster per stage and its sprite (stages 1–10 decided so far) |
+| `cleaning.md` | Plan for removing or reworking the original code |
+| `credits.md` | Working credits and asset attribution list |
+
+Terminology: **zone**, **stage**, and **level** are interchangeable and all mean one of the 42
+fights (stage 1 = Slime). The player has no levels anymore, so "level" never refers to the player in
+Level 40 2. **Area** is the group of stages (Field + Forest, Cave, ...).
 
 Rules for these docs:
 

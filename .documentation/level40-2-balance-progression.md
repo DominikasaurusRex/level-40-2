@@ -79,7 +79,7 @@ These examples should remain mixed across board regions rather than segregated i
 - **Shield:** a pool of temporary HP, carried over from the original Level 40 (where DEF was displayed as "Shield"). It absorbs damage point-for-point before HP is lost and is used up as it does. It stacks and does not expire, so it can be built up against weak enemies and carried into later fights. Not to be confused with Barrier.
 - **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Dual Blades). It is not an accumulating pool; that role belongs to Shield.
 - **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Hammers).
-- **Barrier:** temporary resistance (×0.5) or immunity (×0) to a specified damage type (Physical, Fire, Ice, or Thunder). **Replaces Invincible.**
+- **Barrier:** temporary resistance (×0.5) or immunity (×0) to one or more specified damage types (Physical, Fire, Ice, Thunder), for example all three elements at once. **Replaces Invincible.**
 - **Absorb:** temporarily converts a specified damage type into healing.
 - **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. A powerful late-game healing/cleansing skill that removes Curse without triggering reflection is a **possibility**, not an initial mechanic or confirmed unlock.
 

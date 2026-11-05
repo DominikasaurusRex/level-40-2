@@ -76,8 +76,9 @@ Active play has two parts: building weapon empowerment through clicks, and timin
 ### Timed active skills
 
 - Active skills are **bought through the skill board**.
-- The player selects **four active skills per run, possibly five depending on the interface layout**. Together with three weapon slots, pre-run preparation fills **seven or eight loadout slots**.
+- The player selects **three active skills per run**. Together with three weapon slots, pre-run preparation fills **six loadout slots**. Three is enough because the weapons' empowered states already act as additional skills.
 - Skills should offer a broader range of distinct effects to cover support roles without consumables. Examples include **Shield, Barrier, healing, damage element altering, elemental resistances and stunning**; the final skill roster remains open.
+- A single active skill **may combine several effects or cover several damage types**, for example an elemental Barrier that halves all Fire, Ice, and Thunder damage. This keeps three skill slots flexible enough to cover support roles.
 - Well-timed skills should be capable of **swinging a fight**.
 - Exact effects, costs, and cooldowns will be worked out during implementation.
 
@@ -148,7 +149,7 @@ over this overview for facility progression.
 | Gate | Start a new run; wall upgrades protect unspent XP and Gold from the raid at run start. |
 | Monument | Open the Town repair modal to repair and upgrade every Town place; present from the start, and its one upgrade only replaces its image. |
 
-- Select the three-weapon loadout and four or five active skills in Town before a run.
+- Select the three-weapon loadout and three active skills in Town before a run.
 - **Consumables are excluded.** Support effects belong in the expanded active-skill selection.
 - Facility costs, upgrade tiers, selections, and exchange rates will be worked out during implementation.
 
@@ -157,7 +158,7 @@ over this overview for facility progression.
 
 ## Scope and follow-up documents
 
-The core structural decisions are settled. **Four or five active-skill slots** remains an interface-layout choice.
+The core structural decisions are settled, including **three active-skill slots**.
 
 Detailed skill-board branches and prerequisites will have their own collection of Markdown files. Stage-skipping details, including the individual achievements and rewards, will have their own Markdown document. Individual weapons, skills, weapon bursts, statuses, monsters, and the superbosses belong in separate content documents. These are follow-up design work, not unresolved prerequisites for this overview.
 

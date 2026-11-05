@@ -26,7 +26,7 @@ code"), so nothing removed here is lost.
 | Part | Files | What survives | What changes |
 | ---- | ----- | ------------- | ------------ |
 | Combat engine | `combat/engine.ts` | Tick loop, cooldowns, staggered multi-hits, Stun, AGI charges, heal-over-time (→ Regeneration), hooks | The old `def` pool becomes **Shield**. New: damage types and responses, flat DEF with split/overflow, Barrier, Absorb, Poison (replaces Bleed), new Curse (delayed reflection). Counter/Recovery/Offensive Care go. |
-| Combat types | `types/combatant.ts`, `types/effects.ts`, `types/weapon.ts`, `types/skill.ts`, `types/monster.ts` | Combatant model (player and monsters share it) | Weapons get Physical + one element; player has 3 weapon attacks plus 4–5 active skills instead of one basic attack. |
+| Combat types | `types/combatant.ts`, `types/effects.ts`, `types/weapon.ts`, `types/skill.ts`, `types/monster.ts` | Combatant model (player and monsters share it) | Weapons get Physical + one element; player has 3 weapon attacks plus 3 active skills instead of one basic attack. |
 | Battle view | `BattleCard.vue` | Monster sprite, HP bars, status display | Element/Barrier/Shield display. |
 | Player panel | `PlayerTab.vue` | Skill rows with cooldown bars | 3 weapons + active skills; Focus Pulse becomes the weapon empowerment bar/burst. |
 | Simulator | `combat/simulator.ts` | One engine for game and simulator | Simulates runs instead of farming one monster. |

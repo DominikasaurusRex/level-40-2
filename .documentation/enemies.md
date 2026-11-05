@@ -16,11 +16,11 @@ Sprites live in `public/enemies/<area>/`. The originals remain in `public/level-
 
 | Stage | Monster | Sprite | Original Level 40 source |
 | ---: | --- | --- | --- |
-| 1 | Slime | `field/slime.webp` | Field, level 1 |
-| 2 | Wild Boar | `field/wild-boar.webp` | Field, level 3 |
-| 3 | Moss Boar | `field/moss-boar.webp` | Forest, level 9 |
-| 4 | Sporecap | `field/sporecap.webp` | Forest, level 7 |
-| 5 | Thorn Dryad | `field/thorn-dryad.webp` | Forest, level 10 (boss) |
+| 1 | Slime | `forest/slime.webp` | Field, level 1 |
+| 2 | Wild Boar | `forest/wild-boar.webp` | Field, level 3 |
+| 3 | Moss Boar | `forest/moss-boar.webp` | Forest, level 9 |
+| 4 | Sporecap | `forest/sporecap.webp` | Forest, level 7 |
+| 5 | Thorn Dryad | `forest/thorn-dryad.webp` | Forest, level 10 (boss) |
 
 ### Stages 6–10: Cave
 
