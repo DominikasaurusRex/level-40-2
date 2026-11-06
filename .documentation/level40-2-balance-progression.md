@@ -86,10 +86,14 @@ These examples should remain mixed across board regions rather than segregated i
 
 Monsters' **innate damage-type responses are permanently active**. Temporary damage responses (Barrier, Absorb, and Vulnerability) **override**, rather than multiply with, the innate response for that damage type while active, including innate immunity or absorption (Fire Vulnerability makes a Fire-immune monster take double Fire damage). After expiry, the innate response applies again.
 
-When several temporary damage responses cover the **same damage type**:
+When temporary damage responses meet on the **same damage type**, **whatever was cast last counts**,
+regardless of strength or whether it is positive or negative. The new response replaces the old
+one for that damage type; when it expires, the innate response applies again.
 
-- **Positive vs positive** (Barrier or Absorb): the **stronger** one applies. Absorb is stronger than immunity, immunity stronger than resistance.
-- **Positive vs negative** (Barrier or Absorb against Vulnerability, either way round): the **newest** one applies. Example: a monster casts Physical immunity, the player then applies Physical Vulnerability, and the monster is vulnerable. If the monster then casts Physical immunity again, it is immune. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). Temporary damage responses on the same damage type never combine or multiply; the rules above decide which one applies.
+- Example: a monster casts Physical immunity, the player applies Physical Vulnerability, and the
+  monster is vulnerable. If the monster then casts Physical immunity again, it is immune.
+- This means the player can weaken their own protection by accident (for example, a weaker
+  resistance cast over an active immunity). That is intended. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). Temporary damage responses on the same damage type never combine or multiply; the rules above decide which one applies.
 
 ## Skill effects
 
