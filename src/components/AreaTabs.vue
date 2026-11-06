@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { Monster } from '@/types/monster'
-import { forestMonsters } from '@/data/monster/forest-monsters.ts'
-import { caveMonsters } from '@/data/monster/cave-monsters.ts'
 import { areaNames, isAreaBossLevel, levelsForArea } from '@/data/areas'
 import { areaBackgrounds } from '@/data/area-backgrounds'
 import { useGameStore } from '@/stores/game'
@@ -18,12 +16,11 @@ const emit = defineEmits<{
 
 const areas = areaNames.map(name => ({ name, background: areaBackgrounds[name], levels: levelsForArea(name) }))
 
-/** Monsters by stage: index 0 is stage 1. Stages without a monster yet have no fight. */
-const stageMonsters: Monster[] = [...forestMonsters, ...caveMonsters]
-
-function monsterFor(level: number) {
+// The stage monsters use the Level 40 2 definition, which the original combat engine cannot run.
+// Until combat is reworked, only the tutorial dummy is fought here.
+function monsterFor(level: number): Monster | undefined {
   if (level === 0) return trainingDummy
-  return stageMonsters[level - 1]
+  return undefined
 }
 
 const battleCardHostEl = ref<HTMLElement>()

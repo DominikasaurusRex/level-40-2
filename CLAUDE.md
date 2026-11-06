@@ -22,9 +22,10 @@ and how; ask when the intended new design is unclear.
 
 - Most of `src/` is still the original Level 40 code: 8 areas (Field → Abyss), level-ups,
   Shield-style DEF, Bleed, and so on.
-- Monster data holds only the ten reused monsters for stages 1–10 (`forest-monsters.ts`,
-  `cave-monsters.ts`), on the new sprites but with original stats. The tutorial's Training Dummy
-  remains (its sprite is gone).
+- Monster data holds only the ten monsters for stages 1–10 (`forest-monsters.ts`,
+  `cave-monsters.ts`) in the Level 40 2 shape (`types/monster-definition.ts`, `types/damage.ts`,
+  `types/skill-effect.ts`) with placeholder numbers. The original engine cannot run them, so the old
+  battle view only fights the tutorial's Training Dummy (whose sprite is gone).
 - **Implemented for Level 40 2 so far:**
   - Console shell adjusted (wider screen, no SELECT, mobile mode; see `cleaning.md`).
   - Town: places as `PlaceId` (`src/data/town.ts`) with conditional backgrounds, `TownScreen.vue`,
