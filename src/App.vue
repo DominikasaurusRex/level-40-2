@@ -23,7 +23,13 @@ const portrait = window.matchMedia('(orientation: portrait)')
 
 let resizeObserver: ResizeObserver | undefined
 
-const showRotateHint = computed(() => isPhone.value && isPortrait.value)
+/** Stays dismissed until the page reloads; deliberately not saved. */
+const rotateHintDismissed = ref(false)
+
+function dismissRotateHint() {
+  rotateHintDismissed.value = true
+}
+const showRotateHint = computed(() => isPhone.value && isPortrait.value && !rotateHintDismissed.value)
 
 const frameStyle = computed(() => {
   if (isPhone.value) {
@@ -153,9 +159,12 @@ onBeforeUnmount(() => {
         <GameWindow />
       </div>
     </div>
-    <div v-if="showRotateHint" class="rotate-hint" role="alert">
+    <div v-if="showRotateHint" class="rotate-hint" role="status">
       <span class="rotate-hint-icon" aria-hidden="true">⟳</span>
-      Please turn your phone sideways.
+      <span class="rotate-hint-text">Landscape mode recommended.</span>
+      <button type="button" class="rotate-hint-close" aria-label="Dismiss" @click="dismissRotateHint">
+        ✕
+      </button>
     </div>
   </main>
 </template>
@@ -202,19 +211,43 @@ body,
 .rotate-hint {
   position: fixed;
   z-index: 1000;
-  inset: 0;
+  top: 1rem;
+  right: 1rem;
+  left: 1rem;
   display: flex;
-  flex-direction: column;
   gap: 1rem;
   align-items: center;
-  justify-content: center;
-  background: #030507;
+  box-sizing: border-box;
+  padding: 1.25rem 1rem 1.25rem 1.5rem;
+  border: 2px solid rgba(229, 241, 249, 0.3);
+  border-radius: 0.9rem;
+  background: rgba(3, 5, 7, 0.92);
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.5);
   color: #e5f1f9;
-  font-size: 1.25rem;
-  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.3;
 }
 
 .rotate-hint-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.rotate-hint-text {
+  flex: 1;
+}
+
+.rotate-hint-close {
+  flex: none;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
 }
 </style>
