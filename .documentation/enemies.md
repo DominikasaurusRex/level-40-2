@@ -12,6 +12,11 @@ a reference only.
 
 Settled:
 
+- **Model:** monsters and the player share only a combat core (HP, Shield, DEF, AGI, statuses,
+  damage and status responses, effects, damage resolution). A monster has its own definition on top
+  of it: one basic attack, up to three skills fired by cooldown and AI conditions, rewards, sprite,
+  boss marker, and DEF/AGI weaknesses. This replaces the original rule that both share one
+  combatant model.
 - **Weak to DEF / weak to AGI** is handwritten per monster. It is not derived from the attacks.
 - **Skill descriptions** are handwritten per skill (for example "High damage Thunder attack"). They
   are not generated from the skill's effects.
@@ -23,8 +28,10 @@ Settled:
     chance or amount.
 - **Bosses** are every fifth stage (5, 10, 15, ...). A monster's data marks it as a boss, and the
   Library reads that marker to show a boss icon next to its name.
-- **Damage responses** and **status responses** are written out for every damage type and every
-  status, even when most are Normal.
+- **Damage responses** are written out for all four damage types (Physical, Fire, Ice, Thunder),
+  even when most are Normal.
+- **Status responses** exist only for **Poison** and **Stun**, and both are always written out. Curse
+  and the self-applied statuses have no response.
 - **Status responses** are Normal, Resistant, Immune, or **Vulnerable**.
 - **Skill timing:** every skill has an **initial cooldown** in addition to its cooldown. It is how
   long the skill waits at the start of a fight before its first use; after that the normal cooldown

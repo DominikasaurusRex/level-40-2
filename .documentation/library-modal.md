@@ -65,8 +65,9 @@ status immunities and the player defenses the monster is weak against.
 
 This row can communicate:
 
-- Whether the monster is resistant or immune to **Poison**.
-- Whether the monster is resistant or immune to **Stun**.
+- The monster's response to **Poison**, shown with the same response symbols as the damage types
+  (◎ ◯ △ ⨉).
+- The monster's response to **Stun**, shown the same way.
 - Whether the monster is **weak to DEF**: it attacks with many small hits, so flat DEF per hit
   blocks a large share of its damage.
 - Whether the monster is **weak to AGI**: it attacks with big, slow hits, so each evasion charge
@@ -74,7 +75,8 @@ This row can communicate:
 
 Status immunity and defensive weaknesses are different facts:
 
-- Poison and Stun indicators distinguish reduced effectiveness from complete immunity.
+- Poison and Stun use the same four symbols as the damage responses: vulnerable, normal,
+  resistant, or immune.
 - DEF and AGI indicators are weaknesses. They tell the player which defensive options pay off
   when choosing active skills.
 

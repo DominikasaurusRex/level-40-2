@@ -101,7 +101,11 @@ These hold until a redesign explicitly replaces them (details in `01-architectur
 design keeps the engine-level principles but replaces much of the gameplay they serve (for example,
 no level-ups, combat state carries between fights):
 
-1. Player and monsters share one combatant model. The basic attack is a normal skill.
+1. ~~Player and monsters share one combatant model.~~ **Replaced in Level 40 2:** they share only a
+   combat core (HP, Shield, DEF, AGI, statuses, damage and status responses, effects, damage
+   resolution). How each one acts is separate: the player has three weapons with empowerment and
+   three manually used active skills; a monster has one basic attack and up to three skills fired by
+   cooldown and AI conditions (see `enemies.md`).
 2. Static definitions are separate from runtime state. Never mutate objects imported from `src/data/`.
 3. One combat engine (`advanceFight`) serves both the live game and the balance simulator. Hooks
    only report events and never change outcomes.
