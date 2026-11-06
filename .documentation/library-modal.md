@@ -22,7 +22,8 @@ The Library monster manual uses a two-column layout similar to the Town repair m
 
 Show the following from top to bottom:
 
-1. The monster name as the top label.
+1. The monster name as the top label. A boss (every fifth stage) shows a boss icon next to its
+   name, read from the monster's boss marker.
 2. A large image of the monster.
 3. A two-column statistics grid.
 4. A status-resistance and defensive-traits row spanning both columns.

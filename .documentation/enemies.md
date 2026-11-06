@@ -18,8 +18,18 @@ Settled:
 - **Rewards:**
   - **XP** is a fixed amount per monster.
   - **Gold** is a range (minimum to maximum) per kill.
-  - **Materials** each drop with a chance. The Library shows only which materials a monster *can*
-    drop, never the chance.
+  - **Materials** each drop with a chance and an **amount** per monster, so stronger monsters are
+    better material farms. The Library shows only which materials a monster *can* drop, never the
+    chance or amount.
+- **Bosses** are every fifth stage (5, 10, 15, ...). A monster's data marks it as a boss, and the
+  Library reads that marker to show a boss icon next to its name.
+- **Damage responses** and **status responses** are written out for every damage type and every
+  status, even when most are Normal.
+- **Status responses** are Normal, Resistant, Immune, or **Vulnerable**.
+- **Skill timing:** every skill has an **initial cooldown** in addition to its cooldown. It is how
+  long the skill waits at the start of a fight before its first use; after that the normal cooldown
+  applies. Example: the Stone Tortoise waits about 2 seconds before its first Stone Shell, then uses
+  it every 8 seconds. This replaces the original `startsReady` and `initialDelay`.
 
 - **Skills** use the effects, cleansing actions, and conditions defined in
   `level40-2-balance-progression.md`. A skill can wait in a ready state until its condition holds

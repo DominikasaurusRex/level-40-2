@@ -139,15 +139,17 @@ the empowered spell.
 
 ## Status responses
 
-Statuses applied by empowered techniques use three target responses:
+Statuses applied by empowered techniques use four target responses:
 
 | Response | Result |
 | --- | --- |
+| Vulnerable | The status applies with increased duration or effectiveness. |
 | Normal | The status applies at full strength and duration. |
 | Resistant | The status applies with reduced duration or effectiveness. |
 | Immune | The status does not apply. |
 
-The exact reduction for resistance is an implementation-balancing value. A resistant target is not
+The exact reduction for resistance and increase for vulnerability are implementation-balancing
+values. A resistant target is not
 immune: a sufficiently valuable empowered technique still produces a reduced effect.
 
 ## Upgrade ownership

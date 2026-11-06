@@ -140,7 +140,13 @@ Settled conditions (monsters):
 - A **Regeneration** waits until the caster's missing HP is at least **30% of its total healing**
   over its full duration. The lower threshold suits healing that arrives gradually.
 
+A skill that does several of these things (for example, heal and cleanse) fires as soon as **any**
+of its conditions holds.
+
 Every other monster skill has no condition and fires as soon as its cooldown is over, as before.
+
+Every skill also has an **initial cooldown**: how long it waits at the start of a fight before its
+first use. After that, its normal cooldown applies.
 
 ## Damage resolution, DEF, and absorption
 
