@@ -1,6 +1,6 @@
 # Town Repair Modal
 
-The Town repair modal is opened from the Monument. It is used to inspect and purchase repairs and
+The Town repair modal is opened from the Inn. It is used to inspect and purchase repairs and
 upgrades for every Town place.
 
 ## Layout
@@ -10,6 +10,8 @@ The modal uses two columns.
 ### Left side: place selection
 
 - Show a selectable list containing **every Town place**.
+- Once every place is at its maximum level, the list also shows the **Monument**. It is not a Town
+  place (no building or NPC), only an upgrade entry here.
 - Selecting a place updates the details on the right.
 - The selected place must be visually distinct.
 

@@ -10,7 +10,9 @@ a reference only.
 
 ## Stage order
 
-Sprites live in `public/enemies/<area>/`. The originals remain in `public/level-40/enemies/`.
+Sprites live in `public/enemies/<area>/`. Monster data lives in `src/data/monster/<area>-monsters.ts`
+(`forest-monsters.ts` for stages 1–5, `cave-monsters.ts` for stages 6–10), still with the original
+Level 40 stats.
 
 ### Stages 1–5: Field + Forest
 

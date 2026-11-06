@@ -129,7 +129,7 @@ function focusPercent(skillState: SkillState): number | undefined {
               title="Swap weapon"
               @click.stop="weaponMenuOpen = !weaponMenuOpen"
             >
-              <img class="weapon-swap-icon" src="/icons/system/swap.svg" alt="">
+              <img class="weapon-swap-icon" alt="">
             </button>
           </li>
 

@@ -21,7 +21,10 @@ and how; ask when the intended new design is unclear.
 ## Current state
 
 - Most of `src/` is still the original Level 40 code: 8 areas (Field → Abyss), level-ups,
-  Shield-style DEF, Bleed, and so on. Its monster data still points at the old sprite paths.
+  Shield-style DEF, Bleed, and so on.
+- Monster data holds only the ten reused monsters for stages 1–10 (`forest-monsters.ts`,
+  `cave-monsters.ts`), on the new sprites but with original stats. The tutorial's Training Dummy
+  remains (its sprite is gone).
 - **Implemented for Level 40 2 so far:**
   - Console shell adjusted (wider screen, no SELECT, mobile mode; see `cleaning.md`).
   - Town: places as `PlaceId` (`src/data/town.ts`) with conditional backgrounds, `TownScreen.vue`,
@@ -48,7 +51,7 @@ Working design docs in `.documentation/`. They describe the sequel, not the orig
 | `level40-2-balance-progression.md` | Skill board structure, weapon damage structure, the status roster, damage resolution order |
 | `weapons-and-empowerment.md` | Four weapon families, attack cadence, empowered states and techniques, status responses |
 | `town.md` | Town facility repairs, upgrades, Gate resource protection, and facility progression |
-| `town-repair-modal.md` | Monument's repair/upgrade modal: layout, cost display, Upgrade button |
+| `town-repair-modal.md` | Inn's repair/upgrade modal: layout, cost display, Upgrade button |
 | `library-modal.md` | Library monster manual: discovery rules, stats, responses, seen skills |
 | `quest-board-modal.md` | Quest Board: stage list, four quests per monster, quest states |
 | `bar-modal.md` | Bar Gold ↔ XP exchange interface |

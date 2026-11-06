@@ -113,6 +113,7 @@ Do not lock down a complete node roster before these connected systems are defin
 ## Endgame board-completion target
 
 - **Stage 42 (final superboss)** should be balanced around a **nearly complete skill board**, with **more than 90% of nodes active** as the current rough target. The exact percentage is deferred to balancing.
+- Stage 42 also requires the **fully upgraded Monument** (+100% player damage, see `town.md`). A complete board and fully upgraded Barracks without the Monument's bonus should not be enough to beat it.
 - Stage 40 main-game completion should not require an almost-complete board; Stage 41 serves as further superboss progression toward the final challenge.
 - Consequently, the board should allow players to eventually obtain almost everything rather than enforcing permanently exclusive specializations. Build choices still matter through weapon loadouts, equipped active skills, and encounter strategy.
 

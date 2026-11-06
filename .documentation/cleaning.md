@@ -32,7 +32,7 @@ code"), so nothing removed here is lost.
 | Simulator | `combat/simulator.ts` | One engine for game and simulator | Simulates runs instead of farming one monster. |
 | Main view | `GameWindow.vue` | Screen layout, fades, overlay wiring | Tutorial steps, level-up and skill-tree wiring, area tabs, badges go. |
 | Game store | `stores/game.ts` | Tick, battle phases, animation event queues, original-save flags | Level/XP curves, level-ups, areas, badges, skill choices go; run and Town state come in. |
-| Monster data | `data/monster/field-, forest-, cave-, wasteland-, ruins-monsters.ts` | Data shape, candidate monsters | All stats retuned, elements added. |
+| Monster data | `data/monster/forest-, cave-monsters.ts` | Data shape, the ten reused monsters (stages 1–10) | All stats retuned, elements added. |
 | Engine tests | `combat/__tests__/engine.spec.ts` | Test style | Rewritten for the new rules. |
 
 ## Not reusable
@@ -45,15 +45,14 @@ code"), so nothing removed here is lost.
 | Badges | `BadgeShelf.vue`, `data/badges.ts` |
 | Old weapons | `data/weapons.ts` (Power formula, level-based tiers), `data/__tests__/weapons.spec.ts` |
 | Focus Pulse | `data/focus.ts`, `stores/__tests__/focus.spec.ts` |
-| Old monsters | `data/monster/dungeon-, hell-, abyss-monsters.ts`, `data/monster/tutorial-monster.ts` |
+| Old monsters | `data/monster/tutorial-monster.ts` (the other unused monster files are already deleted) |
 | Balance suite | all of `src/balance/` (scenarios, `mandatory-clear.ts`, every `__tests__` spec) |
 | Old store tests | `stores/__tests__/area-unlock.spec.ts`, `skill-choice.spec.ts`; `battle-intermission.spec.ts` and `save.spec.ts` need rewriting |
 | Old cutscenes | `data/cutscenes.ts` content (`intro`, `wolf`, `dragon`, `credits`) |
 | Small data | `data/player.ts`, `data/xp-orb-thresholds.ts`, `data/heal-icon-thresholds.ts` (check while reworking) |
-| Assets | `public/enemies/dungeon/`, `hell/`, `abyss/`, `public/areas/` for those areas, `public/badge/`, `public/cutscene/` (Gatekeeper may stay) |
+| Assets | `public/areas/` for the old areas, `public/badge/`, `public/cutscene/` (Gatekeeper may stay). The original enemy sprites are already gone. |
 
-Assets are optional to remove early; they don't affect the build. Some (e.g. Ruins or Dungeon art)
-might be reworked for the temple or moon areas.
+Assets are optional to remove early; they don't affect the build.
 
 ## How to remove them
 

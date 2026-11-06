@@ -7,7 +7,11 @@ unless explicitly stated here.
 
 ## Shared rules
 
-- The **Inn**, **Gate**, and **Monument** begin repaired. Every other facility begins broken.
+- The **Inn** and **Gate** begin repaired. Every other facility begins broken.
+- The **Monument** is not a visitable place: it has no building on the Town map, no NPC, and no
+  chat. It exists only as an entry in the Town repair modal, hidden until every facility is fully
+  repaired and upgraded.
+- The optional original Level 40 save import happens at New Game, not at a Town facility.
 - Repairing and upgrading facilities costs **Gold and materials**.
 - A repair unlocks a facility's main function. Later upgrades improve that function; they are not
   separate crafting systems.
@@ -20,31 +24,23 @@ unless explicitly stated here.
 
 | Facility | Starting state | Progression |
 | --- | --- | --- |
-| Inn | Repaired | Optional original Level 40 save import for the early bonus; no upgrades. |
+| Inn | Repaired | Opens the Town repair modal; no upgrades. |
 | Gate | Repaired | Six wall upgrades that progressively protect unspent XP and Gold. |
 | Barracks | Broken | Repair, then roughly five upgrades tied to skill-board walls. |
 | Smithy | Broken | Repair, then roughly five upgrades unlocking higher-level weapons. |
 | Library | Broken | Repair unlocks useful monster records; one upgrade reveals combat abilities. |
 | Quest board | Broken | Repaired once; no further upgrades. |
 | Bar | Broken | Repair at 20% exchange efficiency, then three upgrades: 40%, 60%, and 80%. |
-| Monument | Repaired | Opens the Town repair modal; one upgrade that replaces its image. |
+| Monument | Hidden | Repair-modal entry only; appears once the Town is fully restored; four upgrades up to +100% damage. |
 
 The Smithy and Barracks counts are structural targets, not a commitment to exactly five upgrades.
 Their final counts should match the weapon tiers, skill-board walls, and journey pacing.
 
 ## Inn
 
-The Inn starts repaired and has one purpose: optionally importing an original **Level 40** save for
-the established early-game bonus.
-
-- Importing a save is optional.
-- A valid original save grants its early-game bonus only once.
-- Importing another save cannot repeatedly grant the bonus.
-- The Inn has no repairs or upgrades beyond being available from the start.
-- The Inn does not grant a starting Shield or other rested bonus.
-
-Weapon purchasing and weapon-loadout selection belong to the Smithy. Skill-board progression and
-active-skill selection belong to the Barracks, so the Inn does not duplicate either function.
+The Inn starts repaired and is the Town's rebuilding hub. Its action opens the Town repair modal,
+where every Town place is repaired and upgraded (see **town-repair-modal.md**). The Inn itself has
+no upgrades.
 
 ## Gate and town raids
 
@@ -154,9 +150,17 @@ is defined in **bar-modal.md**. Allowed transaction sizes remain an implementati
 
 ## Monument
 
-The Monument starts repaired. It opens the Town repair modal, where every Town place is repaired and
-upgraded (see **town-repair-modal.md**).
+The Monument is not a place the player visits. It has no building on the Town map, no NPC, and no
+chat. It appears as an entry in the Town repair modal only once every facility is fully repaired
+and upgraded. It is the final restoration goal and the late-game sink for Gold and
+materials.
 
-The Monument has one upgrade. It only replaces the Monument's image with a restored version. It is
-the final restoration goal and an endgame sink for Gold and materials after the functional
-facilities have been restored.
+The Monument has four upgrades. Each grants a flat percentage bonus to all player damage, reaching
+**+100% at full strength**. Even steps (+25% each) are the simple default; the split is a tuning
+value, the four upgrades and the +100% total are settled.
+
+The bonus is a multiplier on final damage, separate from Power and skill-board nodes.
+
+Stage 42 is balanced around the full Monument: a player with a fully upgraded Barracks and a
+complete skill board, but without the Monument's bonus, should not be able to beat the final
+superboss.

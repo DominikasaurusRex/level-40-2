@@ -5,7 +5,6 @@
  * NPC names and art are placeholders until they are decided.
  */
 export enum PlaceId {
-  Monument = 'monument',
   Inn = 'inn',
   Barracks = 'barracks',
   Smithy = 'smithy',
@@ -49,7 +48,7 @@ export interface TownPlace {
    * after "Fin?" (`rebuilt: true, fromStage: FIRST_ENDING_STAGE + 1`).
    */
   backgrounds: PlaceBackground[]
-  /** Standing from the start, so it never needs rebuilding (Monument, Inn, and the walls' Gate). */
+  /** Standing from the start, so it never needs rebuilding (Inn and the walls' Gate). */
   startsBuilt?: boolean
   npc: {
     name: string
@@ -60,22 +59,13 @@ export interface TownPlace {
 
 export const townPlaces: TownPlace[] = [
   {
-    id: PlaceId.Monument,
-    name: 'Monument',
-    color: '#a39a86',
-    backgrounds: [],
-    startsBuilt: true,
-    npc: { name: 'Mayor' },
-    actionLabel: 'Rebuild',
-  },
-  {
     id: PlaceId.Inn,
     name: 'Inn',
     color: '#c9803c',
     backgrounds: [],
     startsBuilt: true,
     npc: { name: 'Innkeeper' },
-    actionLabel: 'Equipment',
+    actionLabel: 'Rebuild',
   },
   {
     id: PlaceId.Barracks,

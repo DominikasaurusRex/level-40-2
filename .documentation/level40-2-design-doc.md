@@ -133,21 +133,22 @@ Town is the between-run preparation hub. Its facilities **gate access to gamepla
 The detailed repair and upgrade structure is defined in `town.md`. That document takes precedence
 over this overview for facility progression.
 
-- The player starts with the **Inn, Gate, and Monument already repaired**.
+- The player starts with the **Inn and Gate already repaired**. 
+The **Monument** is not a visitable place; it appears only in the Inn's repair modal once every facility is fully upgraded.
 - Other facilities are **bought with Gold and materials**, and upgrades also cost Gold and materials.
-- Intended introduction order: **Inn → Barracks/Smithy → Library → Quest board → Bar**, with the Monument's upgrade as the final restoration goal. Whether Barracks or Smithy comes first is undecided.
+- Intended introduction order: **Barracks/Smithy → Library → Quest board → Bar**, with the Monument's upgrade as the final restoration goal. Whether Barracks or Smithy comes first is undecided.
 - This is not necessarily a rigid purchase order: players can potentially buy facilities in another order. At least the Barracks and Smithy receive a tutorial introduction; the exact sequence remains open.
 
 | Facility | Options provided |
 | --- | --- |
-| Inn | Optionally import an original Level 40 save for its one-time early-game bonus; present from the start and has no upgrades. |
 | Barracks | Spend XP to buy skill points, access the skill board, and select active skills; upgrades unlock further board sections. |
 | Shop / Smithy | Buy weapons and weapon upgrades, and select the weapon loadout; expanded selections unlock additional weapons. |
 | Library | View the monster manual, including information useful for elemental matchups. |
 | Quest board | Unlock monster-achievement options and begin tracking them; no retroactive credit. |
 | Bar | Exchange Gold for XP and XP for Gold. |
 | Gate | Start a new run; wall upgrades protect unspent XP and Gold from the raid at run start. |
-| Monument | Open the Town repair modal to repair and upgrade every Town place; present from the start, and its one upgrade only replaces its image. |
+| Inn | Open the Town repair modal to repair and upgrade every Town place; present from the start and has no upgrades. |
+| Monument | Not visitable (no building, NPC, or chat). A repair-modal entry hidden until the Town is fully restored; four upgrades grant up to +100% player damage as the late-game sink. |
 
 - Select the three-weapon loadout and three active skills in Town before a run.
 - **Consumables are excluded.** Support effects belong in the expanded active-skill selection.

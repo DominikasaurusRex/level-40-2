@@ -10,7 +10,6 @@ const game = useGameStore()
 const fakeEndingFinished = computed(() => game.highestUnlockedLevel > FIRST_ENDING_STAGE)
 
 const buildingPositions: Record<PlaceId, { left: string; top: string }> = {
-  [PlaceId.Monument]: { left: '52%', top: '50%' },
   [PlaceId.Inn]: { left: '21%', top: '68%' },
   [PlaceId.Barracks]: { left: '48%', top: '34%' },
   [PlaceId.Smithy]: { left: '70%', top: '43%' },
