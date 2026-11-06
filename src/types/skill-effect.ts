@@ -1,9 +1,6 @@
 import type { DamageResponse, DamageType, HitDamage } from './damage'
 
-/**
- * The Level 40 2 skill effects (see `level40-2-balance-progression.md`). Damage, Poison, Stun, and
- * Curse land on the opponent; every other effect lands on the caster.
- */
+/** The Level 40 2 skill effects (see `level40-2-balance-progression.md`). */
 export enum EffectType {
   Damage = 'damage',
   Poison = 'poison',
@@ -14,74 +11,81 @@ export enum EffectType {
   Shield = 'shield',
   Def = 'def',
   Agi = 'agi',
-  Barrier = 'barrier',
-  Absorb = 'absorb',
+  DamageResponse = 'damage-response',
 }
 
-export interface DamageEffect {
+/** Who an effect (or a cleanse) lands on. Written out on every effect, even the obvious ones. */
+export enum EffectTarget {
+  Self = 'self',
+  Opponent = 'opponent',
+}
+
+interface EffectBase {
+  target: EffectTarget
+}
+
+export interface DamageEffect extends EffectBase {
   type: EffectType.Damage
   hit: HitDamage
   hits: number
 }
 
-export interface PoisonEffect {
+export interface PoisonEffect extends EffectBase {
   type: EffectType.Poison
   amountPerTick: number
   tickInterval: number
   duration: number
 }
 
-export interface StunEffect {
+export interface StunEffect extends EffectBase {
   type: EffectType.Stun
   duration: number
 }
 
-export interface RegenerationEffect {
+/** Records the damage the cursed combatant deals and reflects it on expiry (or when cleansed). */
+export interface CurseEffect extends EffectBase {
+  type: EffectType.Curse
+  duration: number
+}
+
+export interface RegenerationEffect extends EffectBase {
   type: EffectType.Regeneration
   amountPerTick: number
   tickInterval: number
   duration: number
 }
 
-export interface HealEffect {
+export interface HealEffect extends EffectBase {
   type: EffectType.Heal
   amount: number
 }
 
 /** Stacks and never expires. */
-export interface ShieldEffect {
+export interface ShieldEffect extends EffectBase {
   type: EffectType.Shield
   amount: number
 }
 
 /** Flat reduction per hit. */
-export interface DefEffect {
+export interface DefEffect extends EffectBase {
   type: EffectType.Def
   amount: number
   duration: number
 }
 
-export interface AgiEffect {
+export interface AgiEffect extends EffectBase {
   type: EffectType.Agi
   charges: number
 }
 
-export interface BarrierEffect {
-  type: EffectType.Barrier
+/**
+ * A temporary damage response for the given damage types, overriding the innate one while it lasts.
+ * Shown to the player as Barrier (Resisted / Immune), Absorb, or Vulnerability (Vulnerable).
+ */
+export interface DamageResponseEffect extends EffectBase {
+  type: EffectType.DamageResponse
   damageTypes: DamageType[]
-  response: DamageResponse.Resisted | DamageResponse.Immune
-  duration: number
-}
-
-export interface AbsorbEffect {
-  type: EffectType.Absorb
-  damageType: DamageType
-  duration: number
-}
-
-/** Records the damage the target deals and reflects it on expiry (or when cleansed). */
-export interface CurseEffect {
-  type: EffectType.Curse
+  response: Exclude<DamageResponse, DamageResponse.Normal>
   duration: number
 }
 
@@ -89,19 +93,17 @@ export type SkillEffect =
   | DamageEffect
   | PoisonEffect
   | StunEffect
+  | CurseEffect
   | RegenerationEffect
   | HealEffect
   | ShieldEffect
   | DefEffect
   | AgiEffect
-  | BarrierEffect
-  | AbsorbEffect
-  | CurseEffect
+  | DamageResponseEffect
 
-/** Cleansing is not an effect: a skill may additionally cleanse itself or its target. */
-export enum CleanseTarget {
-  /** Removes the caster's negative statuses. */
-  Self = 'self',
-  /** Forced cleanse: removes every positive effect from the target, Shield included. */
-  Target = 'target',
-}
+/**
+ * Cleansing is not an effect: a skill may additionally cleanse. On `Self` it removes the caster's
+ * negative statuses; on `Opponent` (forced cleanse) it removes every positive effect from the
+ * opponent, Shield included. Empowered weapon states are never removed.
+ */
+export type CleanseTarget = EffectTarget

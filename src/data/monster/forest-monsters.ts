@@ -1,5 +1,5 @@
 import { DamageResponse, StatusResponse } from '@/types/damage'
-import { EffectType } from '@/types/skill-effect'
+import { EffectTarget, EffectType } from '@/types/skill-effect'
 import type { MonsterDefinition } from '@/types/monster-definition'
 
 /**
@@ -50,7 +50,7 @@ export const forestMonsters: MonsterDefinition[] = [
         description: 'Heavy Physical attack',
         cooldown: 10000,
         initialCooldown: 10000,
-        effects: [{ type: EffectType.Damage, hit: { physical: 7 }, hits: 1 }],
+        effects: [{ type: EffectType.Damage, target: EffectTarget.Opponent, hit: { physical: 7 }, hits: 1 }],
       },
     ],
     defensiveWeaknesses: [],
@@ -79,7 +79,7 @@ export const forestMonsters: MonsterDefinition[] = [
         description: 'Heavy Physical attack',
         cooldown: 9000,
         initialCooldown: 9000,
-        effects: [{ type: EffectType.Damage, hit: { physical: 10 }, hits: 1 }],
+        effects: [{ type: EffectType.Damage, target: EffectTarget.Opponent, hit: { physical: 10 }, hits: 1 }],
       },
     ],
     defensiveWeaknesses: [],
@@ -108,7 +108,15 @@ export const forestMonsters: MonsterDefinition[] = [
         description: 'Poisons you',
         cooldown: 8000,
         initialCooldown: 8000,
-        effects: [{ type: EffectType.Poison, amountPerTick: 2, tickInterval: 1000, duration: 5000 }],
+        effects: [
+          {
+            type: EffectType.Poison,
+            target: EffectTarget.Opponent,
+            amountPerTick: 2,
+            tickInterval: 1000,
+            duration: 5000,
+          },
+        ],
       },
     ],
     defensiveWeaknesses: [],
@@ -138,9 +146,9 @@ export const forestMonsters: MonsterDefinition[] = [
         cooldown: 9000,
         initialCooldown: 9000,
         effects: [
-          { type: EffectType.Agi, charges: 2 },
-          { type: EffectType.Stun, duration: 1000 },
-          { type: EffectType.Damage, hit: { physical: 14 }, hits: 1 },
+          { type: EffectType.Agi, target: EffectTarget.Self, charges: 2 },
+          { type: EffectType.Stun, target: EffectTarget.Opponent, duration: 1000 },
+          { type: EffectType.Damage, target: EffectTarget.Opponent, hit: { physical: 14 }, hits: 1 },
         ],
       },
     ],

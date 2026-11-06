@@ -1,5 +1,5 @@
 import { DamageResponse, DamageType, StatusResponse } from '@/types/damage'
-import { EffectType } from '@/types/skill-effect'
+import { EffectTarget, EffectType } from '@/types/skill-effect'
 import type { MonsterDefinition } from '@/types/monster-definition'
 
 /**
@@ -30,7 +30,7 @@ export const caveMonsters: MonsterDefinition[] = [
         description: 'Gains evasion',
         cooldown: 8000,
         initialCooldown: 8000,
-        effects: [{ type: EffectType.Agi, charges: 2 }],
+        effects: [{ type: EffectType.Agi, target: EffectTarget.Self, charges: 2 }],
       },
     ],
     defensiveWeaknesses: [],
@@ -61,7 +61,8 @@ export const caveMonsters: MonsterDefinition[] = [
         initialCooldown: 2000,
         effects: [
           {
-            type: EffectType.Barrier,
+            type: EffectType.DamageResponse,
+            target: EffectTarget.Self,
             damageTypes: [DamageType.Physical],
             response: DamageResponse.Immune,
             duration: 3000,
@@ -97,7 +98,8 @@ export const caveMonsters: MonsterDefinition[] = [
         initialCooldown: 2000,
         effects: [
           {
-            type: EffectType.Barrier,
+            type: EffectType.DamageResponse,
+            target: EffectTarget.Self,
             damageTypes: [DamageType.Fire, DamageType.Ice, DamageType.Thunder],
             response: DamageResponse.Resisted,
             duration: 4000,
@@ -111,8 +113,14 @@ export const caveMonsters: MonsterDefinition[] = [
         cooldown: 9000,
         initialCooldown: 9000,
         effects: [
-          { type: EffectType.Damage, hit: { physical: 16 }, hits: 1 },
-          { type: EffectType.Poison, amountPerTick: 4, tickInterval: 1000, duration: 4000 },
+          { type: EffectType.Damage, target: EffectTarget.Opponent, hit: { physical: 16 }, hits: 1 },
+          {
+            type: EffectType.Poison,
+            target: EffectTarget.Opponent,
+            amountPerTick: 4,
+            tickInterval: 1000,
+            duration: 4000,
+          },
         ],
       },
     ],
@@ -142,7 +150,7 @@ export const caveMonsters: MonsterDefinition[] = [
         description: 'Many quick Physical hits',
         cooldown: 6500,
         initialCooldown: 6500,
-        effects: [{ type: EffectType.Damage, hit: { physical: 4 }, hits: 3 }],
+        effects: [{ type: EffectType.Damage, target: EffectTarget.Opponent, hit: { physical: 4 }, hits: 3 }],
       },
     ],
     defensiveWeaknesses: [],
@@ -172,8 +180,8 @@ export const caveMonsters: MonsterDefinition[] = [
         cooldown: 10000,
         initialCooldown: 10000,
         effects: [
-          { type: EffectType.Stun, duration: 1800 },
-          { type: EffectType.Damage, hit: { physical: 34 }, hits: 1 },
+          { type: EffectType.Stun, target: EffectTarget.Opponent, duration: 1800 },
+          { type: EffectType.Damage, target: EffectTarget.Opponent, hit: { physical: 34 }, hits: 1 },
         ],
       },
     ],

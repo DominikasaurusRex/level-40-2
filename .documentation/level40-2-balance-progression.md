@@ -84,11 +84,19 @@ These examples should remain mixed across board regions rather than segregated i
 - **Vulnerability:** temporarily makes the **target** vulnerable (×2) to one or more specified damage types (Physical, Fire, Ice, Thunder). It is a negative status, so a cleanse on self removes it. Both the player and monsters can have skills that apply it.
 - **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. **Cleansing a Curse triggers its reflection immediately** (any cleanse, however weak). There is no cleanse that removes Curse without reflecting; cleansing it is a timing decision.
 
-Monsters' **innate damage-type responses are permanently active**. Temporary Barrier and Absorb effects **override**, rather than multiply with, the innate response for that damage type while active. After expiry, the innate response applies again. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). For simultaneous temporary elemental effects targeting the same damage type, **the strongest effect wins**; effects do not combine or multiply.
+Monsters' **innate damage-type responses are permanently active**. Temporary damage responses (Barrier, Absorb, and Vulnerability) **override**, rather than multiply with, the innate response for that damage type while active, including innate immunity or absorption (Fire Vulnerability makes a Fire-immune monster take double Fire damage). After expiry, the innate response applies again.
+
+When several temporary damage responses cover the **same damage type**:
+
+- **Positive vs positive** (Barrier or Absorb): the **stronger** one applies. Absorb is stronger than immunity, immunity stronger than resistance.
+- **Positive vs negative** (Barrier or Absorb against Vulnerability, either way round): the **newest** one applies. Example: a monster casts Physical immunity, the player then applies Physical Vulnerability, and the monster is vulnerable. If the monster then casts Physical immunity again, it is immune. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). Temporary damage responses on the same damage type never combine or multiply; the rules above decide which one applies.
 
 ## Skill effects
 
-A skill (player or monster) is a list of effects. Each effect needs these values:
+A skill (player or monster) is a list of effects. Every effect states its **target** (the caster
+itself or the opponent), even when the usual choice is obvious (helpful effects on yourself,
+harmful ones on the opponent). Cleansing uses the same target: on yourself it removes negative
+statuses, on the opponent it removes positive effects. Each effect also needs these values:
 
 | Effect | Values | Replaces (original Level 40) |
 | --- | --- | --- |
@@ -104,8 +112,9 @@ A skill (player or monster) is a list of effects. Each effect needs these values
 
 **Barrier, Absorb, and Vulnerability are one effect:** a temporary damage response for one or more
 damage types. Barrier is the resisted or immune version, Absorb the absorbing one, Vulnerability
-the vulnerable one. Barrier and Absorb protect the caster; Vulnerability is applied to the
-opponent. Several can be active at once, for different damage types.
+the vulnerable one. Like every effect, it states its target; usually Barrier and Absorb go on the
+caster and Vulnerability on the opponent. Several can be active at once, for different damage
+types.
 | Curse | Duration; reflects the damage dealt when it expires | Old Curse (healing reduction) |
 
 ### Cleansing
