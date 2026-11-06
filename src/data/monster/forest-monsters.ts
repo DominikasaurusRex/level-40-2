@@ -1,106 +1,151 @@
-import type { Monster } from '@/types/monster.ts'
+import { DamageResponse, StatusResponse } from '@/types/damage'
+import { EffectType } from '@/types/skill-effect'
+import type { MonsterDefinition } from '@/types/monster-definition'
 
 /**
- * TODO: Stages 1–5 (Field + Forest), in stage order. Stats are still the original Level 40 values and
- * await their Level 40 2 rework (see `.documentation/enemies.md`).
+ * TODO: Stages 1–5 (Field + Forest), in stage order. All numbers are placeholders based on the
+ * original Level 40 values. Elements, responses, weaknesses, and material drops are not designed
+ * yet (see `.documentation/enemies.md`).
  */
-export const forestMonsters: Monster[] = [
+export const forestMonsters: MonsterDefinition[] = [
   {
-    image: '/enemies/forest/slime.webp',
-    spriteScale: 0.4,
-    xpOrbRadius: 80,
-    xpOrbOffset: 20,
-    xp: 18,
-    combatant: {
-      name: 'Slime',
-      maxHp: 21,
-      weapon: { name: 'Basic Attack', damage: 2, cooldown: 3000 },
-      skills: [],
+    name: 'Slime',
+    boss: false,
+    maxHp: 21,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Tackle', hit: { physical: 2 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
+    skills: [],
+    defensiveWeaknesses: [],
+    rewards: { xp: 18, gold: { min: 4, max: 8 }, drops: [] },
+    sprite: { image: '/enemies/forest/slime.webp', scale: 0.4 },
   },
   {
-    image: '/enemies/forest/wild-boar.webp',
-    spriteScale: 0.65,
-    xpOrbRadius: 120,
-    xpOrbOffset: 60,
-    xp: 20,
-    combatant: {
-      name: 'Wild Boar',
-      maxHp: 24,
-      weapon: { name: 'Basic Attack', damage: 4, cooldown: 4000 },
-      skills: [
-        { id: 'charge', name: 'Charge', category: 'attack', cooldown: 10000, effects: [{ type: 'dmg', amount: 7 }] },
-      ],
+    name: 'Wild Boar',
+    boss: false,
+    maxHp: 24,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Tusk', hit: { physical: 4 }, hits: 1, cooldown: 4000, initialCooldown: 4000 },
+    skills: [
+      {
+        id: 'charge',
+        name: 'Charge',
+        description: 'Heavy Physical attack',
+        cooldown: 10000,
+        initialCooldown: 10000,
+        effects: [{ type: EffectType.Damage, hit: { physical: 7 }, hits: 1 }],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 20, gold: { min: 5, max: 9 }, drops: [] },
+    sprite: { image: '/enemies/forest/wild-boar.webp', scale: 0.65 },
   },
   {
-    image: '/enemies/forest/moss-boar.webp',
-    spriteScale: 0.8,
-    spriteGroundOffset: 15,
-    xpOrbRadius: 90,
-    xpOrbOffset: 130,
-    xp: 63,
-    combatant: {
-      name: 'Moss Boar',
-      maxHp: 72,
-      weapon: { name: 'Basic Attack', damage: 5, cooldown: 3000 },
-      skills: [
-        {
-          id: 'trample',
-          name: 'Trample',
-          category: 'attack',
-          cooldown: 9000,
-          effects: [{ type: 'dmg', amount: 10 }],
-        },
-      ],
+    name: 'Moss Boar',
+    boss: false,
+    maxHp: 72,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Tusk', hit: { physical: 5 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
+    skills: [
+      {
+        id: 'trample',
+        name: 'Trample',
+        description: 'Heavy Physical attack',
+        cooldown: 9000,
+        initialCooldown: 9000,
+        effects: [{ type: EffectType.Damage, hit: { physical: 10 }, hits: 1 }],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 63, gold: { min: 8, max: 14 }, drops: [] },
+    sprite: { image: '/enemies/forest/moss-boar.webp', scale: 0.8, groundOffset: 15 },
   },
   {
-    image: '/enemies/forest/sporecap.webp',
-    spriteScale: 0.55,
-    spriteGroundOffset: 5,
-    xpOrbRadius: 60,
-    xpOrbOffset: 100,
-    xp: 57,
-    combatant: {
-      name: 'Sporecap',
-      maxHp: 41,
-      weapon: { name: 'Basic Attack', damage: 2, cooldown: 2200 },
-      skills: [
-        {
-          id: 'spore-cloud',
-          name: 'Spore Cloud',
-          category: 'attack',
-          cooldown: 8000,
-          effects: [{ type: 'curse', healingReduction: 0.5, duration: 5000 }],
-        },
-      ],
+    name: 'Sporecap',
+    boss: false,
+    maxHp: 41,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Cap Bash', hit: { physical: 2 }, hits: 1, cooldown: 2200, initialCooldown: 2200 },
+    skills: [
+      {
+        id: 'spore-cloud',
+        name: 'Spore Cloud',
+        description: 'Poisons you',
+        cooldown: 8000,
+        initialCooldown: 8000,
+        effects: [{ type: EffectType.Poison, amountPerTick: 2, tickInterval: 1000, duration: 5000 }],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 57, gold: { min: 8, max: 13 }, drops: [] },
+    sprite: { image: '/enemies/forest/sporecap.webp', scale: 0.55, groundOffset: 5 },
   },
   {
-    image: '/enemies/forest/thorn-dryad.webp',
-    spriteScale: 1.2,
-    spriteGroundOffset: 45,
-    xpOrbRadius: 120,
-    xpOrbOffset: 120,
-    xp: 75,
-    combatant: {
-      name: 'Thorn Dryad',
-      maxHp: 102,
-      weapon: { name: 'Basic Attack', damage: 8, cooldown: 2000 },
-      skills: [
-        {
-          id: 'entangling-roots',
-          name: 'Entangling Roots',
-          category: 'attack',
-          cooldown: 9000,
-          effects: [
-            { type: 'agi', charges: 2 },
-            { type: 'stun', duration: 1000 },
-            { type: 'dmg', amount: 14 },
-          ],
-        },
-      ],
+    name: 'Thorn Dryad',
+    boss: true,
+    maxHp: 102,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Thorn Lash', hit: { physical: 8 }, hits: 1, cooldown: 2000, initialCooldown: 2000 },
+    skills: [
+      {
+        id: 'entangling-roots',
+        name: 'Entangling Roots',
+        description: 'Gains evasion, stuns you, and strikes',
+        cooldown: 9000,
+        initialCooldown: 9000,
+        effects: [
+          { type: EffectType.Agi, charges: 2 },
+          { type: EffectType.Stun, duration: 1000 },
+          { type: EffectType.Damage, hit: { physical: 14 }, hits: 1 },
+        ],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 75, gold: { min: 15, max: 25 }, drops: [] },
+    sprite: { image: '/enemies/forest/thorn-dryad.webp', scale: 1.2, groundOffset: 45 },
   },
 ]

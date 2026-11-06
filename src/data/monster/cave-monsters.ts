@@ -1,137 +1,184 @@
-import type { Monster } from '@/types/monster.ts'
+import { DamageResponse, DamageType, StatusResponse } from '@/types/damage'
+import { EffectType } from '@/types/skill-effect'
+import type { MonsterDefinition } from '@/types/monster-definition'
 
 /**
- * TODO: Stages 6–10 (Cave), in stage order. Stats are still the original Level 40 values and await
- * their Level 40 2 rework (see `.documentation/enemies.md`).
+ * TODO: Stages 6–10 (Cave), in stage order. All numbers are placeholders based on the original
+ * Level 40 values. Elements, responses, weaknesses, and material drops are not designed yet (see
+ * `.documentation/enemies.md`).
  */
-export const caveMonsters: Monster[] = [
+export const caveMonsters: MonsterDefinition[] = [
   {
-    image: '/enemies/cave/cave-bat.webp',
-    spriteScale: 0.55,
-    spriteGroundOffset: 135,
-    xpOrbRadius: 50,
-    xpOrbOffset: 40,
-    xp: 162,
-    combatant: {
-      name: 'Cave Bat',
-      maxHp: 91,
-      weapon: { name: 'Basic Attack', damage: 2, cooldown: 1200 },
-      skills: [
-        {
-          id: 'evasive-flight',
-          name: 'Evasive Flight',
-          category: 'guard',
-          cooldown: 8000,
-          effects: [{ type: 'agi', charges: 2 }],
-        },
-      ],
+    name: 'Cave Bat',
+    boss: false,
+    maxHp: 91,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Bite', hit: { physical: 2 }, hits: 1, cooldown: 1200, initialCooldown: 1200 },
+    skills: [
+      {
+        id: 'evasive-flight',
+        name: 'Evasive Flight',
+        description: 'Gains evasion',
+        cooldown: 8000,
+        initialCooldown: 8000,
+        effects: [{ type: EffectType.Agi, charges: 2 }],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 162, gold: { min: 20, max: 30 }, drops: [] },
+    sprite: { image: '/enemies/cave/cave-bat.webp', scale: 0.55, groundOffset: 135 },
   },
   {
-    image: '/enemies/cave/stone-tortoise.webp',
-    spriteScale: 0.75,
-    spriteGroundOffset: 15,
-    xpOrbRadius: 100,
-    xpOrbOffset: 80,
-    xp: 171,
-    combatant: {
-      name: 'Stone Tortoise',
-      maxHp: 105,
-      weapon: { name: 'Basic Attack', damage: 4, cooldown: 3000 },
-      skills: [
-        {
-          id: 'stone-shell',
-          name: 'Stone Shell',
-          category: 'guard',
-          cooldown: 5000,
-          startsReady: true,
-          effects: [{ type: 'def', amount: 8 }],
-        },
-      ],
+    name: 'Stone Tortoise',
+    boss: false,
+    maxHp: 105,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Bite', hit: { physical: 4 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
+    skills: [
+      {
+        id: 'stone-shell',
+        name: 'Stone Shell',
+        description: 'Becomes immune to Physical damage',
+        cooldown: 8000,
+        initialCooldown: 2000,
+        effects: [
+          {
+            type: EffectType.Barrier,
+            damageTypes: [DamageType.Physical],
+            response: DamageResponse.Immune,
+            duration: 3000,
+          },
+        ],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 171, gold: { min: 20, max: 32 }, drops: [] },
+    sprite: { image: '/enemies/cave/stone-tortoise.webp', scale: 0.75, groundOffset: 15 },
   },
   {
-    image: '/enemies/cave/ankylosaur.webp',
-    spriteScale: 0.9,
-    spriteGroundOffset: -8,
-    xpOrbRadius: 80,
-    xpOrbOffset: 100,
-    xp: 540,
-    combatant: {
-      name: 'Ankylosaur',
-      maxHp: 232,
-      weapon: { name: 'Basic Attack', damage: 8, cooldown: 3000 },
-      skills: [
-        {
-          id: 'harden',
-          name: 'Harden',
-          category: 'guard',
-          cooldown: 6000,
-          startsReady: true,
-          effects: [{ type: 'def', amount: 14 }],
-        },
-        {
-          id: 'spiked-tail',
-          name: 'Spiked Tail',
-          category: 'attack',
-          cooldown: 9000,
-          effects: [
-            { type: 'dmg', amount: 16 },
-            { type: 'bleed', amountPerTick: 4, tickInterval: 1000, duration: 4000 },
-          ],
-        },
-      ],
+    name: 'Ankylosaur',
+    boss: false,
+    maxHp: 232,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Tail Club', hit: { physical: 8 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
+    skills: [
+      {
+        id: 'harden',
+        name: 'Harden',
+        description: 'Resists Fire, Ice, and Thunder damage',
+        cooldown: 8000,
+        initialCooldown: 2000,
+        effects: [
+          {
+            type: EffectType.Barrier,
+            damageTypes: [DamageType.Fire, DamageType.Ice, DamageType.Thunder],
+            response: DamageResponse.Resisted,
+            duration: 4000,
+          },
+        ],
+      },
+      {
+        id: 'spiked-tail',
+        name: 'Spiked Tail',
+        description: 'Physical attack that poisons you',
+        cooldown: 9000,
+        initialCooldown: 9000,
+        effects: [
+          { type: EffectType.Damage, hit: { physical: 16 }, hits: 1 },
+          { type: EffectType.Poison, amountPerTick: 4, tickInterval: 1000, duration: 4000 },
+        ],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 540, gold: { min: 30, max: 45 }, drops: [] },
+    sprite: { image: '/enemies/cave/ankylosaur.webp', scale: 0.9, groundOffset: -8 },
   },
   {
-    image: '/enemies/cave/cave-mantis.webp',
-    spriteScale: 0.75,
-    spriteGroundOffset: 15,
-    xpOrbRadius: 80,
-    xpOrbOffset: 90,
-    xp: 189,
-    combatant: {
-      name: 'Cave Mantis',
-      maxHp: 133,
-      weapon: { name: 'Basic Attack', damage: 2, hits: 2, cooldown: 1800 },
-      skills: [
-        {
-          id: 'flurry',
-          name: 'Flurry',
-          category: 'attack',
-          cooldown: 6500,
-          effects: [
-            { type: 'dmg', amount: 4 },
-            { type: 'dmg', amount: 4 },
-            { type: 'dmg', amount: 4 },
-          ],
-        },
-      ],
+    name: 'Cave Mantis',
+    boss: false,
+    maxHp: 133,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Scythe Arms', hit: { physical: 2 }, hits: 2, cooldown: 1800, initialCooldown: 1800 },
+    skills: [
+      {
+        id: 'flurry',
+        name: 'Flurry',
+        description: 'Many quick Physical hits',
+        cooldown: 6500,
+        initialCooldown: 6500,
+        effects: [{ type: EffectType.Damage, hit: { physical: 4 }, hits: 3 }],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 189, gold: { min: 22, max: 34 }, drops: [] },
+    sprite: { image: '/enemies/cave/cave-mantis.webp', scale: 0.75, groundOffset: 15 },
   },
   {
-    image: '/enemies/cave/sauropod.webp',
-    spriteScale: 1,
-    spriteGroundOffset: 1,
-    xpOrbRadius: 100,
-    xpOrbOffset: 150,
-    xp: 567,
-    combatant: {
-      name: 'Sauropod',
-      maxHp: 352,
-      weapon: { name: 'Basic Attack', damage: 14, cooldown: 4000 },
-      skills: [
-        {
-          id: 'stomp',
-          name: 'Stomp',
-          category: 'attack',
-          cooldown: 10000,
-          effects: [
-            { type: 'stun', duration: 1800 },
-            { type: 'dmg', amount: 34 },
-          ],
-        },
-      ],
+    name: 'Sauropod',
+    boss: true,
+    maxHp: 352,
+    damageResponses: {
+      physical: DamageResponse.Normal,
+      fire: DamageResponse.Normal,
+      ice: DamageResponse.Normal,
+      thunder: DamageResponse.Normal,
     },
+    statusResponses: {
+      poison: StatusResponse.Normal,
+      stun: StatusResponse.Normal,
+    },
+    weapon: { name: 'Stamp', hit: { physical: 14 }, hits: 1, cooldown: 4000, initialCooldown: 4000 },
+    skills: [
+      {
+        id: 'stomp',
+        name: 'Stomp',
+        description: 'Stuns you and hits hard',
+        cooldown: 10000,
+        initialCooldown: 10000,
+        effects: [
+          { type: EffectType.Stun, duration: 1800 },
+          { type: EffectType.Damage, hit: { physical: 34 }, hits: 1 },
+        ],
+      },
+    ],
+    defensiveWeaknesses: [],
+    rewards: { xp: 567, gold: { min: 40, max: 60 }, drops: [] },
+    sprite: { image: '/enemies/cave/sauropod.webp', scale: 1, groundOffset: 1 },
   },
 ]

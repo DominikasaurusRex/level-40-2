@@ -20,6 +20,9 @@ export interface Resource {
 
 export type ResourceAmounts = Record<ResourceId, number>
 
+/** The four materials: everything except the two currencies. */
+export type MaterialId = Exclude<ResourceId, ResourceId.Xp | ResourceId.Gold>
+
 const PLACEHOLDER_ICON = '/icons/defense.png'
 
 export const resources: Resource[] = [

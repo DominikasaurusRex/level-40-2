@@ -31,7 +31,6 @@ import {
 } from '@/data/areas'
 import {advanceFight} from '@/combat/engine'
 import {trainingDummy} from '@/data/monster/tutorial-monster'
-import {forestMonsters} from '@/data/monster/forest-monsters'
 import {PlaceId, startingRebuiltPlaceIds} from '@/data/town'
 import {initialResourceAmounts, ResourceId, type ResourceAmounts} from '@/data/resources'
 
@@ -453,7 +452,8 @@ export const useGameStore = defineStore('game', () => {
     tutorialComplete.value = true
     activeArea.value = 'Field'
     activeLevel.value = 1
-    startFight(forestMonsters[0]!)
+    // No fight starts: the stage monsters use the Level 40 2 definition, which the original
+    // combat engine cannot run until combat is reworked.
   }
 
   function restoreSnapshot(candidate: unknown): boolean {
