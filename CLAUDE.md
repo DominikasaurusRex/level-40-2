@@ -39,6 +39,15 @@ and how; ask when the intended new design is unclear.
 
 Update this section as systems get replaced in code.
 
+## Parked for later
+
+- **New architecture setup.** The author wants to discuss the Level 40 2 code architecture (how the
+  new types, engine, stores, and data fit together) later. First finish the design discussions on
+  combat, Town, and the remaining extras. Do not start restructuring the architecture before that
+  discussion; raise it once those are done.
+- **XP orb animation values** (`xpOrbOffset`, `xpOrbRadius` in the original monster data) were left
+  out of the new monster shape. Decide whether and how they return when combat is reworked.
+
 ## Documentation
 
 ### Level 40 2 design (the target)

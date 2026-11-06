@@ -81,6 +81,7 @@ These examples should remain mixed across board regions rather than segregated i
 - **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Hammers).
 - **Barrier:** temporary resistance (×0.5) or immunity (×0) to one or more specified damage types (Physical, Fire, Ice, Thunder), for example all three elements at once. **Replaces Invincible.**
 - **Absorb:** temporarily converts a specified damage type into healing.
+- **Vulnerability:** temporarily makes the **target** vulnerable (×2) to one or more specified damage types (Physical, Fire, Ice, Thunder). It is a negative status, so a cleanse on self removes it. Both the player and monsters can have skills that apply it.
 - **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. **Cleansing a Curse triggers its reflection immediately** (any cleanse, however weak). There is no cleanse that removes Curse without reflecting; cleansing it is a timing decision.
 
 Monsters' **innate damage-type responses are permanently active**. Temporary Barrier and Absorb effects **override**, rather than multiply with, the innate response for that damage type while active. After expiry, the innate response applies again. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). For simultaneous temporary elemental effects targeting the same damage type, **the strongest effect wins**; effects do not combine or multiply.
@@ -99,8 +100,12 @@ A skill (player or monster) is a list of effects. Each effect needs these values
 | Shield | Amount (stacks, never expires) | The old DEF pool |
 | DEF | Flat reduction per hit, duration | — (new) |
 | AGI | Charges | — |
-| Barrier | Damage types, resisted or immune, duration | Invincible |
-| Absorb | Damage type, duration | — (new) |
+| Damage response (Barrier, Absorb, Vulnerability) | Damage types, response (absorb, immune, resisted, or vulnerable), duration | Invincible |
+
+**Barrier, Absorb, and Vulnerability are one effect:** a temporary damage response for one or more
+damage types. Barrier is the resisted or immune version, Absorb the absorbing one, Vulnerability
+the vulnerable one. Barrier and Absorb protect the caster; Vulnerability is applied to the
+opponent. Several can be active at once, for different damage types.
 | Curse | Duration; reflects the damage dealt when it expires | Old Curse (healing reduction) |
 
 ### Cleansing

@@ -11,6 +11,9 @@ The Library monster manual uses a two-column layout similar to the Town repair m
 - A monster skill is recorded only after the player has seen that skill activate.
 - Unseen skills are omitted rather than shown as unknown entries.
 
+**During development:** until runs exist and the reached stage is tracked, the Library may list
+every stage that has a monster. The discovery rules above are the target behavior.
+
 ## Left side: zone selection
 
 - Show the reached zones as a selectable list.

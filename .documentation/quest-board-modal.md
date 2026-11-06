@@ -5,6 +5,9 @@ The Quest Board uses a two-column layout similar to the Town repair and Library 
 Quest tracking begins only after the Quest Board has been repaired. Progress from before that repair
 does not count retroactively.
 
+**During development:** until runs exist and the reached stage is tracked, the Quest Board may list
+every stage from 1–20 that has a monster. Only reached levels is the target behavior.
+
 ## Left side: level selection
 
 - Show a selectable list of monster levels.
