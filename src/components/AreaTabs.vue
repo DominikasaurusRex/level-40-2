@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { Monster } from '@/types/monster'
-import { fieldMonsters } from '@/data/monster/field-monsters.ts'
 import { forestMonsters } from '@/data/monster/forest-monsters.ts'
 import { caveMonsters } from '@/data/monster/cave-monsters.ts'
-import { wastelandMonsters } from '@/data/monster/wasteland-monsters.ts'
-import { ruinsMonsters } from '@/data/monster/ruins-monsters.ts'
-import { dungeonMonsters } from '@/data/monster/dungeon-monsters.ts'
-import { hellMonsters } from '@/data/monster/hell-monsters.ts'
-import { abyssMonsters } from '@/data/monster/abyss-monsters.ts'
 import { areaNames, isAreaBossLevel, levelsForArea } from '@/data/areas'
 import { areaBackgrounds } from '@/data/area-backgrounds'
 import { useGameStore } from '@/stores/game'
@@ -24,20 +18,12 @@ const emit = defineEmits<{
 
 const areas = areaNames.map(name => ({ name, background: areaBackgrounds[name], levels: levelsForArea(name) }))
 
-const monstersByArea: Record<string, Monster[]> = {
-  Field: fieldMonsters,
-  Forest: forestMonsters,
-  Cave: caveMonsters,
-  Wasteland: wastelandMonsters,
-  Ruins: ruinsMonsters,
-  Dungeon: dungeonMonsters,
-  Hell: hellMonsters,
-  Abyss: abyssMonsters,
-}
+/** Monsters by stage: index 0 is stage 1. Stages without a monster yet have no fight. */
+const stageMonsters: Monster[] = [...forestMonsters, ...caveMonsters]
 
-function monsterFor(area: (typeof areas)[number], level: number) {
+function monsterFor(level: number) {
   if (level === 0) return trainingDummy
-  return monstersByArea[area.name]?.[level - area.levels[0]!]
+  return stageMonsters[level - 1]
 }
 
 const battleCardHostEl = ref<HTMLElement>()
@@ -52,7 +38,7 @@ defineExpose({ battleCardHostEl, battleCardRef })
 const activeAreaConfig = computed(() => areas.find(area => area.name === game.activeArea)!)
 
 watch(
-  () => monsterFor(activeAreaConfig.value, game.activeLevel),
+  () => monsterFor(game.activeLevel),
   monster => monster && game.startFight(monster),
   { immediate: true },
 )
