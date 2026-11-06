@@ -34,10 +34,18 @@ Show the following from top to bottom:
 The left column contains:
 
 - **HP:** maximum HP, for example **HP: 100**.
-- **ATK:** the damage of the monster's weapon (its basic attack), for example **ATK: 12**.
+- **ATK:** the damage per hit of the monster's weapon (its basic attack), for example **ATK: 12**.
+  A multi-hit weapon shows damage × hits, for example **ATK: 5 × 2**.
+- **SPD:** how often the weapon attacks, shown as the time between attacks, for example
+  **SPD: 2.0s**.
 - **Drops:** icons for the materials the monster can drop.
   - Gold and XP are default rewards and are not listed.
   - Only material-drop icons are shown.
+  - The drop chance is never shown; the icons only say the monster *can* drop that material.
+
+With four rows, the left column lines up with the four damage-type rows on the right.
+
+How a weapon's elemental component appears in ATK (for example **5 + 10 Fire**) is still open.
 
 The right column contains the monster's response to each damage type:
 

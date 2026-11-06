@@ -34,6 +34,10 @@ Empowerment is not always a timed damage bonus. It can be either:
 Only one weapon can be focused or empowered at a time, following the Focus rules in the main design
 document.
 
+**Empowered states can never be cleansed**, neither by an enemy's forced cleanse nor by the
+player's own cleanse (see `level40-2-balance-progression.md`). This keeps defensive states such as
+Guard stance reliably useful.
+
 ## Dual Blades
 
 Dual Blades replace the old Dagger role.

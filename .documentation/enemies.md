@@ -8,6 +8,23 @@ Only the stage order is decided so far. Stats, elements, damage-type and status 
 weaknesses, material drops, and skills are still to be designed. The original Level 40 values are
 a reference only.
 
+## Monster definition rules
+
+Settled:
+
+- **Weak to DEF / weak to AGI** is handwritten per monster. It is not derived from the attacks.
+- **Skill descriptions** are handwritten per skill (for example "High damage Thunder attack"). They
+  are not generated from the skill's effects.
+- **Rewards:**
+  - **XP** is a fixed amount per monster.
+  - **Gold** is a range (minimum to maximum) per kill.
+  - **Materials** each drop with a chance. The Library shows only which materials a monster *can*
+    drop, never the chance.
+
+- **Skills** use the effects, cleansing actions, and conditions defined in
+  `level40-2-balance-progression.md`. A skill can wait in a ready state until its condition holds
+  instead of firing exactly on cooldown.
+
 ## Stage order
 
 Sprites live in `public/enemies/<area>/`. Monster data lives in `src/data/monster/<area>-monsters.ts`
@@ -33,6 +50,19 @@ Level 40 stats.
 | 8 | Ankylosaur | `cave/ankylosaur.webp` | Wasteland, level 18 |
 | 9 | Cave Mantis | `cave/cave-mantis.webp` | Cave, level 14 |
 | 10 | Sauropod | `cave/sauropod.webp` | Wasteland, level 19 |
+
+### Skill changes decided so far
+
+The other monsters' skills are not reworked yet.
+
+| Monster | Skill | Level 40 2 version |
+| --- | --- | --- |
+| Sporecap | Spore Cloud | Applies **Poison** (was the old healing-reduction Curse). |
+| Stone Tortoise | Stone Shell | **Physical Barrier with full immunity** (was a DEF pool). |
+| Ankylosaur | Spiked Tail | Damage plus **Poison** (was Bleed). |
+| Ankylosaur | Harden | **Resisting Barrier** (×0.5) against **Fire, Ice, and Thunder** (was a DEF pool). Covering all three elements may prove too strong this early; revisit in balancing. |
+
+Values, durations, and cooldowns are balancing work.
 
 ### Stages 11–42
 

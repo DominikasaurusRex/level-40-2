@@ -81,9 +81,66 @@ These examples should remain mixed across board regions rather than segregated i
 - **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Hammers).
 - **Barrier:** temporary resistance (×0.5) or immunity (×0) to one or more specified damage types (Physical, Fire, Ice, Thunder), for example all three elements at once. **Replaces Invincible.**
 - **Absorb:** temporarily converts a specified damage type into healing.
-- **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. A powerful late-game healing/cleansing skill that removes Curse without triggering reflection is a **possibility**, not an initial mechanic or confirmed unlock.
+- **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. **Cleansing a Curse triggers its reflection immediately** (any cleanse, however weak). There is no cleanse that removes Curse without reflecting; cleansing it is a timing decision.
 
 Monsters' **innate damage-type responses are permanently active**. Temporary Barrier and Absorb effects **override**, rather than multiply with, the innate response for that damage type while active. After expiry, the innate response applies again. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). For simultaneous temporary elemental effects targeting the same damage type, **the strongest effect wins**; effects do not combine or multiply.
+
+## Skill effects
+
+A skill (player or monster) is a list of effects. Each effect needs these values:
+
+| Effect | Values | Replaces (original Level 40) |
+| --- | --- | --- |
+| Damage | Physical amount, optional element and its amount, hit count | Untyped damage |
+| Poison | Damage per tick, tick interval, duration | Bleed |
+| Stun | Duration | — |
+| Regeneration | HP per tick, duration | Heal over time |
+| Heal | Amount (instant) | — |
+| Shield | Amount (stacks, never expires) | The old DEF pool |
+| DEF | Flat reduction per hit, duration | — (new) |
+| AGI | Charges | — |
+| Barrier | Damage types, resisted or immune, duration | Invincible |
+| Absorb | Damage type, duration | — (new) |
+| Curse | Duration; reflects the damage dealt when it expires | Old Curse (healing reduction) |
+
+### Cleansing
+
+Cleansing is **not an effect** like the ones above; it is an action that removes statuses. It is
+still part of the game, for both the player and monsters, in two directions:
+
+- **Cleanse:** removes negative statuses from the caster (such as Poison, Stun, Curse).
+- **Forced cleanse:** removes **every positive effect** from the target, **including Shield**
+  (also Regeneration, DEF, AGI, Barrier, Absorb). The name is not decided yet.
+
+**Empowered weapon states can never be cleansed**, neither by a forced cleanse nor by a cleanse on
+self. This gives the defensive empowered states (such as Guard stance) a reliably useful role.
+
+**Cleansing a Curse triggers its reflection immediately.** The recorded damage is reflected the
+moment the Curse is removed, so cleansing Curse is a timing decision rather than a safe escape.
+
+## Skill timing and conditions
+
+Conditions are the **monster AI**. A monster skill does not always fire the moment its cooldown runs
+out: it can have a **condition**, so once its cooldown is over it stays **ready** and waits until
+the condition holds, then fires.
+
+The player's active skills have **no conditions**: the player decides when to use them. Both sides
+can have the same kinds of skills (for example cleanses and heals); only the monster's timing is
+automated by conditions.
+
+Settled conditions (monsters):
+
+- A **Cleanse** waits until the caster has **any** negative status.
+- A **forced cleanse** waits until the target has **any** positive effect. This is deliberately
+  exploitable: the player can bait it with a cheap positive effect and then apply the important
+  ones after it has fired.
+- A **heal** waits until at least **60% of its heal amount** would actually restore HP, i.e. the
+  caster's missing HP is at least 60% of the heal. Example: a skill healing 30 HP waits until at
+  least 18 HP is missing. The threshold therefore scales with each combatant's own heal amount.
+- A **Regeneration** waits until the caster's missing HP is at least **30% of its total healing**
+  over its full duration. The lower threshold suits healing that arrives gradually.
+
+Every other monster skill has no condition and fires as soon as its cooldown is over, as before.
 
 ## Damage resolution, DEF, and absorption
 
