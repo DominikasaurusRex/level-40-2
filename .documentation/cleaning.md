@@ -43,10 +43,10 @@ tests, and the cutscene content already sits in `src/legacy/` (`components/`, `d
 
 | Part | Files |
 | ---- | ----- |
-| Level-ups | `legacy/components/LevelUpModal.vue`, `legacy/data/player-xp-curve.ts`, `player-hp-curve.ts`, `player-power-curve.ts` |
+| Level-ups | `legacy/data/player-xp-curve.ts`, `player-hp-curve.ts`, `player-power-curve.ts` (`LevelUpModal.vue` and the level-up dialog queue in `game.ts` are already deleted) |
 | Old skill tree | `legacy/components/SkillTreeModal.vue`, `SkillTreeHelpModal.vue`, `SkillRow.vue`, `SkillDescription.vue`, `legacy/utils/skill-description.ts`, `legacy/data/skill-progression.ts`, `legacy/types/skill-progression.ts`, `legacy/data/__tests__/skill-progression.spec.ts` |
 | Area/level selection | `legacy/components/AreaTabs.vue`, `legacy/data/areas.ts` (8 old areas), `legacy/data/area-backgrounds.ts` (rebuild for new areas) |
-| Badges | `legacy/components/BadgeShelf.vue`, `legacy/data/badges.ts` |
+| Badges | Already deleted: `BadgeShelf.vue`, `badges.ts`, and the badge state in `game.ts`. The badge images and sounds stay for possible reuse. |
 | Old weapons | `legacy/data/weapons.ts` (Power formula, level-based tiers), `legacy/data/__tests__/weapons.spec.ts` |
 | Focus Pulse | `legacy/data/focus.ts`, `stores/__tests__/focus.spec.ts` |
 | Old monsters | `legacy/data/tutorial-monster.ts` (the other unused monster files are already deleted) |
@@ -56,7 +56,8 @@ tests, and the cutscene content already sits in `src/legacy/` (`components/`, `d
 | Small data | `legacy/data/player.ts`, `xp-orb-thresholds.ts`, `heal-icon-thresholds.ts` (check while reworking) |
 | Assets | `public/areas/` for the old areas, `public/badge/`, `public/cutscene/` (Gatekeeper may stay). The original enemy sprites are already gone. |
 
-Assets are optional to remove early; they don't affect the build.
+Assets that might be repurposed stay, even when no code uses them anymore. Only delete an asset when
+the author names it.
 
 ## How to remove them
 

@@ -5,7 +5,6 @@ import {createCombatantState, findStatus} from '@/legacy/types/combatant'
 import type {Monster} from '@/legacy/types/monster'
 import type {Weapon, WeaponSlot} from '@/legacy/types/weapon'
 import {basicAttackSkill} from '@/legacy/types/weapon'
-import type {SkillChoice} from '@/legacy/types/skill-progression'
 import type {Player} from '@/legacy/types/player'
 import {startingPlayer} from '@/legacy/data/player'
 import {xpToNextPlayerLevel} from '@/legacy/data/player-xp-curve'
@@ -14,17 +13,10 @@ import {powerForPlayerLevel} from '@/legacy/data/player-power-curve'
 import {healIconCountFor} from '@/legacy/data/heal-icon-thresholds'
 import {FOCUS_PULSE_MS} from '@/legacy/data/focus'
 import {resolveWeaponsForLevel, weaponUpgradeForLevel} from '@/legacy/data/weapons'
-import {
-  isSkillChoiceAvailable,
-  isSkillChoiceId,
-  skillChoiceLevels,
-  skillsForPlayer,
-  skillTreeChoices,
-} from '@/legacy/data/skill-progression'
+import {isSkillChoiceId, skillsForPlayer} from '@/legacy/data/skill-progression'
 import {
   areaForLevel,
   type AreaName,
-  isAreaBossLevel,
   isAreaName,
   isLevelInArea,
   levelsForArea
@@ -37,11 +29,9 @@ import {initialResourceAmounts, ResourceId, type ResourceAmounts} from '@/resour
 const TICK_MS = 100
 const MAX_PLAYER_LEVEL = 30
 const MAX_AREA_LEVEL = 40
-const BADGE_POWER_BONUS = 2
 
 export type BattlePhase = 'fighting' | 'victory' | 'defeat' | 'spawning'
 export const VICTORY_PAUSE_MS = 700
-export const AREA_RECLAIMED_BANNER_MS = 3200
 export const DEFEAT_PAUSE_MS = 900
 export const RESPAWN_PAUSE_MS = 300
 
@@ -54,9 +44,7 @@ export interface GameSnapshot {
   skills: string[]
   focusedSkill: string
   highestUnlockedLevel: number
-  badges: AreaName[]
   tutorialComplete?: boolean
-  levelUpTutorialComplete?: boolean
 /** LEVEL 40-2 save**/
   /** Whether a valid original Level 40 save was imported at New Game (for the starting gift). */
   originalSaveImported: boolean
@@ -70,21 +58,6 @@ export interface GameSnapshot {
 /** The only facts kept from an imported original Level 40 save. */
 export interface OriginalSaveInfo {
   beatFinalBoss: boolean
-}
-
-interface QueuedLevelUp {
-  level: number
-  oldMaxHp: number
-  newMaxHp: number
-  oldPower: number
-  newPower: number
-  weaponUpgrades?: Weapon[]
-  grantsSkillChoice: boolean
-  id: number
-}
-
-interface ActiveLevelUp extends Omit<QueuedLevelUp, 'grantsSkillChoice'> {
-  skillChoices?: SkillChoice[]
 }
 
 function createNewPlayer(): Player {
@@ -117,8 +90,6 @@ export const useGameStore = defineStore('game', () => {
   const highestUnlockedLevel = ref(1)
   const tutorialComplete = ref(false)
   const isTutorialActive = computed(() => !tutorialComplete.value && activeLevel.value === 0)
-  const levelUpTutorialComplete = ref(false)
-  const earnedBadgeIds = ref<AreaName[]>([])
   const originalSaveImported = ref(false)
   const originalFinalBossBeaten = ref(false)
   const rebuiltPlaceIds = ref<PlaceId[]>(startingRebuiltPlaceIds())
@@ -132,17 +103,7 @@ export const useGameStore = defineStore('game', () => {
   })
   /** Bumped on every xp gain so the UI can react (e.g. spawn xp-orb animations) even if the amount repeats. */
   const xpGainEvent = ref<{ amount: number; id: number }>()
-  const areaReclaimedEvent = ref<{ area: AreaName; id: number }>()
   const combatHeldForCutscene = ref(false)
-  /** The level-up currently awaiting acknowledgement. Later level-ups wait in `queuedLevelUps`. */
-  const levelUpEvent = ref<ActiveLevelUp>()
-  /** The level 1->2 level-up grants the player's first skill choice; skillChoiceLevels' lowest entry is always 2. */
-  const isLevelUpTutorialActive = computed(() =>
-    !levelUpTutorialComplete.value
-    && levelUpEvent.value?.level === 2
-    && Boolean(levelUpEvent.value?.skillChoices?.length),
-  )
-  const queuedLevelUps: QueuedLevelUp[] = []
   /**
    * Queued whenever the player's own offensive skill fires, so the UI can
    * fly `hits` attack icons from that skill's row at the enemy — monster
@@ -161,7 +122,6 @@ export const useGameStore = defineStore('game', () => {
 
   let intervalId: ReturnType<typeof setInterval> | undefined
   let xpGainCounter = 0
-  let levelUpCounter = 0
   let playerAttackCounter = 0
   let playerBuffCounter = 0
   let playerAgiBuffCounter = 0
@@ -169,8 +129,6 @@ export const useGameStore = defineStore('game', () => {
   let bleedAttackCounter = 0
   let hotHealCounter = 0
   let battlePhaseRemainingMs = 0
-  let areaReclaimedCounter = 0
-  let areaReclaimedRemainingMs = 0
 
   function isLevelUnlocked(level: number): boolean {
     return level >= 1 && level <= MAX_AREA_LEVEL && level <= highestUnlockedLevel.value
@@ -186,13 +144,8 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
-  function hasBadge(area: AreaName): boolean {
-    return earnedBadgeIds.value.includes(area)
-  }
-
   function totalPlayerPower(level: number): number {
     return powerForPlayerLevel.get(level)!
-      + earnedBadgeIds.value.length * BADGE_POWER_BONUS
   }
 
   function refreshWeaponsAndSkills() {
@@ -200,17 +153,6 @@ export const useGameStore = defineStore('game', () => {
     const equippedUpgrade = player.weapons.find(weapon => weapon.slot === player.equippedWeaponSlot)!
     applyEquippedWeapon(equippedUpgrade)
     rebuildPlayerSkills()
-  }
-
-  function awardBadgeIfBossCleared(): boolean {
-    if (isAreaBossLevel(activeArea.value, activeLevel.value) && !hasBadge(activeArea.value)) {
-      earnedBadgeIds.value.push(activeArea.value)
-      player.power = totalPlayerPower(player.level)
-      refreshWeaponsAndSkills()
-      return true
-    }
-
-    return false
   }
 
   function respawnMonster(next: Monster) {
@@ -224,8 +166,6 @@ export const useGameStore = defineStore('game', () => {
     respawnMonster(next)
     battlePhase.value = 'fighting'
     battlePhaseRemainingMs = 0
-    areaReclaimedEvent.value = undefined
-    areaReclaimedRemainingMs = 0
     combatHeldForCutscene.value = false
   }
 
@@ -275,45 +215,6 @@ export const useGameStore = defineStore('game', () => {
     focusChargeMs.value = Math.min(FOCUS_PULSE_MS, focusChargeMs.value + dt)
   }
 
-  function acceptLevelUp(skillChoiceId?: string): boolean {
-    const event = levelUpEvent.value
-    if (!event) return false
-
-    if (event.skillChoices?.length) {
-      const offered = event.skillChoices.some(choice => choice.id === skillChoiceId)
-      const available = skillChoiceId && isSkillChoiceAvailable(skillChoiceId, player.ownedSkillChoiceIds)
-      if (!skillChoiceId || !offered || !available) return false
-
-      player.ownedSkillChoiceIds.push(skillChoiceId)
-      rebuildPlayerSkills()
-    }
-
-    if (isLevelUpTutorialActive.value) levelUpTutorialComplete.value = true
-
-    showNextLevelUp()
-    return true
-  }
-
-  /** Presents dialogs FIFO so each tree choice sees choices accepted by earlier dialogs. */
-  function showNextLevelUp() {
-    const next = queuedLevelUps.shift()
-    if (!next) {
-      levelUpEvent.value = undefined
-      return
-    }
-
-    const {grantsSkillChoice, ...event} = next
-    levelUpEvent.value = {
-      ...event,
-      skillChoices: grantsSkillChoice ? skillTreeChoices : undefined,
-    }
-  }
-
-  function queueLevelUp(event: QueuedLevelUp) {
-    queuedLevelUps.push(event)
-    if (!levelUpEvent.value) showNextLevelUp()
-  }
-
   function gainXp(amount: number) {
     player.xp += amount
     xpGainEvent.value = {amount, id: ++xpGainCounter}
@@ -338,17 +239,6 @@ export const useGameStore = defineStore('game', () => {
       if (weaponUpgrade || newPower !== oldPower) {
         refreshWeaponsAndSkills();
       }
-
-      queueLevelUp({
-        level: player.level,
-        oldMaxHp,
-        newMaxHp,
-        oldPower,
-        newPower,
-        weaponUpgrades: weaponUpgrade ? player.weapons : undefined,
-        grantsSkillChoice: skillChoiceLevels.has(player.level),
-        id: ++levelUpCounter,
-      })
     }
   }
 
@@ -402,9 +292,7 @@ export const useGameStore = defineStore('game', () => {
       skills: [...player.ownedSkillChoiceIds],
       focusedSkill: focusedSkillId.value,
       highestUnlockedLevel: highestUnlockedLevel.value,
-      badges: [...earnedBadgeIds.value],
       tutorialComplete: tutorialComplete.value,
-      levelUpTutorialComplete: levelUpTutorialComplete.value,
       originalSaveImported: originalSaveImported.value,
       originalFinalBossBeaten: originalFinalBossBeaten.value,
       rebuiltPlaces: [...rebuiltPlaceIds.value],
@@ -413,11 +301,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function clearTransientState() {
-    queuedLevelUps.splice(0)
-    levelUpEvent.value = undefined
     xpGainEvent.value = undefined
-    areaReclaimedEvent.value = undefined
-    areaReclaimedRemainingMs = 0
     combatHeldForCutscene.value = false
     pendingPlayerAttacks.value = []
     pendingPlayerBuffs.value = []
@@ -435,8 +319,6 @@ export const useGameStore = defineStore('game', () => {
     activeLevel.value = 0
     highestUnlockedLevel.value = 1
     tutorialComplete.value = false
-    levelUpTutorialComplete.value = false
-    earnedBadgeIds.value = []
     rebuiltPlaceIds.value = startingRebuiltPlaceIds()
     resources.value = initialResourceAmounts()
     resetFocus()
@@ -481,9 +363,6 @@ export const useGameStore = defineStore('game', () => {
     player.xp = save.xp!
     player.combatant.maxHp = maxHpForPlayerLevel.get(level)!
 
-    const savedBadges = Array.isArray(save.badges) ? save.badges : []
-    earnedBadgeIds.value = [...new Set(savedBadges.filter(badge => typeof badge === 'string' && isAreaName(badge)))]
-
     player.power = totalPlayerPower(level)
     player.weapons = resolveWeaponsForLevel(level, player.power)
 
@@ -504,29 +383,11 @@ export const useGameStore = defineStore('game', () => {
       ? savedFocusedSkill
       : 'basic-attack')
 
-    // A save can happen while a skill-choice level-up is awaiting acceptance. Skills are
-    // the committed state, so recreate any earned-but-unaccepted choices after loading.
-    const earnedSkillChoiceLevels = [...skillChoiceLevels].filter(choiceLevel => choiceLevel <= level)
-    for (const choiceLevel of earnedSkillChoiceLevels.slice(player.ownedSkillChoiceIds.length)) {
-      queueLevelUp({
-        level: choiceLevel,
-        oldMaxHp: maxHpForPlayerLevel.get(choiceLevel - 1)!,
-        newMaxHp: maxHpForPlayerLevel.get(choiceLevel)!,
-        oldPower: powerForPlayerLevel.get(choiceLevel - 1)!,
-        newPower: powerForPlayerLevel.get(choiceLevel)!,
-        grantsSkillChoice: true,
-        id: ++levelUpCounter,
-      })
-    }
-
     highestUnlockedLevel.value = Number.isInteger(save.highestUnlockedLevel)
       ? Math.min(MAX_AREA_LEVEL, Math.max(1, save.highestUnlockedLevel!))
       : 1
 
     tutorialComplete.value = save.tutorialComplete !== false
-    // Only a fresh new game can see the level-up tutorial: any save already past level 1
-    // may have missed it, and its level-up UI isn't guaranteed to be in the state it expects.
-    levelUpTutorialComplete.value = save.levelUpTutorialComplete === true || level > 1
     originalSaveImported.value = save.originalSaveImported!
     originalFinalBossBeaten.value = save.originalFinalBossBeaten!
 
@@ -569,8 +430,6 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function tick(dt: number) {
-    advanceAreaReclaimedBanner(dt)
-
     if (battlePhase.value !== 'fighting') {
       advanceBattleIntermission(dt)
       return
@@ -595,26 +454,11 @@ export const useGameStore = defineStore('game', () => {
     if (outcome === 'monster-defeated') {
       gainXp(monster.value!.xp)
       unlockNextLevelIfFrontierCleared()
-      const areaReclaimed = awardBadgeIfBossCleared()
-      if (areaReclaimed) {
-        areaReclaimedEvent.value = {area: activeArea.value, id: ++areaReclaimedCounter}
-        areaReclaimedRemainingMs = AREA_RECLAIMED_BANNER_MS
-      }
       battlePhase.value = 'victory'
       battlePhaseRemainingMs = VICTORY_PAUSE_MS
     } else if (outcome === 'player-defeated') {
       battlePhase.value = 'defeat'
       battlePhaseRemainingMs = DEFEAT_PAUSE_MS
-    }
-  }
-
-  function advanceAreaReclaimedBanner(dt: number) {
-    if (!areaReclaimedEvent.value) return
-
-    areaReclaimedRemainingMs -= dt
-    if (areaReclaimedRemainingMs <= 0) {
-      areaReclaimedEvent.value = undefined
-      areaReclaimedRemainingMs = 0
     }
   }
 
@@ -698,25 +542,19 @@ export const useGameStore = defineStore('game', () => {
     activeArea,
     activeLevel,
     highestUnlockedLevel,
-    earnedBadgeIds,
     originalSaveImported,
     originalFinalBossBeaten,
     rebuiltPlaceIds,
     resources,
     tutorialComplete,
     isTutorialActive,
-    levelUpTutorialComplete,
-    isLevelUpTutorialActive,
     isLevelUnlocked,
     isAreaUnlocked,
-    hasBadge,
     focusedSkillId,
     focusChargeMs,
     focusPulseReady,
     xpGainEvent,
-    areaReclaimedEvent,
     combatHeldForCutscene,
-    levelUpEvent,
     pendingPlayerAttacks,
     pendingPlayerBuffs,
     pendingPlayerAgiBuffs,
@@ -728,7 +566,6 @@ export const useGameStore = defineStore('game', () => {
     releaseCombatFromCutscene,
     equipWeapon,
     useFocus,
-    acceptLevelUp,
     createSnapshot,
     restoreSnapshot,
     completeTutorial,
