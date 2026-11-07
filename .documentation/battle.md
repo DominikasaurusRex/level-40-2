@@ -66,3 +66,23 @@ current state of the fight, so a player's action can trigger them right away:
 - A **heal** or **Regeneration** waits until the monster has lost enough HP.
 
 Monster skills without a condition fire as soon as their cooldown is over.
+
+## Skill presentation
+
+Using a skill is a highlighted moment, for the player and monsters alike:
+
+1. **The game slows down.**
+2. A **banner** shows who used which skill, for example "Player – Fireball".
+3. The skill's **animation** plays on its target, for example a fireball hitting the monster.
+4. The target's **HP bar** shows the damage: the lost part first turns into a red-ish section, then
+   the bar slowly drains down to the new value, so the player can see how much the skill did.
+
+The **end of a fight** (either side dies) gets the same treatment: the game slows down for the
+final blow.
+
+- **Default attacks** get **no banner and no slowdown**, but their damage shows on the HP bar with
+  the same red drain.
+- **Healing** shows on the bar **right away**, without a drain.
+- The player **can act during the slowdown** (use ready skills, empower), so they can counter a
+  monster's skill while it plays out.
+- How strong and how long the slowdown is gets decided during testing.
