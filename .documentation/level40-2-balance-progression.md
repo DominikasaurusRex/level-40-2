@@ -73,16 +73,28 @@ These examples should remain mixed across board regions rather than segregated i
 
 ## Temporary combat statuses
 
-- **Poison:** damage over time; replaces Bleed. Bypasses DEF and Shield.
-- **Stun:** freezes cooldown recovery temporarily.
+- **Poison:** damage over time; replaces Bleed. Bypasses AGI, DEF, and Shield. Reapplying Poison
+  merges it with the active one: the higher **damage per tick** is kept and the durations **add
+  up**. Example: a 2-damage, 10-second Poison combined with a 15-damage, 5-second Poison becomes a
+  15-damage, 15-second Poison. The merged Poison ticks at the stronger Poison's tick interval.
+- **Stun:** while stunned, a combatant cannot use **any** attack or skill, not even one that is
+  already ready. For the player this includes manually used active skills, and the empowerment bar
+  does not charge. **Cooldowns are independent of everything, Stun included**: they keep running,
+  and whatever becomes ready during the Stun waits until it ends.
 - **Regeneration:** restores HP over time, capped at maximum HP.
 - **Shield:** a pool of temporary HP, carried over from the original Level 40 (where DEF was displayed as "Shield"). It absorbs damage point-for-point before HP is lost and is used up as it does. It stacks and does not expire, so it can be built up against weak enemies and carried into later fights. Not to be confused with Barrier.
 - **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Dual Blades). It is not an accumulating pool; that role belongs to Shield.
-- **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Hammers).
+- **AGI:** evasion charges; each charge avoids one entire hit, especially useful against large single hits (e.g., Hammers). Charges **stack**. AGI stops
+  **only hits**. It never prevents Poison ticks, Curse reflection, or other statuses and effects, even
+  ones from the same skill as a dodged hit.
 - **Barrier:** temporary resistance (×0.5) or immunity (×0) to one or more specified damage types (Physical, Fire, Ice, Thunder), for example all three elements at once. **Replaces Invincible.**
 - **Absorb:** temporarily converts a specified damage type into healing.
 - **Vulnerability:** temporarily makes the **target** vulnerable (×2) to one or more specified damage types (Physical, Fire, Ice, Thunder). It is a negative status, so a cleanse on self removes it. Both the player and monsters can have skills that apply it.
-- **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, AGI, Barrier, Absorb, and damage-type responses. The effect can remain dangerous even after the enemy that applied it dies. **Cleansing a Curse triggers its reflection immediately** (any cleanse, however weak). There is no cleanse that removes Curse without reflecting; cleansing it is a timing decision.
+- **Curse (delayed damage reflection):** lasts for a specified duration (e.g., 5 seconds) and records the actual damage the cursed character deals during that time, preserving each damage type and its amount. "Actual" means what got through **after damage responses, DEF, and Shield**; damage from **Poison** the cursed character applied counts too. On expiry, the recorded damage is reflected back onto that character. Reflected damage interacts normally with Shield, DEF, Barrier, Absorb, and damage-type responses, but **AGI cannot avoid it**. The effect can remain dangerous even after the enemy that applied it dies. **Cleansing a Curse triggers its reflection immediately** (any cleanse, however weak). There is no cleanse that removes Curse without reflecting; cleansing it is a timing decision.
+
+The **player's innate responses are all Normal** (every damage type, Poison, and Stun), and no
+skill-board node is planned to change them. The player changes responses only through temporary
+effects such as Barrier, Absorb, or Guard stance.
 
 Monsters' **innate damage-type responses are permanently active**. Temporary damage responses (Barrier, Absorb, and Vulnerability) **override**, rather than multiply with, the innate response for that damage type while active, including innate immunity or absorption (Fire Vulnerability makes a Fire-immune monster take double Fire damage). After expiry, the innate response applies again.
 
@@ -93,7 +105,7 @@ one for that damage type; when it expires, the innate response applies again.
 - Example: a monster casts Physical immunity, the player applies Physical Vulnerability, and the
   monster is vulnerable. If the monster then casts Physical immunity again, it is immune.
 - This means the player can weaken their own protection by accident (for example, a weaker
-  resistance cast over an active immunity). That is intended. Reapplying a status **refreshes its duration**, without stacking separate copies (Shield is the exception: it stacks). A **stronger** application replaces a weaker one (e.g., stronger Poison replaces weaker Poison). Temporary damage responses on the same damage type never combine or multiply; the rules above decide which one applies.
+  resistance cast over an active immunity). That is intended. Reapplying a status **refreshes its duration**, without stacking separate copies. A **stronger** application replaces a weaker one. Exceptions: **Shield and AGI stack**, and **Poison merges** (higher damage per tick, durations add up; see Poison above). Temporary damage responses on the same damage type never combine or multiply; the rules above decide which one applies.
 
 ## Skill effects
 
@@ -172,8 +184,13 @@ first use. After that, its normal cooldown applies.
 - If an element is **absorbed**, remove that component from damaging damage entirely and treat its full value as a **separate healing event**. DEF never reduces this healing, even if DEF fully blocks the physical component.
 - For a hit with both damaging components, divide the available flat DEF equally between Physical and Elemental. Any unused reduction on either side **overflows** to the other side. With only one damaging component, all DEF applies to it. DEF is applied once per hit, not once per component.
 - **Shield comes after DEF.** Whatever damage remains after DEF is absorbed by Shield first; only the rest reduces HP. Shield does not affect absorption healing.
-- **Poison bypasses DEF and Shield.** Curse reflection is a normal hit and goes through DEF and Shield like any other damage.
+- **Poison bypasses AGI, DEF, and Shield.** Curse reflection goes through damage responses, DEF, and Shield like any other damage, but AGI
+  cannot avoid it.
 - Display damage and healing **separately** in combat; never collapse them into a single net number. Resolve damage first, then healing from the same hit, **before checking for death**. Healing cannot exceed maximum HP.
+
+Hits still on their way when a monster dies are **lost**; they do not carry over to the next
+monster. The original Level 40 impact delay (370 ms plus stagger) is not a settled rule; combat
+timing will be reworked.
 
 For Curse reflection, keep the recorded damage types separate so a player can deliberately deal Fire damage while cursed and activate a Fire Barrier or Fire Absorb before expiry. Reflected damage and any resulting absorption healing are shown as separate combat events, using the same damage-first, healing-second resolution described above.
 
