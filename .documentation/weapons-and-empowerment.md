@@ -54,6 +54,10 @@ Dual Blades replace the old Dagger role.
 When empowered, Dual Blades enter **Demon Dance** for a limited duration and attack substantially
 more frequently.
 
+Demon Dance **replaces the weapon's attack speed** with its own, faster speed. It is not Haste:
+Haste and Slow still multiply on top of it, so Demon Dance with Haste is even faster, and Slow
+cannot remove it.
+
 The initial Demon Dance increases attack frequency rather than directly increasing damage. Later
 skill-board upgrades may:
 

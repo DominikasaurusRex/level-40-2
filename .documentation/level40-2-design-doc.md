@@ -82,6 +82,11 @@ The full loadout, the attack timeline, when the player can act, and how monsters
 - The player selects **three active skills per run**. Together with three weapon slots, pre-run preparation fills **six loadout slots**. Three is enough because the weapons' empowered states already act as additional skills.
 - Skills should offer a broader range of distinct effects to cover support roles without consumables. Examples include **Shield, Barrier, healing, damage element altering, elemental resistances and stunning**; the final skill roster remains open.
 - A single active skill **may combine several effects or cover several damage types**, for example an elemental Barrier that halves all Fire, Ice, and Thunder damage. This keeps three skill slots flexible enough to cover support roles.
+- Active skills **may overlap with empowerments**, for example Poison, Curse, Stun, or a big
+  elemental hit like a Staff spell. The player can never equip every weapon at once, and especially
+  not every Staff, so a skill can bring an effect the current loadout's weapons do not have.
+- Weapon empowerments do not cover healing, Shield, DEF, AGI, Vulnerability, or Haste/Slow; those
+  come from active skills.
 - Well-timed skills should be capable of **swinging a fight**.
 - Exact effects, costs, and cooldowns will be worked out during implementation.
 
