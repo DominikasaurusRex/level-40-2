@@ -45,7 +45,7 @@ export const forestMonsters: MonsterDefinition[] = [
     weapon: { name: 'Tusk', hit: { physical: 4 }, hits: 1, cooldown: 4000, initialCooldown: 4000 },
     skills: [
       {
-        id: 'charge',
+        id: 'wild-boar-charge',
         name: 'Charge',
         description: 'Heavy Physical attack',
         cooldown: 10000,
@@ -74,7 +74,7 @@ export const forestMonsters: MonsterDefinition[] = [
     weapon: { name: 'Tusk', hit: { physical: 5 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
     skills: [
       {
-        id: 'trample',
+        id: 'moss-boar-trample',
         name: 'Trample',
         description: 'Heavy Physical attack',
         cooldown: 9000,
@@ -103,7 +103,7 @@ export const forestMonsters: MonsterDefinition[] = [
     weapon: { name: 'Cap Bash', hit: { physical: 2 }, hits: 1, cooldown: 2200, initialCooldown: 2200 },
     skills: [
       {
-        id: 'spore-cloud',
+        id: 'sporecap-spore-cloud',
         name: 'Spore Cloud',
         description: 'Poisons you',
         cooldown: 8000,
@@ -140,7 +140,7 @@ export const forestMonsters: MonsterDefinition[] = [
     weapon: { name: 'Thorn Lash', hit: { physical: 8 }, hits: 1, cooldown: 2000, initialCooldown: 2000 },
     skills: [
       {
-        id: 'entangling-roots',
+        id: 'thorn-dryad-entangling-roots',
         name: 'Entangling Roots',
         description: 'Gains evasion, stuns you, and strikes',
         cooldown: 9000,

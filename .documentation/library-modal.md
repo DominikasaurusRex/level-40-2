@@ -9,6 +9,8 @@ The Library monster manual uses a two-column layout similar to the Town repair m
   slots, or other placeholders for them.
 - Every monster the player has reached is displayed and tracked with its known stats.
 - A monster skill is recorded only after the player has seen that skill activate.
+- **Defeating a monster records all of its skills as seen**, whether they activated or not. This
+  keeps the rule simple.
 - Unseen skills are omitted rather than shown as unknown entries.
 
 **During development:** until runs exist and the reached stage is tracked, the Library may list

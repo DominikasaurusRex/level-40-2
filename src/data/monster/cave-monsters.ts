@@ -25,7 +25,7 @@ export const caveMonsters: MonsterDefinition[] = [
     weapon: { name: 'Bite', hit: { physical: 2 }, hits: 1, cooldown: 1200, initialCooldown: 1200 },
     skills: [
       {
-        id: 'evasive-flight',
+        id: 'cave-bat-evasive-flight',
         name: 'Evasive Flight',
         description: 'Gains evasion',
         cooldown: 8000,
@@ -54,7 +54,7 @@ export const caveMonsters: MonsterDefinition[] = [
     weapon: { name: 'Bite', hit: { physical: 4 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
     skills: [
       {
-        id: 'stone-shell',
+        id: 'stone-tortoise-stone-shell',
         name: 'Stone Shell',
         description: 'Becomes immune to Physical damage',
         cooldown: 8000,
@@ -91,7 +91,7 @@ export const caveMonsters: MonsterDefinition[] = [
     weapon: { name: 'Tail Club', hit: { physical: 8 }, hits: 1, cooldown: 3000, initialCooldown: 3000 },
     skills: [
       {
-        id: 'harden',
+        id: 'ankylosaur-harden',
         name: 'Harden',
         description: 'Resists Fire, Ice, and Thunder damage',
         cooldown: 8000,
@@ -107,7 +107,7 @@ export const caveMonsters: MonsterDefinition[] = [
         ],
       },
       {
-        id: 'spiked-tail',
+        id: 'ankylosaur-spiked-tail',
         name: 'Spiked Tail',
         description: 'Physical attack that poisons you',
         cooldown: 9000,
@@ -145,7 +145,7 @@ export const caveMonsters: MonsterDefinition[] = [
     weapon: { name: 'Scythe Arms', hit: { physical: 2 }, hits: 2, cooldown: 1800, initialCooldown: 1800 },
     skills: [
       {
-        id: 'flurry',
+        id: 'cave-mantis-flurry',
         name: 'Flurry',
         description: 'Many quick Physical hits',
         cooldown: 6500,
@@ -174,7 +174,7 @@ export const caveMonsters: MonsterDefinition[] = [
     weapon: { name: 'Stamp', hit: { physical: 14 }, hits: 1, cooldown: 4000, initialCooldown: 4000 },
     skills: [
       {
-        id: 'stomp',
+        id: 'sauropod-stomp',
         name: 'Stomp',
         description: 'Stuns you and hits hard',
         cooldown: 10000,

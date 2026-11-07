@@ -18,6 +18,9 @@ Settled:
   boss marker, and DEF/AGI weaknesses. This replaces the original rule that both share one
   combatant model.
 - **Weak to DEF / weak to AGI** is handwritten per monster. It is not derived from the attacks.
+- **Skill ids** are handwritten as `<monster-id>-<skill-id>` (for example
+  `stone-tortoise-stone-shell`), so every id is unique across all monsters and the save can record
+  seen skills by skill id alone.
 - **Skill descriptions** are handwritten per skill (for example "High damage Thunder attack"). They
   are not generated from the skill's effects.
 - **Rewards:**

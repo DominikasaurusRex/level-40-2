@@ -29,7 +29,10 @@ export interface MonsterWeapon {
 }
 
 export interface MonsterSkill {
-  /** Stable: the save records which skills the player has seen. */
+  /**
+   * Stable and unique across all monsters, written as `<monster-id>-<skill-id>` (for example
+   * `stone-tortoise-stone-shell`): the save records which skills the player has seen.
+   */
   id: string
   name: string
   /** Handwritten Library text. */
