@@ -47,7 +47,7 @@ Settled:
 
 ## Stage order
 
-Sprites live in `public/enemies/<area>/`. Monster data lives in `src/data/monster/<area>-monsters.ts`
+Sprites live in `public/enemies/<area>/`. Monster data lives in `src/monsters/<area>-monsters.ts`
 (`forest-monsters.ts` for stages 1–5, `cave-monsters.ts` for stages 6–10), still with the original
 Level 40 stats.
 

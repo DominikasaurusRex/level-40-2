@@ -1,4 +1,4 @@
-import { powerForPlayerLevel } from '@/data/player-power-curve'
+import { powerForPlayerLevel } from '@/legacy/data/player-power-curve'
 
 const BADGE_POWER_BONUS = 2
 

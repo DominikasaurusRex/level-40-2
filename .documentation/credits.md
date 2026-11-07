@@ -1,7 +1,7 @@
 # Credits
 
 Working list during development. Copied from the original Level 40 credits screen
-(`src/components/CreditsModal.vue`). Some entries will likely be removed as assets are replaced.
+(`src/menu/CreditsModal.vue`). Some entries will likely be removed as assets are replaced.
 
 ## Coding, Game Design, Lead Programming, Vision
 

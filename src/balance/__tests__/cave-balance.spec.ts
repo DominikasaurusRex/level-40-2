@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { caveMonsters } from '@/data/monster/cave-monsters'
+import { caveMonsters } from '@/monsters/cave-monsters'
 import { caveBuilds, cavePlayerDefinition, caveScenarios } from '@/balance/cave-scenarios'
 import { simulateDuel, simulateFarm } from '@/combat/simulator'
 

@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { fieldMonsters } from '@/data/monster/field-monsters'
-import { axe } from '@/data/weapons'
+import { axe } from '@/legacy/data/weapons'
 import { useGameStore } from '@/stores/game'
 
 afterEach(() => {

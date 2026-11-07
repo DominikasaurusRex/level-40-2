@@ -1,7 +1,7 @@
-import type { CombatantState, SkillState, StatusEffect } from '@/types/combatant'
-import { findStatus } from '@/types/combatant'
-import type { Effect } from '@/types/effects'
-import { healIconCountFor } from '@/data/heal-icon-thresholds'
+import type { CombatantState, SkillState, StatusEffect } from '@/legacy/types/combatant'
+import { findStatus } from '@/legacy/types/combatant'
+import type { Effect } from '@/legacy/types/effects'
+import { healIconCountFor } from '@/legacy/data/heal-icon-thresholds'
 
 /** Cadence for Bleed/heal-over-time ticks, matching the doc's "N per second" phrasing. */
 const DOT_TICK_MS = 1000

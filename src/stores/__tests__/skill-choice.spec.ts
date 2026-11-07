@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { skillTreeChoices } from '@/data/skill-progression'
+import { skillTreeChoices } from '@/legacy/data/skill-progression'
 import { useGameStore, type GameSnapshot } from '@/stores/game'
 
 function levelTwoSnapshot(): GameSnapshot {

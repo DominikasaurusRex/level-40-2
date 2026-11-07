@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { forestMonsters } from '@/data/monster/forest-monsters'
+import { forestMonsters } from '@/monsters/forest-monsters'
 import { forestBuilds, forestPlayerDefinition, forestScenarios } from '@/balance/forest-scenarios'
 import { simulateDuel, simulateFarm } from '@/combat/simulator'
 

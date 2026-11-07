@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { maxHpForPlayerLevel } from '@/data/player-hp-curve'
+import { maxHpForPlayerLevel } from '@/legacy/data/player-hp-curve'
 import { SAVE_FORMAT_VERSION, SAVE_STORAGE_KEY, useSaveStore, type StoredGame } from '@/stores/save'
 import { useGameStore } from '@/stores/game'
 

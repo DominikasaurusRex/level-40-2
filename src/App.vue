@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { preloadSounds } from '@/audio/sounds'
-import GameWindow from './components/GameWindow.vue'
+import GameWindow from './GameWindow.vue'
 
 const PAGE_PADDING = 32
 /** A touch device whose short side is below this counts as a phone. */

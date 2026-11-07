@@ -1,9 +1,9 @@
-import type { CombatantDefinition } from '@/types/combatant'
-import type { Player } from '@/types/player'
-import type { Weapon } from '@/types/weapon'
-import { maxHpForPlayerLevel } from '@/data/player-hp-curve'
-import { skillsForPlayer } from '@/data/skill-progression'
-import { resolveWeapon, resolveWeaponsForLevel, weaponUpgradeForLevel } from '@/data/weapons'
+import type { CombatantDefinition } from '@/legacy/types/combatant'
+import type { Player } from '@/legacy/types/player'
+import type { Weapon } from '@/legacy/types/weapon'
+import { maxHpForPlayerLevel } from '@/legacy/data/player-hp-curve'
+import { skillsForPlayer } from '@/legacy/data/skill-progression'
+import { resolveWeapon, resolveWeaponsForLevel, weaponUpgradeForLevel } from '@/legacy/data/weapons'
 import { balancePlayerPower } from '@/balance/__tests__/helpers/player-power'
 
 const EXPECTED_BADGES = 1

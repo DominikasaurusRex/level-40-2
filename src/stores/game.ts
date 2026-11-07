@@ -1,26 +1,26 @@
 import {defineStore} from 'pinia'
 import {computed, reactive, ref} from 'vue'
-import type {CombatantState, SkillState} from '@/types/combatant'
-import {createCombatantState, findStatus} from '@/types/combatant'
-import type {Monster} from '@/types/monster'
-import type {Weapon, WeaponSlot} from '@/types/weapon'
-import {basicAttackSkill} from '@/types/weapon'
-import type {SkillChoice} from '@/types/skill-progression'
-import type {Player} from '@/types/player'
-import {startingPlayer} from '@/data/player'
-import {xpToNextPlayerLevel} from '@/data/player-xp-curve'
-import {maxHpForPlayerLevel} from '@/data/player-hp-curve'
-import {powerForPlayerLevel} from '@/data/player-power-curve'
-import {healIconCountFor} from '@/data/heal-icon-thresholds'
-import {FOCUS_PULSE_MS} from '@/data/focus'
-import {resolveWeaponsForLevel, weaponUpgradeForLevel} from '@/data/weapons'
+import type {CombatantState, SkillState} from '@/legacy/types/combatant'
+import {createCombatantState, findStatus} from '@/legacy/types/combatant'
+import type {Monster} from '@/legacy/types/monster'
+import type {Weapon, WeaponSlot} from '@/legacy/types/weapon'
+import {basicAttackSkill} from '@/legacy/types/weapon'
+import type {SkillChoice} from '@/legacy/types/skill-progression'
+import type {Player} from '@/legacy/types/player'
+import {startingPlayer} from '@/legacy/data/player'
+import {xpToNextPlayerLevel} from '@/legacy/data/player-xp-curve'
+import {maxHpForPlayerLevel} from '@/legacy/data/player-hp-curve'
+import {powerForPlayerLevel} from '@/legacy/data/player-power-curve'
+import {healIconCountFor} from '@/legacy/data/heal-icon-thresholds'
+import {FOCUS_PULSE_MS} from '@/legacy/data/focus'
+import {resolveWeaponsForLevel, weaponUpgradeForLevel} from '@/legacy/data/weapons'
 import {
   isSkillChoiceAvailable,
   isSkillChoiceId,
   skillChoiceLevels,
   skillsForPlayer,
   skillTreeChoices,
-} from '@/data/skill-progression'
+} from '@/legacy/data/skill-progression'
 import {
   areaForLevel,
   type AreaName,
@@ -28,11 +28,11 @@ import {
   isAreaName,
   isLevelInArea,
   levelsForArea
-} from '@/data/areas'
+} from '@/legacy/data/areas'
 import {advanceFight} from '@/combat/engine'
-import {trainingDummy} from '@/data/monster/tutorial-monster'
-import {PlaceId, startingRebuiltPlaceIds} from '@/data/town'
-import {initialResourceAmounts, ResourceId, type ResourceAmounts} from '@/data/resources'
+import {trainingDummy} from '@/legacy/data/tutorial-monster'
+import {PlaceId, startingRebuiltPlaceIds} from '@/town/town'
+import {initialResourceAmounts, ResourceId, type ResourceAmounts} from '@/resources/resources'
 
 const TICK_MS = 100
 const MAX_PLAYER_LEVEL = 30

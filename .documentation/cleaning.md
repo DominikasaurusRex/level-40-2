@@ -26,30 +26,34 @@ code"), so nothing removed here is lost.
 | Part | Files | What survives | What changes |
 | ---- | ----- | ------------- | ------------ |
 | Combat engine | `combat/engine.ts` | Tick loop, cooldowns, staggered multi-hits, Stun, AGI charges, heal-over-time (→ Regeneration), hooks | The old `def` pool becomes **Shield**. New: damage types and responses, flat DEF with split/overflow, Barrier, Absorb, Poison (replaces Bleed), new Curse (delayed reflection). Counter/Recovery/Offensive Care go. |
-| Combat types | `types/combatant.ts`, `types/effects.ts`, `types/weapon.ts`, `types/skill.ts`, `types/monster.ts` | Combatant model (player and monsters share it) | Weapons get Physical + one element; player has 3 weapon attacks plus 3 active skills instead of one basic attack. |
+| Combat types | `legacy/types/combatant.ts`, `effects.ts`, `weapon.ts`, `skill.ts`, `monster.ts` | Combatant model (player and monsters share it) | Weapons get Physical + one element; player has 3 weapon attacks plus 3 active skills instead of one basic attack. |
 | Battle view | `BattleCard.vue` | Monster sprite, HP bars, status display | Element/Barrier/Shield display. |
 | Player panel | `PlayerTab.vue` | Skill rows with cooldown bars | 3 weapons + active skills; Focus Pulse becomes the weapon empowerment bar/burst. |
 | Simulator | `combat/simulator.ts` | One engine for game and simulator | Simulates runs instead of farming one monster. |
 | Main view | `GameWindow.vue` | Screen layout, fades, overlay wiring | Tutorial steps, level-up and skill-tree wiring, area tabs, badges go. |
 | Game store | `stores/game.ts` | Tick, battle phases, animation event queues, original-save flags | Level/XP curves, level-ups, areas, badges, skill choices go; run and Town state come in. |
-| Monster data | `data/monster/forest-, cave-monsters.ts` | Data shape, the ten reused monsters (stages 1–10) | All stats retuned, elements added. |
+| Monster data | `monsters/forest-, cave-monsters.ts` | Data shape, the ten reused monsters (stages 1–10) | All stats retuned, elements added. |
 | Engine tests | `combat/__tests__/engine.spec.ts` | Test style | Rewritten for the new rules. |
 
 ## Not reusable
 
+Paths below are relative to `src/`. Everything not reusable except the balance suite, the store
+tests, and the cutscene content already sits in `src/legacy/` (`components/`, `data/`, `types/`,
+`utils/` inside it mirror the original layout).
+
 | Part | Files |
 | ---- | ----- |
-| Level-ups | `LevelUpModal.vue`, `data/player-xp-curve.ts`, `data/player-hp-curve.ts`, `data/player-power-curve.ts` |
-| Old skill tree | `SkillTreeModal.vue`, `SkillTreeHelpModal.vue`, `SkillRow.vue`, `SkillDescription.vue`, `utils/skill-description.ts`, `data/skill-progression.ts`, `types/skill-progression.ts`, `data/__tests__/skill-progression.spec.ts` |
-| Area/level selection | `AreaTabs.vue`, `data/areas.ts` (8 old areas), `data/area-backgrounds.ts` (rebuild for new areas) |
-| Badges | `BadgeShelf.vue`, `data/badges.ts` |
-| Old weapons | `data/weapons.ts` (Power formula, level-based tiers), `data/__tests__/weapons.spec.ts` |
-| Focus Pulse | `data/focus.ts`, `stores/__tests__/focus.spec.ts` |
-| Old monsters | `data/monster/tutorial-monster.ts` (the other unused monster files are already deleted) |
-| Balance suite | all of `src/balance/` (scenarios, `mandatory-clear.ts`, every `__tests__` spec) |
+| Level-ups | `legacy/components/LevelUpModal.vue`, `legacy/data/player-xp-curve.ts`, `player-hp-curve.ts`, `player-power-curve.ts` |
+| Old skill tree | `legacy/components/SkillTreeModal.vue`, `SkillTreeHelpModal.vue`, `SkillRow.vue`, `SkillDescription.vue`, `legacy/utils/skill-description.ts`, `legacy/data/skill-progression.ts`, `legacy/types/skill-progression.ts`, `legacy/data/__tests__/skill-progression.spec.ts` |
+| Area/level selection | `legacy/components/AreaTabs.vue`, `legacy/data/areas.ts` (8 old areas), `legacy/data/area-backgrounds.ts` (rebuild for new areas) |
+| Badges | `legacy/components/BadgeShelf.vue`, `legacy/data/badges.ts` |
+| Old weapons | `legacy/data/weapons.ts` (Power formula, level-based tiers), `legacy/data/__tests__/weapons.spec.ts` |
+| Focus Pulse | `legacy/data/focus.ts`, `stores/__tests__/focus.spec.ts` |
+| Old monsters | `legacy/data/tutorial-monster.ts` (the other unused monster files are already deleted) |
+| Balance suite | all of `balance/` (scenarios, `mandatory-clear.ts`, every `__tests__` spec) |
 | Old store tests | `stores/__tests__/area-unlock.spec.ts`, `skill-choice.spec.ts`; `battle-intermission.spec.ts` and `save.spec.ts` need rewriting |
-| Old cutscenes | `data/cutscenes.ts` content (`intro`, `wolf`, `dragon`, `credits`) |
-| Small data | `data/player.ts`, `data/xp-orb-thresholds.ts`, `data/heal-icon-thresholds.ts` (check while reworking) |
+| Old cutscenes | `story/cutscenes.ts` content (`intro`, `wolf`, `dragon`, `credits`) |
+| Small data | `legacy/data/player.ts`, `xp-orb-thresholds.ts`, `heal-icon-thresholds.ts` (check while reworking) |
 | Assets | `public/areas/` for the old areas, `public/badge/`, `public/cutscene/` (Gatekeeper may stay). The original enemy sprites are already gone. |
 
 Assets are optional to remove early; they don't affect the build.

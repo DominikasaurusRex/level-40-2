@@ -20,17 +20,19 @@ and how; ask when the intended new design is unclear.
 
 ## Current state
 
-- Most of `src/` is still the original Level 40 code: 8 areas (Field → Abyss), level-ups,
-  Shield-style DEF, Bleed, and so on.
-- Monster data holds only the ten monsters for stages 1–10 (`forest-monsters.ts`,
-  `cave-monsters.ts`) in the Level 40 2 shape (`types/monster-definition.ts`, `types/damage.ts`,
-  `types/skill-effect.ts`) with placeholder numbers. The original engine cannot run them, so the old
-  battle view only fights the tutorial's Training Dummy (whose sprite is gone).
+- Most of the code is still the original Level 40 code: 8 areas (Field → Abyss), level-ups,
+  Shield-style DEF, Bleed, and so on. Code with no future is parked in `src/legacy/` (see
+  **Code layout**).
+- Monster data holds only the ten monsters for stages 1–10 (`src/monsters/forest-monsters.ts`,
+  `cave-monsters.ts`) in the Level 40 2 shape (`monsters/monster-definition.ts`,
+  `combat/damage.ts`, `combat/skill-effect.ts`) with placeholder numbers. The original engine cannot
+  run them, so the old battle view only fights the tutorial's Training Dummy (whose sprite is gone).
 - **Implemented for Level 40 2 so far:**
   - Console shell adjusted (wider screen, no SELECT, mobile mode; see `cleaning.md`).
-  - Town: places as `PlaceId` (`src/data/town.ts`) with conditional backgrounds, `TownScreen.vue`,
-    `PlaceScreen.vue`, NPC chats (`src/data/chats.ts`), and the Gate's `EmbarkConfirmation.vue`.
-  - Resources: the six resources as `ResourceId` (`src/data/resources.ts`) and `ResourceBar.vue`.
+  - Town: places as `PlaceId` (`src/town/town.ts`) with conditional backgrounds, `TownScreen.vue`,
+    `PlaceScreen.vue`, NPC chats (`src/town/chats.ts`), and the Gate's `EmbarkConfirmation.vue`.
+  - Resources: the six resources as `ResourceId` (`src/resources/resources.ts`) and
+    `ResourceBar.vue`.
   - Save snapshot holds `rebuiltPlaces` and `resources`.
   - Enemy sprites for stages 1–10 in `public/enemies/forest/` and `public/enemies/cave/` (see
     `enemies.md`).
@@ -39,12 +41,43 @@ and how; ask when the intended new design is unclear.
 
 Update this section as systems get replaced in code.
 
+## Code layout
+
+`src/` is grouped **by domain**, not by file kind. A domain folder holds its components, data, and
+types side by side, flat (file names tell them apart: `TownScreen.vue` next to `town.ts`). Tests sit
+in a `__tests__` folder inside their domain. A domain that grows large gets subfolders per
+feature (for example one per Town place modal), not per file kind.
+
+| Folder | Holds |
+| ------ | ----- |
+| `src/` root | `main.ts`, `App.vue`, `GameWindow.vue` (entry and screen switching) |
+| `console/` | Console shell: screen, D-pad, action buttons |
+| `ui/` | Small shared UI pieces (`MenuButton`, `ModalCloseButton`) |
+| `menu/` | Start screen, New Game, starting gift, in-game menu, credits |
+| `town/` | Town screen, places, NPC chats, embark confirmation |
+| `resources/` | Resource ids and the resource bar |
+| `monsters/` | Monster definition type and the monster rosters |
+| `battle/` | Battle view: battle card, player panel, combat animation layers |
+| `story/` | Cutscenes, tutorials, ending |
+| `combat/` | Engine, simulator, and the shared combat-core types (`damage.ts`, `skill-effect.ts`) |
+| `audio/`, `balance/`, `stores/` | Sound, balance scenarios, global Pinia stores |
+| `legacy/` | Original Level 40 code waiting to be deleted (see `cleaning.md`) |
+
+Rules:
+
+- New code goes into its domain folder. There are no `components/`, `data/`, `types/`, or `utils/`
+  folders.
+- Types live with the domain they describe; only types every domain shares go in `combat/`.
+- Nothing new goes into `legacy/`, and new code should not depend on it. It shrinks until it can be
+  deleted.
+- Stores stay global in `stores/` for now. Whether a domain gets its own store is decided when one
+  needs it.
+- Future domains (weapons, skill board, ...) get their own folder.
+
 ## Parked for later
 
-- **New architecture setup.** The author wants to discuss the Level 40 2 code architecture (how the
-  new types, engine, stores, and data fit together) later. First finish the design discussions on
-  combat, Town, and the remaining extras. Do not start restructuring the architecture before that
-  discussion; raise it once those are done.
+- **Rest of the architecture.** The folder layout above is settled. How the new types, engine,
+  stores, and data fit together is still to be discussed once the combat and Town designs are done.
 - **XP orb animation values** (`xpOrbOffset`, `xpOrbRadius` in the original monster data) were left
   out of the new monster shape. Decide whether and how they return when combat is reworked.
 
@@ -116,10 +149,11 @@ no level-ups, combat state carries between fights):
    resolution). How each one acts is separate: the player has three weapons with empowerment and
    three manually used active skills; a monster has one basic attack and up to three skills fired by
    cooldown and AI conditions (see `enemies.md`).
-2. Static definitions are separate from runtime state. Never mutate objects imported from `src/data/`.
+2. Static definitions are separate from runtime state. Never mutate imported static data (rosters,
+   place lists, resource lists, ...).
 3. One combat engine (`advanceFight`) serves both the live game and the balance simulator. Hooks
    only report events and never change outcomes.
-4. Tuning lives in data (`src/data/`), not in logic.
+4. Tuning lives in data files (in their domain folder since Level 40 2), not in logic.
 5. Persisted state is minimal. Everything derivable is rebuilt on load.
 6. The UI is a CSS-scaled console. Position math uses `offsetLeft`/`offsetTop`, never
    `getBoundingClientRect()`. No popovers or teleports; choices expand inline.

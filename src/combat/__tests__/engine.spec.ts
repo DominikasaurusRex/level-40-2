@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import type { CombatantDefinition } from '@/types/combatant'
-import { createCombatantState } from '@/types/combatant'
-import type { Skill } from '@/types/skill'
+import type { CombatantDefinition } from '@/legacy/types/combatant'
+import { createCombatantState } from '@/legacy/types/combatant'
+import type { Skill } from '@/legacy/types/skill'
 import { advanceFight, type FightOutcome } from '@/combat/engine'
 
 const TICK_MS = 100

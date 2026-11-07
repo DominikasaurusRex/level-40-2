@@ -1,5 +1,5 @@
-import type { CombatantDefinition } from '@/types/combatant'
-import { createCombatantState } from '@/types/combatant'
+import type { CombatantDefinition } from '@/legacy/types/combatant'
+import { createCombatantState } from '@/legacy/types/combatant'
 import { advanceFight, type FightOutcome } from '@/combat/engine'
 
 export interface SimulationOptions {

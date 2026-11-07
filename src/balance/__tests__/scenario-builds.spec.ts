@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isSkillChoiceAvailable } from '@/data/skill-progression'
+import { isSkillChoiceAvailable } from '@/legacy/data/skill-progression'
 import { fieldBuilds } from '@/balance/field-scenarios'
 import { forestBuilds } from '@/balance/forest-scenarios'
 import { caveBuilds } from '@/balance/cave-scenarios'
