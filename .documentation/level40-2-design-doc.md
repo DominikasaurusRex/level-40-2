@@ -79,7 +79,7 @@ The full loadout, the attack timeline, when the player can act, and how monsters
 ### Timed active skills
 
 - Active skills are **bought through the skill board**.
-- The player selects **three active skills per run**. Together with three weapon slots, pre-run preparation fills **six loadout slots**. Three is enough because the weapons' empowered states already act as additional skills.
+- The player selects **three active skills per run**. Together with three weapon slots, pre-run preparation fills **six loadout slots**. Three is enough because the weapons' empowered states already act as additional skills. Testing starts with three; if it proves too tight, a fourth slot (for example as a late progression unlock) can be considered.
 - Skills should offer a broader range of distinct effects to cover support roles without consumables. Examples include **Shield, Barrier, healing, damage element altering, elemental resistances and stunning**; the final skill roster remains open.
 - A single active skill **may combine several effects or cover several damage types**, for example an elemental Barrier that halves all Fire, Ice, and Thunder damage. This keeps three skill slots flexible enough to cover support roles.
 - Active skills **may overlap with empowerments**, for example Poison, Curse, Stun, or a big
