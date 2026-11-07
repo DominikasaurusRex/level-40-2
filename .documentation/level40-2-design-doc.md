@@ -61,6 +61,9 @@ Player elemental resistance can come from **both passive skill-board nodes and a
 
 Active play has two parts: building weapon empowerment through clicks, and timing a few active skills. Combat still proceeds automatically without input.
 
+The full loadout, the attack timeline, when the player can act, and how monsters react are in
+**battle.md**.
+
 ### Weapon Focus and bursts
 
 - Repeatedly clicking a weapon fills its **empowerment bar**.

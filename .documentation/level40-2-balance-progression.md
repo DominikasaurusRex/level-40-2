@@ -93,6 +93,7 @@ These examples should remain mixed across board regions rather than segregated i
     replaces the other, so the player and the enemy can override each other's speed effect (the
     same rule as temporary damage responses).
   - They do **not** change the empowerment bar; the player controls it.
+  - Nothing resists them: there is no status response to Haste or Slow.
 - **Regeneration:** restores HP over time, capped at maximum HP.
 - **Shield:** a pool of temporary HP, carried over from the original Level 40 (where DEF was displayed as "Shield"). It absorbs damage point-for-point before HP is lost and is used up as it does. It stacks and does not expire, so it can be built up against weak enemies and carried into later fights. Not to be confused with Barrier.
 - **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Dual Blades). It is not an accumulating pool; that role belongs to Shield.

@@ -95,6 +95,7 @@ Working design docs in `.documentation/`. They describe the sequel, not the orig
 | `level40-2-design-doc.md` | Overview: run loop, combat continuity, weapons, damage types, active play, skill board, stage skipping, resources, Town |
 | `level40-2-story-progression.md` | Premise, areas and bosses for stages 1–42, monster reuse, elemental planning, endings |
 | `level40-2-balance-progression.md` | Skill board structure, weapon damage structure, the status roster, damage resolution order |
+| `battle.md` | A fight from the player's side: six-slot loadout, attack timeline, player actions, monster reactions |
 | `weapons-and-empowerment.md` | Four weapon families, attack cadence, empowered states and techniques, status responses |
 | `town.md` | Town facility repairs, upgrades, Gate resource protection, and facility progression |
 | `town-repair-modal.md` | Inn's repair/upgrade modal: layout, cost display, Upgrade button |
