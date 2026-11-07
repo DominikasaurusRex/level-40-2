@@ -81,6 +81,18 @@ These examples should remain mixed across board regions rather than segregated i
   already ready. For the player this includes manually used active skills, and the empowerment bar
   does not charge. **Cooldowns are independent of everything, Stun included**: they keep running,
   and whatever becomes ready during the Stun waits until it ends.
+- **Haste / Slow** (working names): speed up or slow down a combatant's **default attacks** for a
+  duration. Haste is a positive status (usually cast on yourself, so you attack more often), Slow a
+  negative one (usually cast on the opponent, so it attacks less often). They affect **only default
+  attacks**: the player's weapon attacks and a monster's basic attack. **Skills are never affected.**
+  This is the one exception to "cooldowns are independent of everything".
+  - The speed change is a **multiplier** on how fast the attack timer fills (for example ×1.5 for
+    Haste, ×0.5 for Slow), so fast and slow weapons gain or lose the same proportion. It also
+    applies to a timer that is already running.
+  - Haste and Slow are **one speed status**: whatever was applied **most recently wins** and
+    replaces the other, so the player and the enemy can override each other's speed effect (the
+    same rule as temporary damage responses).
+  - They do **not** change the empowerment bar; the player controls it.
 - **Regeneration:** restores HP over time, capped at maximum HP.
 - **Shield:** a pool of temporary HP, carried over from the original Level 40 (where DEF was displayed as "Shield"). It absorbs damage point-for-point before HP is lost and is used up as it does. It stacks and does not expire, so it can be built up against weak enemies and carried into later fights. Not to be confused with Barrier.
 - **DEF:** flat damage reduction **per hit** for a fixed duration; particularly effective against many small hits (e.g., Dual Blades). It is not an accumulating pool; that role belongs to Shield.
@@ -119,6 +131,7 @@ statuses, on the opponent it removes positive effects. Each effect also needs th
 | Damage | Physical amount, optional element and its amount, hit count | Untyped damage |
 | Poison | Damage per tick, tick interval, duration | Bleed |
 | Stun | Duration | — |
+| Haste / Slow | Speed multiplier for default attacks, duration | — (new) |
 | Regeneration | HP per tick, duration | Heal over time |
 | Heal | Amount (instant) | — |
 | Shield | Amount (stacks, never expires) | The old DEF pool |

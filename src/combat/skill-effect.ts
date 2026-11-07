@@ -12,6 +12,7 @@ export enum EffectType {
   Def = 'def',
   Agi = 'agi',
   DamageResponse = 'damage-response',
+  AttackSpeed = 'attack-speed',
 }
 
 /** Who an effect (or a cleanse) lands on. Written out on every effect, even the obvious ones. */
@@ -89,6 +90,18 @@ export interface DamageResponseEffect extends EffectBase {
   duration: number
 }
 
+/**
+ * Speeds up or slows down the target's default attacks (the player's weapons, a monster's basic
+ * attack), never its skills. Shown as Haste (`multiplier` above 1) or Slow (below 1). The multiplier
+ * scales how fast the attack timer fills, including a running one. Haste and Slow are one status:
+ * the most recent application replaces the active one.
+ */
+export interface AttackSpeedEffect extends EffectBase {
+  type: EffectType.AttackSpeed
+  multiplier: number
+  duration: number
+}
+
 export type SkillEffect =
   | DamageEffect
   | PoisonEffect
@@ -100,6 +113,7 @@ export type SkillEffect =
   | DefEffect
   | AgiEffect
   | DamageResponseEffect
+  | AttackSpeedEffect
 
 /**
  * Cleansing is not an effect: a skill may additionally cleanse. On `Self` it removes the caster's
