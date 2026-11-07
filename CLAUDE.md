@@ -26,7 +26,7 @@ and how; ask when the intended new design is unclear.
 - Monster data holds only the ten monsters for stages 1–10 (`src/monsters/forest-monsters.ts`,
   `cave-monsters.ts`) in the Level 40 2 shape (`monsters/monster-definition.ts`,
   `combat/damage.ts`, `combat/skill-effect.ts`) with placeholder numbers. The original engine cannot
-  run them, so the old battle view only fights the tutorial's Training Dummy (whose sprite is gone).
+  run them.
 - **Implemented for Level 40 2 so far:**
   - Console shell adjusted (wider screen, no SELECT, mobile mode; see `cleaning.md`).
   - Town: places as `PlaceId` (`src/town/town.ts`) with conditional backgrounds, `TownScreen.vue`,
@@ -34,6 +34,9 @@ and how; ask when the intended new design is unclear.
   - Resources: the six resources as `ResourceId` (`src/resources/resources.ts`) and
     `ResourceBar.vue`.
   - Save snapshot holds `rebuiltPlaces` and `resources`.
+  - Screens: `GameWindow.vue` switches between Start, Town, and the new `battle/BattleScreen.vue`
+    (a placeholder, reached by embarking at the Gate). The original battle view, tutorials,
+    level-ups, and boss cutscenes are no longer wired in.
   - Enemy sprites for stages 1–10 in `public/enemies/forest/` and `public/enemies/cave/` (see
     `enemies.md`).
 - Everything else follows the original docs until it is replaced; the Level 40 2 docs describe the

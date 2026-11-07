@@ -9,7 +9,7 @@ import EmbarkConfirmation from './EmbarkConfirmation.vue'
 import ResourceBar from '@/resources/ResourceBar.vue'
 
 const props = defineProps<{ placeId: PlaceId }>()
-const emit = defineEmits<{ leave: [] }>()
+const emit = defineEmits<{ leave: []; embark: [] }>()
 
 const game = useGameStore()
 const place = computed(() => placeById(props.placeId))
@@ -81,7 +81,7 @@ function advanceChat() {
       <EmbarkConfirmation
         v-if="actionOpen && placeId === PlaceId.Gate"
         @cancel="actionOpen = false"
-        @embark="actionOpen = false"
+        @embark="emit('embark')"
       />
     </Transition>
   </section>

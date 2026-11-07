@@ -5,6 +5,8 @@ import { FIRST_ENDING_STAGE, PlaceId, townPlaces } from '@/town/town'
 import PlaceScreen from './PlaceScreen.vue'
 import ResourceBar from '@/resources/ResourceBar.vue'
 
+const emit = defineEmits<{ embark: [] }>()
+
 const openPlaceId = ref<PlaceId>()
 const game = useGameStore()
 const fakeEndingFinished = computed(() => game.highestUnlockedLevel > FIRST_ENDING_STAGE)
@@ -53,6 +55,7 @@ const buildings = townPlaces.map(place => ({
         :key="openPlaceId"
         :place-id="openPlaceId"
         @leave="openPlaceId = undefined"
+        @embark="emit('embark')"
       />
     </Transition>
   </section>
