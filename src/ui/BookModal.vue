@@ -3,19 +3,12 @@ import { onMounted, ref, watchEffect } from 'vue'
 import { playSound } from '@/audio/sounds'
 import ModalCloseButton from '@/ui/ModalCloseButton.vue'
 
-/** One bookmark on the book's top or left edge. */
 export interface BookTab {
   id: string
   label: string
 }
 
-/**
- * The shared paper-book look of the Town modals (see `.documentation/book-modal.md`). A modal
- * wraps this and fills the default slot with its own content. Both bookmark sets are optional:
- * without `topTabs` or `leftTabs` that edge stays empty.
- */
 const props = withDefaults(defineProps<{
-  /** Accessible name of the dialog, for example the place name. */
   title: string
   topTabs?: BookTab[]
   leftTabs?: BookTab[]
@@ -26,15 +19,9 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{ close: [] }>()
 
-/** Id of the selected top bookmark. */
 const top = defineModel<string>('top')
-/** Id of the selected left bookmark. */
 const left = defineModel<string>('left')
 
-/**
- * The first (leftmost or topmost) bookmark is selected on load, and again whenever the selected
- * one is no longer in the list.
- */
 watchEffect(() => {
   if (!props.topTabs.some(tab => tab.id === top.value)) top.value = props.topTabs[0]?.id
   if (!props.leftTabs.some(tab => tab.id === left.value)) left.value = props.leftTabs[0]?.id
@@ -153,7 +140,6 @@ function selectLeft(tab: BookTab) {
   font-family: Georgia, 'Times New Roman', serif;
 }
 
-/* Bookmarks sit behind the cover's edge and stick out of it. */
 .book-tabs {
   position: absolute;
   z-index: -1;
@@ -186,7 +172,6 @@ function selectLeft(tab: BookTab) {
   white-space: nowrap;
 }
 
-/* Many top bookmarks shrink and cut their label rather than overflow the book. */
 .book-tabs-top .book-tab {
   flex: 0 1 auto;
   min-width: 0;
@@ -215,7 +200,6 @@ function selectLeft(tab: BookTab) {
   background: var(--book-tab-selected);
 }
 
-/* The selected bookmark sticks out further. */
 .book-tabs-top .book-tab-selected { height: 2.4rem; }
 .book-tabs-left .book-tab-selected { padding-left: 1.15rem; }
 </style>
