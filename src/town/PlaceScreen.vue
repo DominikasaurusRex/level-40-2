@@ -7,6 +7,10 @@ import { playSound } from '@/audio/sounds'
 import MenuButton from '@/ui/MenuButton.vue'
 import EmbarkConfirmation from './EmbarkConfirmation.vue'
 import ResourceBar from '@/resources/ResourceBar.vue'
+import BookModal from '@/ui/BookModal.vue'
+
+/** Places whose action opens its own screen instead of the book (embark, skill board). */
+const placesWithoutBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks]
 
 const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: []; embark: [] }>()
@@ -82,6 +86,14 @@ function advanceChat() {
         v-if="actionOpen && placeId === PlaceId.Gate"
         @cancel="actionOpen = false"
         @embark="emit('embark')"
+      />
+    </Transition>
+
+    <Transition name="confirmation-fade">
+      <BookModal
+        v-if="actionOpen && !placesWithoutBook.includes(placeId)"
+        :title="place.actionLabel"
+        @close="actionOpen = false"
       />
     </Transition>
   </section>
