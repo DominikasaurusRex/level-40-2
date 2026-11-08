@@ -26,7 +26,8 @@ const numberFormat = new Intl.NumberFormat('en-US')
   top: 0.5rem;
   right: 0.75rem;
   left: 0.75rem;
-  z-index: 50;
+  /* Above the place modals (300), still below the START menu, which sits outside the place screen. */
+  z-index: 310;
   display: flex;
   gap: 0.75rem;
   box-sizing: border-box;

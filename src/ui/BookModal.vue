@@ -106,8 +106,8 @@ function selectLeft(tab: BookTab) {
   inset: 0;
   z-index: 300;
   box-sizing: border-box;
-  /* Room above and left of the book for the bookmarks that stick out. */
-  padding: 3.2rem 2.5rem 1.4rem 6rem;
+  /* Room above for the resource bar plus the top bookmarks, and left for the left bookmarks. */
+  padding: 5.2rem 2.5rem 1.4rem 6rem;
   background: rgba(12, 8, 5, 0.66);
   backdrop-filter: blur(3px);
 }
