@@ -8,9 +8,10 @@ import MenuButton from '@/ui/MenuButton.vue'
 import EmbarkConfirmation from './EmbarkConfirmation.vue'
 import ResourceBar from '@/resources/ResourceBar.vue'
 import BookModal from '@/ui/BookModal.vue'
+import TownRepairModal from './repair/TownRepairModal.vue'
 
-/** Places whose action opens its own screen instead of the book (embark, skill board). */
-const placesWithoutBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks]
+/** Places whose action opens something other than the empty book (embark, skill board, repair). */
+const placesWithoutEmptyBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks, PlaceId.Inn]
 
 const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: []; embark: [] }>()
@@ -90,8 +91,12 @@ function advanceChat() {
     </Transition>
 
     <Transition name="confirmation-fade">
+      <TownRepairModal
+        v-if="actionOpen && placeId === PlaceId.Inn"
+        @close="actionOpen = false"
+      />
       <BookModal
-        v-if="actionOpen && !placesWithoutBook.includes(placeId)"
+        v-else-if="actionOpen && !placesWithoutEmptyBook.includes(placeId)"
         :title="place.actionLabel"
         @close="actionOpen = false"
       />

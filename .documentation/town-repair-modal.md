@@ -9,7 +9,8 @@ The modal uses the book look (`book-modal.md`).
 
 ### Bookmarks: place and level selection
 
-- **Top bookmarks:** **every Town place**.
+- **Top bookmarks:** every Town place that can be repaired or upgraded. The Inn has no upgrades,
+  so it gets no bookmark.
 - Once every place is at its maximum level, the top bookmarks also show the **Monument**. It is
   not a Town place (no building or NPC), only an upgrade entry here.
 - **Left bookmarks:** the upgrade levels of the selected place.
