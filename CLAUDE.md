@@ -112,6 +112,7 @@ Working design docs in `.documentation/`. They describe the sequel, not the orig
 | `quest-board-modal.md` | Quest Board: stage list, four quests per monster, quest states |
 | `bar-modal.md` | Bar Gold ↔ XP exchange interface |
 | `enemies.md` | Monster per stage and its sprite (stages 1–10 decided so far) |
+| `enemies-status.md` | Elemental weaknesses/resistances, attacks and mechanics, and Poison/Stun responses for stages 1–10 |
 | `cleaning.md` | Plan for removing or reworking the original code |
 | `credits.md` | Working credits and asset attribution list |
 
