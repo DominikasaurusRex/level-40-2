@@ -65,17 +65,22 @@ Active play has two parts: building weapon empowerment through clicks, and timin
 The full loadout, the attack timeline, when the player can act, and how monsters react are in
 **battle.md**.
 
-### Weapon Focus and bursts
+### Readying and empowering weapons
 
-- Repeatedly clicking a weapon fills its **empowerment bar**.
-- When full, that weapon **automatically enters a temporary empowered burst**; no separate activation is required.
-- Only **one weapon can be focused or empowered at a time**.
-- Clicking another weapon switches Focus and resets the charge. Switching during a burst ends the previous weapon's empowerment; two weapons cannot be empowered together.
-- **Charging is blocked during the burst**. Once it ends, the player can build the bar again.
-- This creates periods of clicking followed by time to watch combat and use skills without constantly maintaining the bonus.
-- Empowerment can be a temporary state or an automatically triggered special technique. The four
-  family mechanics are defined in **weapons-and-empowerment.md**. Click counts, strengths, and
-  durations will be tuned during implementation.
+- Repeatedly clicking a weapon fills its **empowerment bar**. Every weapon has its own bar and keeps
+  its charge when the player clicks another weapon.
+- A weapon with a full bar is **readied**. **All three weapons can be readied at the same time.**
+- A readied weapon does not empower on its own: the **player activates** it. How activation works in
+  the UI is not decided yet.
+- Only **one empowerment can be active at a time**. A readied weapon can be activated only when no
+  other empowerment is active; it cannot end or replace an active one.
+- **During an empowerment, the other weapons can still be charged and readied.** Only the empowered
+  weapon's own bar does not charge.
+- This lets the player prepare the next empowerment while the current one runs, and choose which
+  readied weapon to use for the situation.
+- Empowerment can be a temporary state or a special technique. The four family mechanics are
+  defined in **weapons-and-empowerment.md**. Click counts, strengths, and durations will be tuned
+  during implementation.
 
 ### Timed active skills
 

@@ -28,11 +28,11 @@ It supersedes the original Dagger, Sword, and Axe lineup.
 Empowerment is not always a timed damage bonus. It can be either:
 
 - A temporary empowered state, such as Demon Dance or Guard stance.
-- A special technique triggered when the empowerment bar fills, such as Charged Smash or a Staff
-  spell.
+- A special technique, such as Charged Smash or a Staff spell.
 
-Only one weapon can be focused or empowered at a time, following the Focus rules in the main design
-document.
+All weapons can be **readied** (empowerment bar full) at once, but only **one empowerment can be
+active at a time**. The player activates a readied weapon, following the readying rules in the main
+design document.
 
 **Empowered states can never be cleansed**, neither by an enemy's forced cleanse nor by the
 player's own cleanse (see `level40-2-balance-progression.md`). This keeps defensive states such as
@@ -102,11 +102,12 @@ Hammer replaces the old slow, heavy Axe role.
 
 ### Charged Smash
 
-When the empowerment bar fills, the Hammer triggers **Charged Smash**. It deals increased damage and
-applies Stun.
+When the player activates a readied Hammer, it performs **Charged Smash**. It deals increased damage
+and applies Stun.
 
 Charged Smash must not lose its value because of the Hammer's long normal cooldown. It should
-trigger immediately or otherwise be guaranteed to land rather than expiring before the next attack.
+trigger immediately on activation or otherwise be guaranteed to land rather than expiring before the
+next attack.
 
 Later skill-board upgrades may:
 

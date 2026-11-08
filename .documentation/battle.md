@@ -6,7 +6,7 @@ player can act, and how monsters react. This supersedes the battle parts of the 
 
 Related documents:
 
-- `level40-2-design-doc.md`: run loop, combat continuity, Focus rules for empowerment.
+- `level40-2-design-doc.md`: run loop, combat continuity, readying and empowering weapons.
 - `weapons-and-empowerment.md`: the four weapon families, their cadence and empowerment.
 - `level40-2-balance-progression.md`: statuses, skill effects, monster conditions, damage resolution.
 - `enemies.md`: what a monster brings.
@@ -56,16 +56,16 @@ skills**.
   above, skills below.
 
 Not taken from the mockup: the "Exit Combat" and flee buttons (there is no retreat from a run). Not
-decided yet: a combat log, how Shield/DEF/AGI values are shown, how the empowerment bar and Focus
-are shown, how skill readiness is shown, the resource bar, and the stage display.
+decided yet: a combat log, how Shield/DEF/AGI values are shown, how the empowerment bars and
+readied weapons are shown, how a readied weapon is activated, how skill readiness is shown, the resource bar, and the stage display.
 
 ## Player actions
 
 Besides the automatic default attacks, the player can act **at any time**:
 
 - **Use an active skill** whenever it is ready (its cooldown is over).
-- **Empower a weapon** (charge, switch Focus, burst) following the Focus rules in
-  `level40-2-design-doc.md`.
+- **Charge and empower weapons** (charge any weapon to ready it, activate one readied weapon when no
+  empowerment is active) following the readying rules in `level40-2-design-doc.md`.
 
 The only thing that stops this is **Stun**: while stunned, no attack or skill can be used, not even a
 ready one, and the empowerment bar does not charge.
