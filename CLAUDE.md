@@ -31,6 +31,13 @@ and how; ask when the intended new design is unclear.
   - Console shell adjusted (wider screen, no SELECT, mobile mode; see `cleaning.md`).
   - Town: places as `PlaceId` (`src/town/town.ts`) with conditional backgrounds, `TownScreen.vue`,
     `PlaceScreen.vue`, NPC chats (`src/town/chats.ts`), and the Gate's `EmbarkConfirmation.vue`.
+  - Town modals: the shared paper-book `ui/BookModal.vue` (top and left bookmarks, see
+    `book-modal.md`), wrapped by one modal per place in its own subfolder of `town/`: Inn
+    `repair/TownRepairModal.vue`, Library `library/MonsterManualModal.vue`, Quest Board
+    `quest-board/QuestBoardModal.vue`, Bar `bar/ExchangeModal.vue`, Smithy
+    `smithy/SmithyModal.vue`. So far they only show their bookmarks; the pages are empty.
+  - Areas as `AreaId` (`src/monsters/areas.ts`) and weapon families as `WeaponFamilyId`
+    (`src/weapons/weapon-families.ts`).
   - Resources: the six resources as `ResourceId` (`src/resources/resources.ts`) and
     `ResourceBar.vue`.
   - Save snapshot holds `rebuiltPlaces` and `resources`.
@@ -55,11 +62,12 @@ feature (for example one per Town place modal), not per file kind.
 | ------ | ----- |
 | `src/` root | `main.ts`, `App.vue`, `GameWindow.vue` (entry and screen switching) |
 | `console/` | Console shell: screen, D-pad, action buttons |
-| `ui/` | Small shared UI pieces (`MenuButton`, `ModalCloseButton`) |
+| `ui/` | Small shared UI pieces (`MenuButton`, `ModalCloseButton`, `BookModal`) |
 | `menu/` | Start screen, New Game, starting gift, in-game menu, credits |
-| `town/` | Town screen, places, NPC chats, embark confirmation |
+| `town/` | Town screen, places, NPC chats, embark confirmation; one subfolder per place modal (`repair/`, `library/`, `quest-board/`, `bar/`, `smithy/`) |
 | `resources/` | Resource ids and the resource bar |
-| `monsters/` | Monster definition type and the monster rosters |
+| `monsters/` | Monster definition type, the monster rosters, and the areas |
+| `weapons/` | Weapon families |
 | `battle/` | Battle view: battle card, player panel, combat animation layers |
 | `story/` | Cutscenes, tutorials, ending |
 | `combat/` | Engine, simulator, and the shared combat-core types (`damage.ts`, `skill-effect.ts`) |
@@ -75,7 +83,7 @@ Rules:
   deleted.
 - Stores stay global in `stores/` for now. Whether a domain gets its own store is decided when one
   needs it.
-- Future domains (weapons, skill board, ...) get their own folder.
+- Future domains (skill board, ...) get their own folder.
 
 ## Parked for later
 
