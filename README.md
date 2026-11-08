@@ -34,3 +34,6 @@ npm run dev     # dev server
 npm run build   # type-check + build
 npm test        # tests
 ```
+
+
+claude --resume c0283c7d-7e8d-420f-9f50-8b40e8b6d169
