@@ -35,9 +35,29 @@ skills**.
 - Their timing follows from cooldowns, so it can be predicted. The timeline shows the projection for
   the current state and updates when something changes it: Haste/Slow, Stun, Demon Dance, a new
   monster.
-- **Skills are not on the timeline.** Monster skills fire on conditions, the player's skills are
-  used manually.
-- Layout and look are not decided yet.
+- **Monster skills without a condition** fire as soon as their cooldown is over, so they are
+  predictable too and **are shown on the timeline**. The player can see them coming and prepare.
+- **Not on the timeline:** monster skills with a condition (they fire whenever the condition holds)
+  and the player's skills (used manually).
+
+## Screen layout
+
+`mockup-battle.png` is a rough mockup put together from other games. Settled from it:
+
+- The battle screen is **landscape**. A portrait layout is not being considered for now.
+- The **monster** is the focal point in the middle, with its statuses next to it.
+- The **monster has an HP bar** (it needs one for the red damage drain, and the player has to read
+  it during a run).
+- The **timeline** runs **vertically** along the side, the player's attacks in one column and the
+  monster's in the other.
+- The **player's HP bar** sits above the loadout, positive statuses on one side and negative ones on
+  the other.
+- The **loadout** is two rows of three at the bottom: weapons (name, Physical and element damage)
+  above, skills below.
+
+Not taken from the mockup: the "Exit Combat" and flee buttons (there is no retreat from a run). Not
+decided yet: a combat log, how Shield/DEF/AGI values are shown, how the empowerment bar and Focus
+are shown, how skill readiness is shown, the resource bar, and the stage display.
 
 ## Player actions
 
