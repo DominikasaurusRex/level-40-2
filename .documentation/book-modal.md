@@ -6,7 +6,8 @@ of **bookmarks** (tabs) for navigation:
 - **Top bookmarks** along the top edge of the book choose the broad group.
 - **Left bookmarks** along the left edge choose an entry within the selected top bookmark.
 
-Not every modal uses both sets, and a modal may use none. The content area to the right of the left
+Not every modal uses both sets, and a modal may use none. On load, the first bookmark of each set
+is selected (the leftmost top bookmark and the topmost left bookmark). The content area to the right of the left
 bookmarks keeps the layout described in each modal's own spec.
 
 ## Bookmarks per modal
