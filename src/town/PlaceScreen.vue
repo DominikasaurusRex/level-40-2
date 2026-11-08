@@ -7,14 +7,11 @@ import { playSound } from '@/audio/sounds'
 import MenuButton from '@/ui/MenuButton.vue'
 import EmbarkConfirmation from './EmbarkConfirmation.vue'
 import ResourceBar from '@/resources/ResourceBar.vue'
-import BookModal from '@/ui/BookModal.vue'
 import TownRepairModal from './repair/TownRepairModal.vue'
 import MonsterManualModal from './library/MonsterManualModal.vue'
 import QuestBoardModal from './quest-board/QuestBoardModal.vue'
 import ExchangeModal from './bar/ExchangeModal.vue'
-
-/** TODO: REMOVE.  Places whose action opens something other than the empty book. */
-const placesWithoutEmptyBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks, PlaceId.Inn, PlaceId.Library, PlaceId.QuestBoard, PlaceId.Bar]
+import SmithyModal from './smithy/SmithyModal.vue'
 
 const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: []; embark: [] }>()
@@ -110,9 +107,8 @@ function advanceChat() {
         v-else-if="actionOpen && placeId === PlaceId.Bar"
         @close="actionOpen = false"
       />
-      <BookModal
-        v-else-if="actionOpen && !placesWithoutEmptyBook.includes(placeId)"
-        :title="place.actionLabel"
+      <SmithyModal
+        v-else-if="actionOpen && placeId === PlaceId.Smithy"
         @close="actionOpen = false"
       />
     </Transition>
