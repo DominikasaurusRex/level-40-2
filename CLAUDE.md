@@ -98,6 +98,7 @@ Working design docs in `.documentation/`. They describe the sequel, not the orig
 | `battle.md` | A fight from the player's side: six-slot loadout, attack timeline, player actions, monster reactions |
 | `weapons-and-empowerment.md` | Four weapon families, attack cadence, empowered states and techniques, status responses |
 | `town.md` | Town facility repairs, upgrades, Gate resource protection, and facility progression |
+| `book-modal.md` | Shared paper-book look of the Town modals: top and left bookmarks per modal |
 | `town-repair-modal.md` | Inn's repair/upgrade modal: layout, cost display, Upgrade button |
 | `library-modal.md` | Library monster manual: discovery rules, stats, responses, seen skills |
 | `quest-board-modal.md` | Quest Board: stage list, four quests per monster, quest states |

@@ -23,6 +23,7 @@ Working design notes, 2026-11-01. This describes the **sequel**, not the origina
 ## Combat continuity
 
 - **All player combat state carries between fights**: current HP, Shield, DEF, evasion charges/AGI, statuses, cooldowns, weapon charge, and ongoing empowerment.
+- **Every run starts fresh**: full HP, and nothing of the previous run's combat state carries over.
 - Winning does not reset or fully heal the player. A weak enemy can provide an opportunity to accumulate Shield; damage from one encounter can cause defeat in the next.
 - Statuses persist for their remaining duration. For example, poison continues ticking into the next fight until it expires.
 - Additional or revised statuses may be needed; the final status roster remains open.
@@ -35,7 +36,7 @@ Working design notes, 2026-11-01. This describes the **sequel**, not the origina
 - There are four weapon families: **Dual Blades, Sword & Shield, Hammer, and Staff**. Their cadence,
   roles, and empowerment mechanics are defined in **weapons-and-empowerment.md**.
 - Weapon families can have multiple individual weapons with different damage values and elements.
-- Buying a stronger version of a weapon **replaces its older version**. Unique weapons count by their name.
+- The Smithy offers **a few weapons per family** to build. A built weapon is then **upgraded** at the Smithy; there are no separate stronger versions that replace it. Unique weapons count by their name.
 - Weapons should have distinct roles and matchups. A matchup may temporarily block progression while the player farms toward another weapon, such as Dual Blades. Such progression gates are fair and intended.
 - The player selects **three weapon slots per run** in Town, allowing different elements and attack options to be combined.
 - **Equipment consists only of weapons**; there is no armor or accessory equipment system.
@@ -55,7 +56,7 @@ Keep the system light: **Physical damage plus three elements: Fire, Ice, and Thu
 
 Weapons have elemental options. Enemy attacks can also have elements, and enemies have elemental resistances and other responses from the table above. No additional elements or elemental combination/reaction system is planned. Individual weapon entries belong in separate content documents, rather than the structural design decisions here.
 
-Player elemental resistance can come from **both passive skill-board nodes and active protection skills**.
+The player's innate responses are **always Normal** (every damage type, Poison, and Stun). Player resistance comes only from temporary effects: active protection skills and empowered states such as Guard stance.
 
 ## Active play during runs
 

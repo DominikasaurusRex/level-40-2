@@ -1,6 +1,7 @@
 # Quest Board Modal
 
-The Quest Board uses a two-column layout similar to the Town repair and Library modals.
+The Quest Board uses the book look (`book-modal.md`), like the Library: top bookmarks for areas,
+left bookmarks for the stages of the selected area.
 
 Quest tracking begins only after the Quest Board has been repaired. Progress from before that repair
 does not count retroactively.
@@ -8,15 +9,14 @@ does not count retroactively.
 **During development:** until runs exist and the reached stage is tracked, the Quest Board may list
 every stage from 1–20 that has a monster. Only reached levels is the target behavior.
 
-## Left side: level selection
+## Bookmarks: area and level selection
 
-- Show a selectable list of monster levels.
-- Only levels 1–20 have quests. Levels 21–42 never appear in the list.
-- Only levels the player has reached are listed.
-- Unreached levels are completely hidden. Do not show question marks, silhouettes, empty slots, or
-  other placeholders.
-- Up to 20 levels can be listed, so the list must be vertically scrollable.
-- Selecting a level displays that level's monster quests on the right.
+- **Top bookmarks:** the reached areas that have quests (stages 1–20, so at most four areas).
+- **Left bookmarks:** the reached levels of the selected area.
+- Only levels 1–20 have quests. Levels 21–42 and their areas never get a bookmark.
+- Unreached areas and levels are completely hidden. Do not show question marks, silhouettes, empty
+  slots, or other placeholders.
+- Selecting a level displays that level's monster quests on the right side.
 
 ## Right side: monster quests
 

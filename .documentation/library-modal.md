@@ -1,6 +1,7 @@
 # Library Monster Manual Modal
 
-The Library monster manual uses a two-column layout similar to the Town repair modal.
+The Library monster manual uses the book look (`book-modal.md`): top bookmarks for areas, left
+bookmarks for the stages of the selected area.
 
 ## Discovery rules
 
@@ -16,12 +17,12 @@ The Library monster manual uses a two-column layout similar to the Town repair m
 **During development:** until runs exist and the reached stage is tracked, the Library may list
 every stage that has a monster. The discovery rules above are the target behavior.
 
-## Left side: zone selection
+## Bookmarks: area and zone selection
 
-- Show the reached zones as a selectable list.
-- The game has 42 zones, so this list must be vertically scrollable.
-- Selecting a zone selects its reached monster and updates the right side.
-- Only currently reached zones exist in the list.
+- **Top bookmarks:** the reached areas. The superbosses (stages 41 and 42) get their own bookmark.
+- **Left bookmarks:** the reached zones (stages) of the selected area.
+- Selecting a zone shows its monster on the right side.
+- Only reached areas and zones get a bookmark.
 
 ## Right side: monster details
 

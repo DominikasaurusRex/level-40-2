@@ -5,15 +5,17 @@ upgrades for every Town place.
 
 ## Layout
 
-The modal uses two columns.
+The modal uses the book look (`book-modal.md`).
 
-### Left side: place selection
+### Bookmarks: place and level selection
 
-- Show a selectable list containing **every Town place**.
-- Once every place is at its maximum level, the list also shows the **Monument**. It is not a Town
-  place (no building or NPC), only an upgrade entry here.
-- Selecting a place updates the details on the right.
-- The selected place must be visually distinct.
+- **Top bookmarks:** **every Town place**.
+- Once every place is at its maximum level, the top bookmarks also show the **Monument**. It is
+  not a Town place (no building or NPC), only an upgrade entry here.
+- **Left bookmarks:** the upgrade levels of the selected place.
+  - **Target:** only the next level's bookmark is active; earlier levels are shown greyed out.
+  - **For now:** every level's bookmark is shown and clickable.
+- The selected bookmarks must be visually distinct.
 
 ### Right side: selected place
 
