@@ -16,7 +16,7 @@ bookmarks keeps the layout described in each modal's own spec.
 | --- | --- | --- | --- |
 | Library | Areas, plus a separate Superboss bookmark for stages 41 and 42 | Stages of the selected area | `library-modal.md` |
 | Quest Board | Areas | Stages of the selected area | `quest-board-modal.md` |
-| Bar | None | None | `bar-modal.md` |
+| Bar | Gold → XP and XP → Gold (the trade direction) | None | `bar-modal.md` |
 | Smithy | Weapon families | Individual weapons of the selected family | Not written yet |
 | Inn (Town repair) | Town places | Upgrade levels of the selected place | `town-repair-modal.md` |
 

@@ -11,9 +11,10 @@ import BookModal from '@/ui/BookModal.vue'
 import TownRepairModal from './repair/TownRepairModal.vue'
 import MonsterManualModal from './library/MonsterManualModal.vue'
 import QuestBoardModal from './quest-board/QuestBoardModal.vue'
+import ExchangeModal from './bar/ExchangeModal.vue'
 
 /** TODO: REMOVE.  Places whose action opens something other than the empty book. */
-const placesWithoutEmptyBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks, PlaceId.Inn, PlaceId.Library, PlaceId.QuestBoard]
+const placesWithoutEmptyBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks, PlaceId.Inn, PlaceId.Library, PlaceId.QuestBoard, PlaceId.Bar]
 
 const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: []; embark: [] }>()
@@ -103,6 +104,10 @@ function advanceChat() {
       />
       <QuestBoardModal
         v-else-if="actionOpen && placeId === PlaceId.QuestBoard"
+        @close="actionOpen = false"
+      />
+      <ExchangeModal
+        v-else-if="actionOpen && placeId === PlaceId.Bar"
         @close="actionOpen = false"
       />
       <BookModal
