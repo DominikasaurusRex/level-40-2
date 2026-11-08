@@ -7,13 +7,13 @@ Quest tracking begins only after the Quest Board has been repaired. Progress fro
 does not count retroactively.
 
 **During development:** until runs exist and the reached stage is tracked, the Quest Board may list
-every stage from 1–20 that has a monster. Only reached levels is the target behavior.
+every stage from 1–25 that has a monster. Only reached levels is the target behavior.
 
 ## Bookmarks: area and level selection
 
-- **Top bookmarks:** the reached areas that have quests (stages 1–20, so at most four areas).
+- **Top bookmarks:** the reached areas that have quests (stages 1–25, so at most five areas).
 - **Left bookmarks:** the reached levels of the selected area.
-- Only levels 1–20 have quests. Levels 21–42 and their areas never get a bookmark.
+- Only levels 1–25 have quests. Levels 26–42 and their areas never get a bookmark.
 - Unreached areas and levels are completely hidden. Do not show question marks, silhouettes, empty
   slots, or other placeholders.
 - Selecting a level displays that level's monster quests on the right side.

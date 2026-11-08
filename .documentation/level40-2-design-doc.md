@@ -105,7 +105,7 @@ The full loadout, the attack timeline, when the player can act, and how monsters
 
 ## Monster achievements and stage skipping
 
-- **Stages 1–20** have four achievements (quests) per monster. Stages **21–42** have no quests and remain unskippable, preserving an endgame to fight through.
+- **Stages 1–25** (up to and including the Summit Temple) have four achievements (quests) per monster. Stages **26–42** have no quests and remain unskippable, preserving an endgame to fight through.
 - Achievements grant specific permanent rewards, such as skill points, equipment/skill unlocks, or other permanent improvements.
 - Illustrative Slime challenges: repeated kills, a very fast kill, or a kill without active input. Specific challenges and rewards are not final.
 - **Tracking begins only after the Quest board and relevant achievement options unlock.** Previous kills and feats do not count retroactively. A locked facility tracks nothing.
