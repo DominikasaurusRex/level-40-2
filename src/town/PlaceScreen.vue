@@ -9,9 +9,10 @@ import EmbarkConfirmation from './EmbarkConfirmation.vue'
 import ResourceBar from '@/resources/ResourceBar.vue'
 import BookModal from '@/ui/BookModal.vue'
 import TownRepairModal from './repair/TownRepairModal.vue'
+import MonsterManualModal from './library/MonsterManualModal.vue'
 
-/** Places whose action opens something other than the empty book (embark, skill board, repair). */
-const placesWithoutEmptyBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks, PlaceId.Inn]
+/** TODO: REMOVE.  Places whose action opens something other than the empty book. */
+const placesWithoutEmptyBook: PlaceId[] = [PlaceId.Gate, PlaceId.Barracks, PlaceId.Inn, PlaceId.Library]
 
 const props = defineProps<{ placeId: PlaceId }>()
 const emit = defineEmits<{ leave: []; embark: [] }>()
@@ -93,6 +94,10 @@ function advanceChat() {
     <Transition name="confirmation-fade">
       <TownRepairModal
         v-if="actionOpen && placeId === PlaceId.Inn"
+        @close="actionOpen = false"
+      />
+      <MonsterManualModal
+        v-else-if="actionOpen && placeId === PlaceId.Library"
         @close="actionOpen = false"
       />
       <BookModal

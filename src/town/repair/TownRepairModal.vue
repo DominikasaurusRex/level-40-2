@@ -27,7 +27,7 @@ const tabs: BookTab[] = [
   { id: MONUMENT_TAB_ID, label: 'Monument' },
 ]
 
-const selectedTabId = ref(tabs[0]!.id)
+const selectedTabId = ref<string>()
 </script>
 
 <template>

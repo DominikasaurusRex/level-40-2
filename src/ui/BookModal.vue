@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import { playSound } from '@/audio/sounds'
 import ModalCloseButton from '@/ui/ModalCloseButton.vue'
 
@@ -30,6 +30,15 @@ const emit = defineEmits<{ close: [] }>()
 const top = defineModel<string>('top')
 /** Id of the selected left bookmark. */
 const left = defineModel<string>('left')
+
+/**
+ * The first (leftmost or topmost) bookmark is selected on load, and again whenever the selected
+ * one is no longer in the list.
+ */
+watchEffect(() => {
+  if (!props.topTabs.some(tab => tab.id === top.value)) top.value = props.topTabs[0]?.id
+  if (!props.leftTabs.some(tab => tab.id === left.value)) left.value = props.leftTabs[0]?.id
+})
 
 const closeButton = ref<InstanceType<typeof ModalCloseButton>>()
 
@@ -177,7 +186,12 @@ function selectLeft(tab: BookTab) {
   white-space: nowrap;
 }
 
+/* Many top bookmarks shrink and cut their label rather than overflow the book. */
 .book-tabs-top .book-tab {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   height: 2rem;
   border-bottom: 0;
   border-radius: 0.35rem 0.35rem 0 0;
