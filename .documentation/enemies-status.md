@@ -35,3 +35,32 @@ Every damage type or status not listed for a monster is **Normal**.
 | 8 | Ankylosaur | Normal | Normal |
 | 9 | Cave Mantis | Resistant | Normal |
 | 10 | Sauropod | Normal | Resistant |
+
+
+
+## Stages 11–15 — Volcano
+
+| Stage | Enemy | Weakness (×2) | Resistance / Absorb | Attacks and Mechanics | Poison | Stun |
+|---|---|---|---|---|---|---|
+| 11 | Magma Dweller | Ice | Fire resistant (×0.5) | Physical and Fire attacks | Normal | Normal |
+| 12 | Obsidian Armor | — | Fire resistant (×0.5) | Heavy flat DEF, Physical attacks | Normal | Normal |
+| 13 | Frenzied Hunter | Thunder | — | Haste, rapid Physical and Thunder attacks | Normal | Normal |
+| 14 | Crystal Parasite | Fire, Ice | Temporary Ice + Thunder absorb | Temporary elemental absorption | Normal | Normal |
+| 15 | **Ash Phoenix (Boss)** | Thunder | Fire absorb (permanent) | AGI, Regeneration, Fire attacks | Normal | Immune |
+
+### Mechanical Notes
+
+- **Stage 11:** Introduces a stronger focus on Fire damage and Fire resistance.
+- **Stage 12:** Heavy flat DEF rewards high-damage individual hits and Poison.
+- **Stage 13:** Uses Haste to increase attack frequency. Thunder attacks and Thunder vulnerability coexist intentionally.
+- **Stage 14:** Temporarily absorbs Ice and Thunder simultaneously. Ice vulnerability applies outside the absorption phase. Fire remains effective throughout. No regeneration.
+- **Stage 15:** Fire damage heals the boss. AGI interferes with direct attacks, while regeneration restores HP. Immune to Stun, but Poison remains effective.
+
+### General Rules
+
+- All unlisted elemental responses are Normal (×1).
+- All unlisted Poison and Stun responses are Normal.
+- Poison is effective against all five enemies.
+- No additional mechanics are assumed.
+- Exact HP, damage, DEF, AGI, skill durations, and cooldowns remain undecided.
+- Enemy names are working concepts until actual creatures are selected.
