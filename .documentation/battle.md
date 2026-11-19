@@ -106,3 +106,25 @@ final blow.
 - The player **can act during the slowdown** (use ready skills, empower), so they can counter a
   monster's skill while it plays out.
 - How strong and how long the slowdown is gets decided during testing.
+
+
+## Weapon Activation & Empowerment
+
+### Weapon Activation
+- Each of the three equipped weapons can be activated or deactivated during combat.
+- Only active weapons attack automatically.
+- Deactivating weapons increases the attack speed of remaining active weapons:
+    - 3 active: ×1.0 speed
+    - 2 active: ×1.25 speed
+    - 1 active: ×1.5 speed
+- Speed multipliers are provisional and subject to numerical balancing.
+- Deactivation allows players to avoid healing enemies through elemental absorption.
+- More enemies may use permanent or temporary elemental absorption to encourage active weapon management.
+
+### Empowerment
+- All active weapons passively accumulate empowerment charge.
+- Clicking a weapon accelerates its charge.
+- Only one weapon can have an active empowered burst at a time.
+- Deactivated weapons slowly lose empowerment charge, down to zero.
+- Deactivating an empowered weapon immediately ends its burst.
+- Exact charge rates, decay rates, and burst durations are determined during numerical balancing.
