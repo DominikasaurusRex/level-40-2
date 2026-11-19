@@ -69,7 +69,7 @@ Every damage type or status not listed for a monster is **Normal**.
 
 | Stage | Enemy | Weakness (×2) | Elemental Resistance / Immunity | Attacks and Mechanics | Poison | Stun |
 |---|---|---|---|---|---|---|
-| 16 | Snow Crawler | Fire | Ice resistant (×0.5) | Moderate DEF, Physical and Ice attacks | Resistant | Normal |
+| 16 | Snow Crawler | Fire | Ice resistant (×0.5) | Moderate DEF, Physical and Ice attacks, Slow | Resistant | Normal |
 | 17 | Lightning Wisp | — | Thunder immune | High AGI, Thunder attacks, low HP | Immune | Immune |
 | 18 | Ice Raptor | Fire | Ice resistant (×0.5) | Haste, multi-hit Physical and Ice attacks | Normal | Normal |
 | 19 | Thunder Beast | Ice | Thunder resistant (×0.5) | Haste, Stun, heavy Thunder bursts | Resistant | Normal |
