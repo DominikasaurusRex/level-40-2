@@ -64,3 +64,31 @@ Every damage type or status not listed for a monster is **Normal**.
 - No additional mechanics are assumed.
 - Exact HP, damage, DEF, AGI, skill durations, and cooldowns remain undecided.
 - Enemy names are working concepts until actual creatures are selected.
+
+## Stages 16–20 — Stormy Mountain Exterior
+
+| Stage | Enemy | Weakness (×2) | Elemental Resistance / Immunity | Attacks and Mechanics | Poison | Stun |
+|---|---|---|---|---|---|---|
+| 16 | Snow Crawler | Fire | Ice resistant (×0.5) | Moderate DEF, Physical and Ice attacks, Slow | Resistant | Normal |
+| 17 | Lightning Wisp | — | Thunder immune | High AGI, Thunder attacks, low HP | Immune | Immune |
+| 18 | Ice Raptor | Fire | Ice resistant (×0.5) | Haste, multi-hit Physical and Ice attacks | Normal | Normal |
+| 19 | Thunder Beast | Ice | Thunder resistant (×0.5) | Haste, Stun, heavy Thunder bursts | Resistant | Normal |
+| 20 | **Magma Titan (Boss)** | Ice | None | Heavy flat DEF, heavy Physical and Fire attacks, periodic powerful Fire burst | Normal | Normal |
+
+### Mechanical Notes
+
+- **Stage 16:** Moderate DEF and Poison resistance challenge Poison-focused builds without completely shutting them down.
+- **Stage 17:** High AGI combined with Thunder, Poison, and Stun immunity. Low HP compensates for its defensive properties.
+- **Stage 18:** Ice variant of the Thunder Raptor concept. Retains Haste and multi-hit attacks, with Ice replacing Thunder.
+- **Stage 19:** Haste, Stun, and heavy Thunder bursts. Poison resistant.
+- **Stage 20:** A volcanic creature emerging onto the frozen mountain. Heavy DEF and powerful Fire attacks contrast with the fast enemies preceding it. No elemental resistances or immunities currently.
+
+### General Rules
+
+- Unlisted elemental responses are Normal (×1).
+- Unlisted Poison and Stun responses are Normal.
+- Stage 19 retains Haste.
+- Stage 20 has no Poison or Stun resistance or immunity.
+- Fire resistance for Stage 20 may be reconsidered when selecting the final creature.
+- Exact numerical balancing remains undecided.
+- Enemy names are provisional combat concepts.
