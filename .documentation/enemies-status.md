@@ -92,3 +92,58 @@ Every damage type or status not listed for a monster is **Normal**.
 - Fire resistance for Stage 20 may be reconsidered when selecting the final creature.
 - Exact numerical balancing remains undecided.
 - Enemy names are provisional combat concepts.
+
+
+
+Rework for earlier absorb introduction for the edeactiveate  weaposn.
+
+# Level 40-2 — Enemy Roster (Stages 1–20)
+
+Weakness = ×2, Resistance = ×0.5, Absorb = healing.
+Unlisted elemental and status responses are Normal.
+
+## Stages 1–5 — Fields & Forest
+
+| Stage | Enemy | Weakness | Resistance / Absorb | Attacks / Mechanics | Poison | Stun |
+|---|---|---|---|---|---|---|
+| 1 | Slime | Thunder | — | Physical, weak Ice attack | Normal | Normal |
+| 2 | Wild Boar | — | — | Physical Charge | Normal | Normal |
+| 3 | Moss Boar | — | — | Physical Trample, Thunder attack | Normal | Normal |
+| 4 | Sporecap | Fire | — | Poison attacks | Immune | Normal |
+| 5 | Thorn Dryad (Boss) | Fire | Ice, Thunder resist | AGI, Stun, Physical burst | Resistant | Normal |
+
+## Stages 6–10 — Caves & Wasteland
+
+| Stage | Enemy | Weakness | Resistance / Absorb | Attacks / Mechanics | Poison | Stun |
+|---|---|---|---|---|---|---|
+| 6 | Cave Bat | Thunder | — | AGI, Physical attacks | Normal | Normal |
+| 7 | Stone Tortoise | Ice | Thunder resist | Temporary Physical immunity | Normal | Immune |
+| 8 | Ankylosaur | — | Fire resist | Poison attacks, temporary Fire/Ice/Thunder resistance | Normal | Normal |
+| 9 | Cave Mantis | Ice | Fire absorb (proposed) | Multi-hit Physical, Fire attack | Resistant | Normal |
+| 10 | Sauropod (Boss) | Thunder | — | Heavy flat DEF, Stun, Physical and Thunder attacks | Normal | Resistant |
+
+## Stages 11–15 — Volcano
+
+| Stage | Enemy | Weakness | Resistance / Absorb | Attacks / Mechanics | Poison | Stun |
+|---|---|---|---|---|---|---|
+| 11 | Magma Dweller | Ice | Fire resist | Physical and Fire attacks | Normal | Normal |
+| 12 | Obsidian Armor | — | Fire resist | Heavy flat DEF, Physical attacks | Normal | Normal |
+| 13 | Frenzied Hunter | Thunder | — | Haste, rapid Physical and Thunder attacks | Normal | Normal |
+| 14 | Crystal Parasite | Fire, Ice | Temporary Ice + Thunder absorb | Temporary absorption, no regeneration | Normal | Normal |
+| 15 | Ash Phoenix (Boss) | Thunder | Fire absorb | AGI, Regeneration, Fire attacks | Normal | Immune |
+
+## Stages 16–20 — Stormy Mountain Exterior
+
+| Stage | Enemy | Weakness | Resistance / Absorb | Attacks / Mechanics | Poison | Stun |
+|---|---|---|---|---|---|---|
+| 16 | Snow Crawler | Fire | Ice resist | Moderate DEF, Slow, Physical and Ice attacks | Resistant | Normal |
+| 17 | Lightning Wisp | — | Thunder immune | High AGI, Thunder attacks, low HP | Immune | Immune |
+| 18 | Ice Raptor | Fire | Ice resist | Haste, multi-hit Physical and Ice attacks | Normal | Normal |
+| 19 | Thunder Beast | Ice | Thunder resist | Haste, Stun, heavy Thunder bursts | Resistant | Normal |
+| 20 | Magma Titan (Boss) | Ice | — | Heavy flat DEF, Physical and Fire attacks, periodic Fire burst | Normal | Normal |
+
+## Recent Changes
+
+- Stage 9 — Cave Mantis: Permanent Fire absorption proposed, not yet confirmed.
+- Stage 16 — Snow Crawler: Slow added (confirmed).
+- Stages 14–15: Existing elemental absorption mechanics unchanged.
